@@ -38,8 +38,8 @@ function chechPost($post=""){
 
 <div class="container">
         <div class="row">
-                <div class="col-md-8 col-md-offset-1">
-                    <div class="panel panel-default">
+                <div class="col-md-8 col-md-offset-1 nacoss-all-discuss nacoss-my-discuss">
+                    <div class="panel document-panel">
                         <!-- /.panel-heading -->
                         <div class="panel-body">
 
@@ -49,9 +49,9 @@ $result = mysqli_num_rows($query);
 $counter_candidate=1;
 if(!empty($result)){
 ?>
-                            <table width="" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-responsive">
    
-                                <thead>
+                                <thead class="panel-heading">
                                     <tr>
                                         <th>#</th>
                                         <th>Candidate's Name</th>
@@ -61,7 +61,7 @@ if(!empty($result)){
                                         <th>Ineligibility</th>
                                     </tr>
                                 </thead>
-                                 <tbody>        
+                                 <tbody class="panel-body">        
 <?php
 }
 while ( $row = mysqli_fetch_array($query) ) {
@@ -72,13 +72,13 @@ while ( $row = mysqli_fetch_array($query) ) {
     $candidate_ineligibility = $row['ineligibility']; 
   ?> 
                                
-                                    <tr class="odd gradeX">
-                                        <td><h4 style="float:left;"><?php echo $counter_candidate;?></h4></td>
-                                        <td><h4><?php echo $candidate_full_name; ?></h4></td>
-                                        <td><h4><?php echo $candidate_rnumber; ?></h4></td>
-                                        <td><h4><?php $value = chechPost($candidate_post); echo $value; ?></h4></td>
-                                        <td><h4><?php echo $candidate_eligibility; ?></h4></td>
-                                        <td><h4><?php echo $candidate_ineligibility; ?></h4></td>
+                                    <tr class="">
+                                        <td><?php echo $counter_candidate;?></td>
+                                        <td><?php echo $candidate_full_name; ?></td>
+                                        <td><?php echo $candidate_rnumber; ?></td>
+                                        <td><?php $value = chechPost($candidate_post); echo $value; ?></td>
+                                        <td><?php echo $candidate_eligibility; ?></td>
+                                        <td><?php echo $candidate_ineligibility; ?></td>
                                     </tr>
                             
                                 

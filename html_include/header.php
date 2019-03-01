@@ -1,4 +1,52 @@
 <?php require_once('includes/initialize.php'); ?>
+<?php
+  $validate_user_activation_period_query = User::find_by_sql("SELECT * FROM all_students WHERE verified='0'");
+  while($row=mysqli_fetch_assoc($validate_user_activation_period_query)){
+    $user_registered_date = $row["date"];
+    $user_id = $row["id"];
+    $current_year = date('Y'); $current_month = date('m'); $current_day = date('d');
+
+    $reg_year = date('Y', strtotime($user_registered_date));
+    $reg_month = date('m', strtotime($user_registered_date));
+    $reg_day = date('d', strtotime($user_registered_date));
+
+    if($current_year >= $reg_year){
+      if($current_day - $reg_day > 7){
+          //$delete_user = User::find_by_sql("DELETE FROM all_students WHERE id='$user_id'");
+      }else{
+        $convert_days = 30 - $reg_day + $current_day;
+        if($convert_days > 7){
+          //$delete_user = User::find_by_sql("DELETE FROM all_students WHERE id='$user_id'");
+        }
+      }
+    }
+  }
+?>
+<?php
+
+if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
+    $confirm_id = $_GET['confirm'];
+    
+    $explode = explode('-', $confirm_id);
+    if(count($explode)==10){
+        $user_id = $explode[5].$explode[7].$explode[9];
+
+        $confirm_query = User::find_by_sql("SELECT * FROM all_students WHERE unique_id = '$user_id' LIMIT 1");
+        if(mysqli_num_rows($confirm_query)==1){
+            while($r=mysqli_fetch_assoc($confirm_query)){
+                $semail = $r['semail'];
+            }
+            $update = User::find_by_sql("UPDATE all_students SET verified = '1' WHERE unique_id = '$user_id' LIMIT 1");
+            if($update){
+                User::mailer_successful($semail);
+            }
+        }
+    }
+}
+
+
+?>
+<?php require_once('includes/initialize.php'); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,7 +94,6 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12">
-
             <!-- Navigation -->
             <nav class="navbar navbar-default">
               <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,10 +106,13 @@
 									</button>
                 <!-- Brand -->
                 <a class="navbar-brand page-scroll sticky-logo" href="index.php">
-                  <h1><span>NACOSS </span>UNN</h1>
-                  <!-- Uncomment below if you prefer to use an image logo -->
-                  <!-- <img src="img/logo.png" alt="" title=""> -->
-								</a>
+                  <div class="row">
+                  <img class="nacoss-img" src="./photos/default.png">
+                  <h1 class="nacoss-img-txt">NACOSS UNN</h1>
+                  </div>
+                <!-- <img class="nacoss-img" src="./photos/default.png">
+                  <h1>NACOSS UNN</h1> -->
+                  </a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">

@@ -1,3 +1,4 @@
+<?php require_once('../../includes/initialize.php'); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,10 +26,10 @@
 
   <!-- Responsive Stylesheet File -->
   <link href="../css/responsive.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#navbar-example">
-
   <div id="preloader"></div>
 
   <header>
@@ -49,20 +50,21 @@
 										<span class="icon-bar"></span>
 									</button>
                 <!-- Brand -->
-                <a class="navbar-brand page-scroll sticky-logo" href="index.php">
-                  <h1><span>NACOSS </span>UNN</h1>
-                  <!-- Uncomment below if you prefer to use an image logo -->
-                  <!-- <img src="img/logo.png" alt="" title=""> -->
+                <a class="navbar-brand page-scroll sticky-logo" href="../../index.php">
+                <div class="row">
+                  <img class="nacoss-img" src="../img/default.png">
+                  <h1 class="nacoss-img-txt">NACOSS UNN</h1>
+                  </div>
 								</a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">
                 <ul class="nav navbar-nav navbar-right">
                   <li>
-                    <a class="page-scroll" href="/NACOSSunn/index.php">Home</a>
+                    <a class="page-scroll" href="../../index.php">Home</a>
                   </li>
                   <li>
-                    <a class="page-scroll" href="/NACOSSunn/account.php">Login</a>
+                    <a class="page-scroll" href="<?php if(isset($_SESSION['id'])){ echo '../../'.$_SESSION['my_portal_location']; }else{ echo '../../account.php'; } ?>"><?php if(isset($_SESSION['id'])){ echo 'My Portal'; }else{ echo 'Login'; } ?></a>
                   </li>
                 </ul>
               </div>

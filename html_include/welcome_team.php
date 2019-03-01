@@ -37,8 +37,8 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Jhon Mickel</h4>
-                <p>Seo</p>
+                <h4>Agbo Stanley</h4>
+                <p>President</p>
               </div>
             </div>
           </div>
@@ -70,8 +70,8 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Andrew Arnold</h4>
-                <p>Web Developer</p>
+                <h4>Chime Vivian</h4>
+                <p>Vice President</p>
               </div>
             </div>
           </div>
@@ -103,8 +103,8 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Lellien Linda</h4>
-                <p>Web Design</p>
+                <h4>Mfon Joel</h4>
+                <p>Secretary General</p>
               </div>
             </div>
           </div>
@@ -136,8 +136,8 @@
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Jhon Powel</h4>
-                <p>Seo Expert</p>
+                <h4>Akubue Augustus</h4>
+                <p>Director of Software I</p>
               </div>
             </div>
           </div>

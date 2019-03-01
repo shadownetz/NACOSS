@@ -2369,6 +2369,77 @@ border-style:inset
 .faq-groups .faq-groups-txt .body{
   text-align:justify
 }
+.nacoss-img-txt{
+float:right;
+padding-top:2.5%!important;
+padding-left:10px!important
+}
+.nacoss-img{
+  width:50px;
+  height:50px;
+  float:left;
+  clear: both;
+}
+.fpass_block{
+  min-height:500px;
+  background:url("../images/networking.jpeg") no-repeat fixed center;
+  background-size:100%
+}
+.fpass_block .overlay{
+position: absolute;
+width:100%;
+height:84.5%;
+right:0;
+top:0;
+background-color: rgba(10,20,50,0.5)
+}
+.fpass_block .fpass_body{
+  height:300px;
+  background:rgba(0,0,0,.5);
+  margin-top:10%
+}
+.fpass_block .fpass_body form{
+padding:15%
+}
+.fpass_block .fpass_body form.recover-f{
+  padding:5%
+  }
+.fpass_block .fpass_body form label{ 
+color:rgb(250,250,250);
+font-size:1.5em
+}
+.fpass_block .fpass_body form input.f-input{ 
+  background: transparent;
+  border:1px solid rgb(150,150,150);
+  width:100%;
+  height:50px;
+  font-size:1.2em;
+  padding:10px;
+  color:#fff;
+  transition: all .5s ease;
+  box-shadow: 0px 0px 0px transparent!important
+}
+.fpass_block .fpass_body form input.f-input:focus{ 
+border-color: #3EC1D5;
+}
+/* Nacoss Button Style */
+.nacoss-btn{
+  border-radius: 0;
+  border: 1px solid rgb(32, 91, 139);
+  color: rgb(250, 250, 250);
+  width: 50%;
+  padding: 10px;
+  background: transparent;
+  transition: all linear .3s
+}
+.nacoss-btn:hover{
+background: rgb(32, 91, 139);
+}
+.f-btn{
+  margin-left:25%;
+  margin-top:5%
+}
+/* ================== */
 @media only screen and (max-width:768px){
   .sticky-logo h1{
     font-size:20px;padding-top:10px
@@ -2397,6 +2468,23 @@ border-style:inset
     margin-top:10px
   }
   .faq-groups .row:first-child{border-top: 1px solid rgba(0,0,0,0.5)}
+  .nacoss-img{
+    width:40px;
+    height:30px;
+    float:left;
+    clear: both;
+    padding-left:10px
+  }
+  .fpass_block{
+    background:url("../images/networking.jpeg") no-repeat center center;
+    background-size:cover;
+  }
+  .fpass_block .overlay{
+display: none;
+  }
+  .fpass_block .fpass_body{
+margin-top:25%
+  }
 }
 
 #nacoss-signup{

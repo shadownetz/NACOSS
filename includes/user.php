@@ -42,6 +42,28 @@ class User{
          return self::find_by_sql("UPDATE `voting_system` SET registrar='$registrar', rnumber='$user_rnumber', full_name='$user_full_name', post='$post', date=NOW() WHERE rnumber='$user_rnumber' ");  
     }
     
+    public static function admin_mailer($address="",$msg=""){
+
+        $to = $address;
+		$subject = "NACOSS HELP DESK";
+		$message = '
+		NACOSS UNN | NATIONAL ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER
+		'.$msg.'.
+
+		Please click this link to visit our site anytime:
+		http://www.nacosunn.com
+
+		'; // Our message above including the link
+
+		$headers  = 'From: Bulk Service <noreply10@2ools.co.za>' ."\r\n"
+						.'Bcc: ' ."\r\n"
+						.'MIME-Version: 1.0' ."\r\n"
+						.'Content-type: text/html; charset=iso-8859-1' ."\r\n"
+						.'X-Mailer: PHP/' . phpversion();
+
+		mail($to, $subject, $message, $headers); // Send our email
+
+    }
     
     public static function mailer($uname="", $pword="", $semail="", $oemail="", $id=""){
         global $database;

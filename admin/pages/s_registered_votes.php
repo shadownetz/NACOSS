@@ -58,9 +58,9 @@ function chechPost($post=""){
 
 <?php
 $query = User::find_by_sql("SELECT * FROM nacoss.voting_system ORDER BY post");
-$result = mysqli_num_rows($query);
+#$result = mysqli_num_rows($query);
 $counter_candidate=1;
-if(!empty($result)){
+if(mysqli_num_rows($query)>0){
 ?>
                             <table width="" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
    
@@ -83,6 +83,15 @@ while ( $row = mysqli_fetch_array($query) ) {
     $candidate_eligibility = $row['eligibility']; 
     $candidate_ineligibility = $row['ineligibility']; 
     $registrar = $row['registrar'];
+    $user_fullname = "";
+    if($registrar != ""){
+    $fetch_registra_query = User::find_by_sql("SELECT fname,lname FROM nacoss.all_students WHERE rnumber = '$registrar'");
+    while($r=mysqli_fetch_assoc($fetch_registra_query)){
+        $user_fname = $r["fname"];
+        $user_lname = $r["lname"];
+        $user_fullname = $user_fname." ".$user_lname;
+    }
+}
   ?> 
                                
                                     <tr class="odd gradeX">
@@ -90,7 +99,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                         <td><h4><?php echo $candidate_full_name; ?></h4></td>
                                         <td><h4><?php echo $candidate_rnumber; ?></h4></td>
                                         <td><h4><?php $value = chechPost($candidate_post); echo $value; ?></h4></td>
-                                        <td><h4><?php echo $registrar; ?></h4></td>
+                                        <td><h4><?php echo $user_fullname; ?></h4></td>
                                     </tr>
                             
                                 

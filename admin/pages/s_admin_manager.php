@@ -32,6 +32,11 @@ if ($user_type == "super_admin" && isset($_GET['super_admin'])) {
                         <h1 class="page-header">Admin Center (All Admins And Super Admins)</h1>
 
 <div class="table-responsive">
+<?php
+$query = "SELECT * FROM nacoss.all_students WHERE user_type = 'admin' OR user_type = 'super_admin' AND uname !='$uname' ORDER BY user_type ";
+$result_set = User::find_by_sql($query);
+if(mysqli_num_rows($result_set)>0){
+?>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                      <thead>
                             <tr>
@@ -51,8 +56,11 @@ if ($user_type == "super_admin" && isset($_GET['super_admin'])) {
                         </thead>
                         <tbody>
 <?php
-$query = "SELECT * FROM nacoss.all_students WHERE user_type = 'admin' OR user_type = 'super_admin' ORDER BY user_type ";
- $result_set = User::find_by_sql($query);
+}
+?>
+<?php
+#$query = "SELECT * FROM nacoss.all_students WHERE user_type = 'admin' OR user_type = 'super_admin' AND uname !='$uname' ORDER BY user_type ";
+#$result_set = User::find_by_sql($query);
  $counter=1;
        	while ( $row = mysqli_fetch_array($result_set) ) {
                 $picture = $row['picture'];

@@ -37,7 +37,7 @@
                 </p>
               </div>
               <span>
-									<a href="blog.html" class="ready-btn">Read more</a>
+									<a href="#" class="ready-btn">Read more</a>
 								</span>
             </div>
             <!-- Start single blog -->
@@ -69,7 +69,7 @@
                 </p>
               </div>
               <span>
-									<a href="blog.html" class="ready-btn">Read more</a>
+									<a href="#" class="ready-btn">Read more</a>
 								</span>
             </div>
             <!-- Start single blog -->
@@ -101,7 +101,7 @@
                 </p>
               </div>
               <span>
-									<a href="blog.html" class="ready-btn">Read more</a>
+									<a href="#" class="ready-btn">Read more</a>
 								</span>
             </div>
           </div>

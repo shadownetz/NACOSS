@@ -26,10 +26,14 @@ if ($user_type == "super_admin" && isset($_GET['deactivate'])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Admin Center</h1>
-
-<div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                     <thead>
+<?php
+$query = "SELECT * FROM nacoss.all_students WHERE user_type = 'user_admin' ";
+$result_set = User::find_by_sql($query);
+if(mysqli_num_rows($result_set)>0){
+?>
+ <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
                             <tr>
                                 <th>S/N</th>
                                 <th>Full Name</th>
@@ -44,11 +48,14 @@ if ($user_type == "super_admin" && isset($_GET['deactivate'])) {
                                 <th>Control</th>
                                 <th>Control</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
+<?php 
+}
+?>
 <?php
-$query = "SELECT * FROM nacoss.all_students WHERE user_type = 'user_admin' ";
- $result_set = User::find_by_sql($query);
+// $query = "SELECT * FROM nacoss.all_students WHERE user_type = 'user_admin' ";
+//  $result_set = User::find_by_sql($query);
  $counter=1;
        	while ( $row = mysqli_fetch_array($result_set) ) {
                 $picture = $row['picture'];

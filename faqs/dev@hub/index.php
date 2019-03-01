@@ -6,7 +6,7 @@
 <div class="row" style="padding-top:3%">
                   <!-- Start Faq -->
           <?php include_once('../html_include/faqs-head.php'); ?>
-            <?php include_once('../html_include/faqs-body.php'); ?>
+            <?php include_once('../html_include/faqs-body.php'); ?> 
             </div>
           </div>
 
@@ -18,3 +18,15 @@
         </div>
 
          <?php include('../html_include/footer.php'); ?>
+         <script>
+        /*function moveWin(){
+            window.scroll(0, 10000);
+            setTimeout('moveWin();', 100);
+        }*/
+        $(function(){
+          setInterval(function(){
+                $("#messageLogs").load("messageLogs.php");
+            }, 1000);
+        })
+       
+    </script>

@@ -549,6 +549,9 @@ $count_users = mysqli_num_rows($result_set);
                             
                         </li>
                         <li class="divider"></li>
+                        <li><a href="contact_logs.php"><i class="fa fa-envelope fa-fw"></i> Contact Logs</a>
+                        </li>
+                        <li class="divider"></li>
                         <li><a href="create_admin.php"><i class="fa fa-user-secret fa-fw"></i> Make Admin</a>
                         </li>
                         <li class="divider"></li>
@@ -645,9 +648,9 @@ $count_users = mysqli_num_rows($result_set);
                                 <li>
                                     <a href="new_discussion.php">Create New Group</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="all_discussions.php">View All Groups</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="my_discussions.php">Joined Groups</a>
                                 </li>

@@ -41,27 +41,27 @@
                 <div class="single-testi">
                   <div class="testi-text">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar luctus est eget congue.<br>consectetur adipiscing elit. Sed pulvinar luctus est eget congue.
+                    When you don't create things, you become defined by your tastes rather than ability
                     </p>
-                    <h6>Boby</h6>
+                    <h6>- Anonymous</h6>
                   </div>
                 </div>
                 <!-- End single item -->
                 <div class="single-testi">
                   <div class="testi-text">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar luctus est eget congue.<br>consectetur adipiscing elit. Sed pulvinar luctus est eget congue.
+                    Always code as if the guy who ends up maintaining your code will be a violent <br>psychopath who knows where you live
                     </p>
-                    <h6>Jhon</h6>
+                    <h6>- Anonymous</h6>
                   </div>
                 </div>
                 <!-- End single item -->
                 <div class="single-testi">
                   <div class="testi-text">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar luctus est eget congue.<br>consectetur adipiscing elit. Sed pulvinar luctus est eget congue.
+                    Programs must be written for people to read, and only incidentally for machines to execute
                     </p>
-                    <h6>Fleming</h6>
+                    <h6>- Anonymous</h6>
                   </div>
                 </div>
                 <!-- End single item -->

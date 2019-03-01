@@ -11,7 +11,7 @@
                                 
                                 
                                 <div class="form-group">
-                                    <label>Accademic Level:</label>
+                                    <label>Academic Level:</label>
                                     <select name="level" class="form-control" required>
                                         <option value="">Select Level</option>
                                         <option value="first">First Year</option>

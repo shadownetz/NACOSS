@@ -51,10 +51,12 @@ if(isset($_POST['create'])){
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB ");
     $insert_query =User::find_by_sql("INSERT INTO `discussions` SET rnumber='$session_student', topic='$topic', display_picture='$main_picture', discussion_aim='$aim', discussion_type='$discussion_type', date=NOW()");
+    $discussion_id = $database->insert_id();
 
-        if($insert_query){
-            move_uploaded_file($_FILES["file"]["tmp_name"],"../../faqs/img/".$main_picture);
-            //move_uploaded_file($_FILES["file"]["tmp_name"],"../../faqs/img/".$_FILES["file"]["name"]);
+    if($insert_query){
+        $autho_join = User::find_by_sql("INSERT INTO joined_members SET rnumber='$session_student', discussion_id='$discussion_id', uname='$uname', joined_status='1', date=NOW()");
+        move_uploaded_file($_FILES["file"]["tmp_name"],"../../faqs/img/".$main_picture);
+        
             
             if($discussion_type == "private"){
                  $fetch_id_query = User::find_by_sql("SELECT * FROM discussions WHERE rnumber='$session_student' AND topic='$topic' AND discussion_type='$discussion_type' " );

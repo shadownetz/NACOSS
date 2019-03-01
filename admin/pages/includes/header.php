@@ -34,6 +34,12 @@ if($count > 0){
             $logged_month = $explode2[1]; $logged_day = $explode2[2];
             $explode3 = explode(":", $explode1[1]); $logged_hour = $explode3[0]; $logged_min = $explode3[1]; $logged_sec = $explode3[2];
             $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
+                
+        //     $convert_days = 30 - $logged_day + $current_day;
+        // if($convert_days > 1){
+        //   //$delete_user = User::find_by_sql("DELETE FROM all_students WHERE id='$user_id'");
+        // }
+            //echo $current_hour." ".$logged_hour;
                 if($current_year > $logged_year ){
                     $update_query = User::find_by_sql("UPDATE all_students SET my_status = 'offline' WHERE id = '$u_id'");
                 }else if($current_year == $logged_year && $current_month > $logged_month){

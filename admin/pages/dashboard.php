@@ -18,34 +18,34 @@
                         <a href="#">
                             <div class="col-md-3 col-sm-12 col-xs-12 box" >
                                 <i class="fa fa-envelope fa-5x"></i>
-                                <div class="noti-o">20</div>
+                                <div class="noti-o"><?php echo $total_unread_messages; ?></div>
                         </div>
                         </a>
                         <a href="#">
                             <div class="col-md-3 col-sm-12 col-xs-12 box">
                                 <i class="fa fa-users fa-5x"></i>
-                                <div class="noti-o">5</div>
+                                <div class="noti-o"><?php echo count($collect); ?></div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="upload_document.php">
                             <div class="col-md-3 col-sm-12 col-xs-12 box">
                                 <i class="fa fa-upload fa-5x"></i>
                                 <!-- <div class="noti-o">5</div> -->
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="upload_result.php">
                             <div class="col-md-3 col-sm-12 col-xs-12 box" >
                                 <i class="fa fa-file-word-o fa-5x"></i><i class="fa fa-arrow-up"></i>
                                 <!-- <div class="noti-o">20</div> -->
                         </div>
                         </a>
-                        <a href="#">
+                        <a href="cast_vote.php">
                             <div class="col-md-3 col-sm-12 col-xs-12 box">
                                 <i class="fa fa-thumbs-o-up fa-5x"></i>
                                 <!-- <div class="noti-o">5</div> -->
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="account_settings.php">
                             <div class="col-md-3 col-sm-12 col-xs-12 box">
                                 <i class="fa fa-gear fa-5x"></i>
                                 <!-- <div class="noti-o">5</div> -->

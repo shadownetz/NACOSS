@@ -155,47 +155,52 @@ color: rgb(250,250,250); transition: all .5s
 .nacoss-admin-nav .navbar-default.sidebar .sidebar-nav > ul > li a:hover{
     color:rgb(13, 45, 71)
 }
-@media screen and (max-width: 768px){
+@media screen and (min-width: 320px){
     .nacoss-nav-img{
         background-image: url("../../images/mobile/nacoss.png")
     }
+    /* Dashboard Styles */
+    .nacoss-dash .box{
+        height:170px;
+        margin: 20px 0px;
+        background-color: rgba(32, 91, 139,.8);
+        text-align: center;
+       padding-top:30px;
+       transition: all linear .1s
+    }
+    .nacoss-dash .box:hover{
+    box-shadow: 2px 10px 2px rgba(0,0,0,.5);
+    cursor: pointer;
+    }
+    .nacoss-dash .box > i{
+        font-size: 7em;
+        color: rgb(250,250,250);
+        transition: all linear .2s
+    }
+    .nacoss-dash .box > i:hover{
+        font-size: 7.2em
+    }
+    .nacoss-dash .box .noti-o{
+        position: absolute;
+        width: 50px;
+        height:50px;
+        background-color: rgb(250, 250, 250);
+        border-radius: 25px;
+        top:-15px;
+        right: -20px;
+        color: rgb(50,50,50);
+        font-size:2em;
+        padding-top:5px;
+        box-shadow: 1px 1px 1px #000
+    }
+    /* End of Dashboard Styles */
 }
 /* End of Nacoss Admin Navigation styles */
 
 /* Dashboard Styles */
 @media screen and ( min-width:1024px){
 .nacoss-dash .box{
-    height:170px;
     margin: 20px 35px;
-    background-color: rgba(32, 91, 139,.8);
-    text-align: center;
-   padding-top:30px;
-   transition: all linear .1s
-}
-.nacoss-dash .box:hover{
-box-shadow: 2px 10px 2px rgba(0,0,0,.5);
-cursor: pointer;
-}
-.nacoss-dash .box > i{
-    font-size: 7em;
-    color: rgb(250,250,250);
-    transition: all linear .2s
-}
-.nacoss-dash .box > i:hover{
-    font-size: 7.2em
-}
-.nacoss-dash .box .noti-o{
-    position: absolute;
-    width: 50px;
-    height:50px;
-    background-color: rgb(250, 250, 250);
-    border-radius: 25px;
-    top:-15px;
-    right: -20px;
-    color: rgb(50,50,50);
-    font-size:2em;
-    padding-top:5px;
-    box-shadow: 1px 1px 1px #000
 }
 }
 /* End of Dashboard Styles */

@@ -10,7 +10,11 @@ if ($user_type == "admin" || $user_type == "super_admin" && isset($_GET['deactiv
 		$result_set = User::find_by_sql("UPDATE nacoss.all_students SET status='10', u_deactivator = '$rnumber' WHERE id=$id");
 		}
 ?>
-
+<?php
+$query = "SELECT * FROM nacoss.all_students WHERE status != '1' AND status != '5' ORDER BY status";
+$result_set = User::find_by_sql($query);
+if(mysqli_num_rows($result_set)>0){
+?>
 
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -33,9 +37,12 @@ if ($user_type == "admin" || $user_type == "super_admin" && isset($_GET['deactiv
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+}else{
+    echo "N0 LOGS TO DISPLAY";
+}
+?>
 <?php
-$query = "SELECT * FROM nacoss.all_students WHERE status != '1' AND status != '5' ORDER BY status";
- $result_set = User::find_by_sql($query);
  $counter=1;
        	while ( $row = mysqli_fetch_array($result_set) ) {
                 $picture = $row['picture'];

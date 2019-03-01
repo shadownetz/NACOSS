@@ -28,7 +28,7 @@
               <div class="single-icon">
                 <i class="fa fa-envelope-o"></i>
                 <p>
-                  Email: nacossunn@gmail.com<br>
+                  Email: nacossunn19@gmail.com<br>
                 </p>
               </div>
             </div>
@@ -60,7 +60,7 @@
           <!-- Start  contact -->
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form contact-form">
-              <div id="sendmessage">Your message has been sent. Thank you!</div>
+              <!-- <div id="sendmessage">Your message has been sent. Thank you!</div> -->
               <div id="errormessage"></div>
               <form action="process_contact.php" method="post" role="form" class="contactForm1">
                 <div class="form-group">
