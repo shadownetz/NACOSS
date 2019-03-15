@@ -16,9 +16,10 @@ $result_set = User::find_by_sql($query);
 if(mysqli_num_rows($result_set)>0){
 ?>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                     <thead>
+                            <div class="nacoss-all-discuss nacoss-my-discuss">
+                            <div class="panel document-panel">
+                                <table class="table table-responsive" id="dataTables-example">
+                                     <thead class="panel-heading">
                             <tr>
                                 <th>S/N</th>
                                 <th>Full Name</th>
@@ -36,7 +37,7 @@ if(mysqli_num_rows($result_set)>0){
                                 <th>Control</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="panel-body">
                         <?php
 }else{
     echo "N0 LOGS TO DISPLAY";
@@ -64,10 +65,10 @@ if(mysqli_num_rows($result_set)>0){
                         <td><?php if($row['status'] == '10'){ echo "Deactivated"; }else if($row['status'] == '0'){ echo "New"; } ?></td>
                         
                         <td>
-				<a href="?activate=<?php echo $row['id']; ?>" class="activate_btn" style="color:blue;"><button class="btn btn-success">Activate</button></a>
+				<a href="?activate=<?php echo $row['id']; ?>" class="activate_btn"><button class="nacoss-btn">Activate</button></a>
 						</td>
                         <td>
-				<a href="?deactivate=<?php echo $row['id']; ?>" class="inactivate_btn" style="color:red;"><button class="btn btn-danger">Deactivate</button></a>
+				<a href="?deactivate=<?php echo $row['id']; ?>" class="inactivate_btn"><button class="nacoss-btn border-warning">Deactivate</button></a>
 						</td>
 						</tr>
 
@@ -79,3 +80,4 @@ if(mysqli_num_rows($result_set)>0){
           </tbody>
                                 </table>
                             </div>
+    </div>

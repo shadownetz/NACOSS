@@ -22,7 +22,7 @@ if ($user_type == "admin" || $user_type == "super_admin" && isset($_POST['send_m
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="nacoss-form">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -34,17 +34,18 @@ if ($user_type == "admin" || $user_type == "super_admin" && isset($_POST['send_m
 ?>
                         <div class="container nacoss-new-discuss">
                             <div class="row">
-                                <div class="col-md-4 col-md-offset-3">
+                                <div class="col-md-5 col-md-offset-2">
                                     <div class="result-panel panel panel-default">
+                                        <div class="panel-heading"></div>
                                         <div class="panel-body">
-                                            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
-                                                <fieldset>
+                                            <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
+                                                <fieldset class="form-content">
                                                     <div class="form-group">
                                                     <input type="hidden" value="<?php echo $_GET["address"]; ?>" name="address">
                                                     </div>
                                                     <div class="form-group">
-                                                    <label for="msg">Message Here:&#63;</label>
-                                                    <textarea class="form-control form-text" rows=3 placeholder="Type Here" name="msg" required></textarea>
+                                                    <label for="msg">Write Message::</label>
+                                                    <textarea class="form-control" rows=3 placeholder="Type Here" name="msg" required></textarea>
                                                     </div>
                                                     
                                                     <button class="nacoss-btn" name="send_mail" style="width:100%">Send Mail</button>

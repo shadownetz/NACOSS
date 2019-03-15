@@ -12,22 +12,23 @@ $result_set = User::find_by_sql($query);
 if(mysqli_num_rows($result_set)>0){
 ?>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                     <thead>
+                            <div class="nacoss-all-discuss nacoss-my-discuss contact">
+                                <table class="table table-responsive">
+                                     <thead class="panel-heading">
                             <tr>
                                 <th>S/N</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Subject</th>
                                 <th>Message</th>
+                                <th></th>
                                 <th>Control</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="panel-body">
                         <?php
 }else{
-    echo "N0 LOGS TO DISPLAY";
+    echo "<div style='font-weight:bold'>NO LOGS TO DISPLAY</div>";
 }
 ?>
 <?php
@@ -40,11 +41,15 @@ if(mysqli_num_rows($result_set)>0){
                         <td><?php echo $row['name']; ?></td>
                         <td><a href="admin_mailer.php?address=<?php echo $row['email']; ?>" title="Send Mail"><?php echo $row['email']?></a></td>
                         <td><?php echo $row['subject']?></td>
-                        <td><?php echo $row['message']?></td>
+                        <td colspan="2">
+                            <div class="c-logs">
+                            <?php echo $row['message']?>
+                            </div>
+                        </td>
                         
                         
                         <td>
-				<a href="?read=<?php echo $row['id']; ?>" class="read_btn" style="color:blue;"><button class="btn btn-warning">Mark as Seen&nbsp;<i class="fa fa-check"></i></button></a>
+				<a href="?read=<?php echo $row['id']; ?>" class="read_btn"><button class="nacoss-btn border-grass">Mark as Seen&nbsp;<i class="fa fa-check"></i></button></a>
 						</td>
 						</tr>
 

@@ -382,10 +382,10 @@ if(isset($_POST['submit'])){
 ?>
 <div class="container nacoss-all-discuss nacoss-vote" >
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-7 col-md-offset-1">
                 <div class="document-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">CAST VOTE</h3>
+                        <h3 class="panel-title">Cast Vote</h3>
                     </div>
                     <div class="panel-body">
                         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
@@ -421,8 +421,12 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_President;?></h5></td>
                                         <td><h4><?php echo $President_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="president" value="<?php echo "yes"."_".$President_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="president" value="<?php echo "no"."_".$President_rnumber; ?>"></td>
+                                        <td >
+                                            <input type="radio" name="president" value="<?php echo "yes"."_".$President_rnumber; ?>" >
+                                        </td>
+                                        <td >
+                                            <input type="radio" name="president" value="<?php echo "no"."_".$President_rnumber; ?>">
+                                    </td>
                                     </tr>
                                 
 	<?php
@@ -432,7 +436,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_President;?></h5></td>
                                         <td><h4><?php echo $President_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="president" value="<?php echo "yes"."_".$President_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="president" value="<?php echo "yes"."_".$President_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -470,8 +474,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_vice_president;?></h5></td>
                                         <td><h4><?php echo $vice_president_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="vice_president" value="<?php echo "yes"."_".$vice_president_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="vice_president" value="<?php echo "no"."_".$vice_president_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="vice_president" value="<?php echo "yes"."_".$vice_president_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="vice_president" value="<?php echo "no"."_".$vice_president_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -481,7 +485,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_vice_president;?></h5></td>
                                         <td><h4><?php echo $vice_president_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="vice_president" value="<?php echo "yes"."_".$vice_president_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="vice_president" value="<?php echo "yes"."_".$vice_president_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -519,8 +523,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_secretary_general;?></h5></td>
                                         <td><h4><?php echo $secretary_general_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="secretary" value="<?php echo "yes"."_".$secretary_general_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="secretary" value="<?php echo "no"."_".$secretary_general_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="secretary" value="<?php echo "yes"."_".$secretary_general_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="secretary" value="<?php echo "no"."_".$secretary_general_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -530,7 +534,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_secretary_general;?></h5></td>
                                         <td><h4><?php echo $secretary_general_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="secretary" value="<?php echo "yes"."_".$secretary_general_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="secretary" value="<?php echo "yes"."_".$secretary_general_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -568,8 +572,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_financial;?></h5></td>
                                         <td><h4><?php echo $financial_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="financial_secretary" value="<?php echo "yes"."_".$financial_secretary_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="financial_secretary" value="<?php echo "no"."_".$financial_secretary_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="financial_secretary" value="<?php echo "yes"."_".$financial_secretary_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="financial_secretary" value="<?php echo "no"."_".$financial_secretary_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -579,7 +583,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_financial_secretary;?></h5></td>
                                         <td><h4><?php echo $financial_secretary_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="financial_secretary" value="<?php echo "yes"."_".$financial_secretary_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="financial_secretary" value="<?php echo "yes"."_".$financial_secretary_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -617,8 +621,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_social_1;?></h5></td>
                                         <td><h4><?php echo $social_1_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="social_1" value="<?php echo "yes"."_".$social_1_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="social_1" value="<?php echo "no"."_".$social_1_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="social_1" value="<?php echo "yes"."_".$social_1_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="social_1" value="<?php echo "no"."_".$social_1_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -628,7 +632,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_social_1;?></h5></td>
                                         <td><h4><?php echo $social_1_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="social_1" value="<?php echo "yes"."_".$social_1_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="social_1" value="<?php echo "yes"."_".$social_1_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -666,8 +670,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_social_2;?></h5></td>
                                         <td><h4><?php echo $social_2_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="social_2" value="<?php echo "yes"."_".$social_2_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="social_2" value="<?php echo "no"."_".$social_2_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="social_2" value="<?php echo "yes"."_".$social_2_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="social_2" value="<?php echo "no"."_".$social_2_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -677,7 +681,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_social_2;?></h5></td>
                                         <td><h4><?php echo $social_2_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="social_2" value="<?php echo "yes"."_".$social_2_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="social_2" value="<?php echo "yes"."_".$social_2_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -715,8 +719,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_software_1;?></h5></td>
                                         <td><h4><?php echo $software_1_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="software_1" value="<?php echo "yes"."_".$software_1_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="software_1" value="<?php echo "no"."_".$software_1_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="software_1" value="<?php echo "yes"."_".$software_1_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="software_1" value="<?php echo "no"."_".$software_1_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -726,7 +730,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_software_1;?></h5></td>
                                         <td><h4><?php echo $software_1_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="software_1" value="<?php echo "yes"."_".$software_1_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="software_1" value="<?php echo "yes"."_".$software_1_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -764,8 +768,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_software_2;?></h5></td>
                                         <td><h4><?php echo $software_2_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="software_2" value="<?php echo "yes"."_".$software_2_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="software_2" value="<?php echo "no"."_".$software_2_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="software_2" value="<?php echo "yes"."_".$software_2_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="software_2" value="<?php echo "no"."_".$software_2_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -775,7 +779,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_software_2;?></h5></td>
                                         <td><h4><?php echo $software_2_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="software_2" value="<?php echo "yes"."_".$software_2_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="software_2" value="<?php echo "yes"."_".$software_2_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -813,8 +817,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_academics_1;?></h5></td>
                                         <td><h4><?php echo $academics_1_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="academics_1" value="<?php echo "yes"."_".$academics_1_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="academics_1" value="<?php echo "no"."_".$academics_1_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="academics_1" value="<?php echo "yes"."_".$academics_1_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="academics_1" value="<?php echo "no"."_".$academics_1_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -824,7 +828,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_academics_1;?></h5></td>
                                         <td><h4><?php echo $academics_1_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="academics_1" value="<?php echo "yes"."_".$academics_1_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="academics_1" value="<?php echo "yes"."_".$academics_1_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -862,8 +866,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_academics_2;?></h5></td>
                                         <td><h4><?php echo $academics_2_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="academics_2" value="<?php echo "yes"."_".$academics_2_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="academics_2" value="<?php echo "no"."_".$academics_2_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="academics_2" value="<?php echo "yes"."_".$academics_2_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="academics_2" value="<?php echo "no"."_".$academics_2_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -873,7 +877,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_academics_2;?></h5></td>
                                         <td><h4><?php echo $academics_2_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="academics_2" value="<?php echo "yes"."_".$academics_2_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="academics_2" value="<?php echo "yes"."_".$academics_2_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -911,8 +915,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_librarian;?></h5></td>
                                         <td><h4><?php echo $librarian_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="librarian" value="<?php echo "yes"."_".$librarian_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="librarian" value="<?php echo "no"."_".$librarian_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="librarian" value="<?php echo "yes"."_".$librarian_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="librarian" value="<?php echo "no"."_".$librarian_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -922,7 +926,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_librarian;?></h5></td>
                                         <td><h4><?php echo $librarian_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="librarian" value="<?php echo "yes"."_".$librarian_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="librarian" value="<?php echo "yes"."_".$librarian_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php
@@ -960,8 +964,8 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_provost;?></h5></td>
                                         <td><h4><?php echo $provost_fullname; ?></h4></td>
-                                        <td ><input type="checkbox" name="provost" value="<?php echo "yes"."_".$provost_rnumber; ?>" ></td>
-                                        <td ><input type="checkbox" name="provost" value="<?php echo "no"."_".$provost_rnumber; ?>"></td>
+                                        <td ><input type="radio" name="provost" value="<?php echo "yes"."_".$provost_rnumber; ?>" ></td>
+                                        <td ><input type="radio" name="provost" value="<?php echo "no"."_".$provost_rnumber; ?>"></td>
                                     </tr>
                                 
 	<?php
@@ -971,7 +975,7 @@ while ( $row = mysqli_fetch_array($query) ) {
                                     <tr>
                                         <td><h5 ><?php echo $counter_provost;?></h5></td>
                                         <td><h4><?php echo $provost_fullname; ?></h4></td>
-                                        <td colspan="2"><input type="checkbox" name="provost" value="<?php echo "yes"."_".$provost_rnumber; ?>" ></td>
+                                        <td colspan="2"><input type="radio" name="provost" value="<?php echo "yes"."_".$provost_rnumber; ?>" ></td>
                                     </tr>
                                 
 	<?php

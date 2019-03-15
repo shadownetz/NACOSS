@@ -5,9 +5,9 @@ $post_insert = array("president", "vice_president", "secretary_general", "financ
 ?>
 
 
-<div class="container">
+<div class="container nacoss-new-discuss">
         <div class="row">
-            <div class="col-md-4 col-md-offset-3">
+            <div class="col-md-5 col-md-offset-2">
                 <div class="result-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">ADD CANDIDATE</h3>
@@ -34,7 +34,7 @@ $post_insert = array("president", "vice_president", "secretary_general", "financ
                                     </select>
                                 </div>
                     
-                                <button class="btn btn-lg btn-success btn-block" name="submit">Submit</button>
+                                <button class="nacoss-btn" name="submit">Submit</button>
                             </fieldset>
                         </form>
                     </div>

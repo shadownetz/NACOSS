@@ -93,22 +93,19 @@ $total_unread_messages = $sum_all_messages - $total_read;
 
 ?>
     <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top nacoss-admin-nav nacoss-blue" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top nacoss-admin-nav nacoss-blue" role="navigation" style="margin-bottom: 0;border-bottom:0">
         <a href="../../"><div class="nacoss-nav-img"></div></a>
         <div class="navbar-header nacoss-admin-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar bg-white"></span>
+                    <span class="icon-bar bg-white"></span>
+                    <span class="icon-bar bg-white"></span>
                 </button>
                 <a class="navbar-brand" href="../../">Home Page</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
-                <li>
-                Registration Number: <?php echo $rnumber; ?> &nbsp;| Last access : <?php echo $logged_time."&nbsp&nbsp".$logged_date; ?> &nbsp; 
-                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -688,7 +685,7 @@ $count_users = mysqli_num_rows($result_set);
                             <ul class="nav nav-second-level">
                               <li><a href="addgallery.php">Add Gallery </a></li>
                               <li><a href="managegallery.php">Manage Gallery</a> </li>
-                              <li><a href="removedgallery.php">Removed Gallery</a> </li>
+                              <!-- <li><a href="removedgallery.php">Removed Gallery</a> </li> -->
                             </ul>
                         </li>
                         <li>
@@ -707,6 +704,14 @@ $count_users = mysqli_num_rows($result_set);
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="#"><i class="fa fa-newspaper-o"></i>&nbsp; News<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                              <li><a href="add_news.php">Add News </a></li>
+                              <li><a href="manage_news.php">Manage News</a> </li>
+                              <!-- <li><a href="removedgallery.php">Removed Gallery</a> </li> -->
+                            </ul>
+                        </li>
+                        <li>
                             <a href="?logout"><i class="fa fa-sign-out fa-fw"></i> Sign Out</a>
                         </li>
                         
@@ -716,3 +721,6 @@ $count_users = mysqli_num_rows($result_set);
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        <div class="col-md-12 ext-nav">
+    <span class="f-left"><b>Registration Number:</b>&nbsp;<?php echo $rnumber; ?></span> | <span class="f-right"><b>Last access : </b>&nbsp;<?php echo $logged_time."&nbsp&nbsp".$logged_date;?></span>
+    </div>

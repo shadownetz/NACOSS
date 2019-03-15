@@ -88,6 +88,9 @@ if($count > 0){
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Animate Css -->
+    <link href="../vendor/Animate/animate.css" rel="stylesheet" type="text/css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -101,6 +104,14 @@ if($count > 0){
            document.body.innerHTML = printcontent;
            window.print();
            document.body.innerHTML = restorepage;
+       }
+
+       function displayImageOverlay(id){
+           id.firstElementChild.style.display = 'block'
+       }
+
+       function hideImageOverlay(id){
+        id.firstElementChild.style.display = 'none'
        }
    </script>
 

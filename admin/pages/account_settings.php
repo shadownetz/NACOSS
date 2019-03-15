@@ -68,18 +68,17 @@ if(isset($_POST['update_my_password'])){
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header text-center">Account Settings</h1>
-                        <center>
-                            <div class="container-fluid" >
-                                <center><img src="<?php echo $imagepath; ?>" class="img-circle" alt="user image" height="100" class="...col-lg-offset-5 img-rounded "> </center>
+        <div id="page-wrapper" class="nacoss-form">
+            <div class="container-fluid nacoss-all-discuss nacoss-my-discuss">
+                <div class="row panel-body">
+                    <div class="col-md-12">
+                        <h2 class="page-header text-center">Account Settings</h2>
+                    </div>
+                            <div class="col-md-12 text-center" style="margin-bottom:30px" >
+                                <img src="<?php echo $imagepath; ?>" class="img-circle" alt="user image" height="100" class="...col-lg-offset-5 img-rounded ">
                             </div>
                             
-                        </center>
-                        <div class="col-sm-4">
+                        <!-- <div class="col-sm-4">
                             <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class='fa fa-file-picture-o fa-fw' style=""></i>Profile Picture</span>
@@ -87,11 +86,13 @@ if(isset($_POST['update_my_password'])){
                                     <span class="input-group-addon"><button type="submit" name="update_my_picture"><img src="../../images/select.png"></button></span>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-sm-4">
-                            <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class='fa fa-user fa-fw' style="color: <?php if($my_status=="online"){ echo "green"; }else{ echo "gray"; } ?>"></i>Change Status</span>
+                        </div> -->
+                        <div class="row">
+                        <div class="col-sm-6">
+                            <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
+                                <div class="form-content ">
+                                <label>Change Online Status</label>
+                                    <!-- <span class="input-group-addon"><i class='fa fa-user fa-fw' style="color: <?php if($my_status=="online"){ echo "green"; }else{ echo "gray"; } ?>"></i>Change Status</span> -->
                                     <select name="my_status" class="form-control" required>
                                         <!--<option value="<?php echo $my_status; ?>">Select</option>-->
                                         <?php
@@ -104,16 +105,16 @@ if(isset($_POST['update_my_password'])){
                                         }
                                         ?>
                                     </select>
-                                    <span class="input-group-addon"><button type="submit" name="update_my_status"><img src="../../images/select.png"></button></span>
+                                    <button type="submit" class="nacoss-btn" name="update_my_status" >change&nbsp;<i class="fa fa-user" style="color: <?php if($my_status=="online"){ echo "green"; }else{ echo "gray"; } ?>"></i></button>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-sm-4">
-                            <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class='fa fa-key fa-fw' style=""></i>New Password</span>
-                                        <input name="password" type="password" value="" class="form-control" required="required"/>
-                                    <span class="input-group-addon"><button type="submit" name="update_my_password"><img src="../../images/select.png"></button></span>
+                        <div class="col-sm-6">
+                            <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="password">New Password</label>
+                                        <input name="password" type="password" value="" class="form-control" placeholder="Enter new password" required>
+                                    <button type="submit" class="nacoss-btn" name="update_my_password">update&nbsp;<i class="fa fa-key"></i></button>
                                 </div>
                             </form>
                         </div>

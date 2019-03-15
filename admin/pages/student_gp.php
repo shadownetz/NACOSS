@@ -518,27 +518,27 @@ function calculateGrade($cload="", $unit=""){
                     <div class="col-lg-12">
                         <h1 class="page-header text-center">Current Grade Point</h1>
                         
-                           <div class="col-lg-8 col-md-8 col-sm-12 col-lg-offset-2 col-md-offset-7">
+                           <div class="col-lg-8 col-md-8 col-sm-12  col-md-offset-2">
                                 <div class="result-panel panel panel-default">
                                     <div class="panel-heading">
                                         
                                     </div>
                                     <div class="panel-body">
-                                        <div class="col-lg-12 col-md-12 list">
-                                            <div class="col-lg-6 col-md-6 col-sm-6">Name</div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6"><?php echo $fname." ".$lname." ".$oname; ?></div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 list">
+                                            <div class="col-md-6">Name:</div>
+                                            <div class="col-md-6"><?php echo $fname." ".$lname." ".$oname; ?></div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 list">
-                                            <div class="col-lg-6 col-md-6 col-sm-6">Registration Number</div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6"><?php echo $rnumber; ?></div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 list">
+                                            <div class="col-md-6">Registration Number:</div>
+                                            <div class="col-md-6"><?php echo $rnumber; ?></div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 list">
-                                            <div class="col-lg-6 col-md-6 col-sm-6">School E-mail</div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6"><?php echo $semail; ?></div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 list">
+                                            <div class="col-md-6">School E-mail:</div>
+                                            <div class="col-md-6"><?php echo $semail; ?></div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 list">
-                                            <div class="col-lg-6 col-md-6 col-sm-6">Current G.P</div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6"><?php echo $new_main_gp; ?></div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 list">
+                                            <div class="col-md-6 col-sm-12">Current G.P:</div>
+                                            <div class="col-md-6 col-sm-12"><?php echo $new_main_gp; ?></div>
                                         </div>
                                     </div>
                                 </div>

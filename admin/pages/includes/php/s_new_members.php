@@ -16,11 +16,11 @@ $result_set = User::find_by_sql($query);
 if(mysqli_num_rows($result_set)>0){
 ?>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                     <thead>
+                            <div class="row nacoss-all-discuss nacoss-my-discuss overf">
+                                <table class="table table-responsive">
+                                     <thead class="panel-heading">
                             <tr>
-                                <th>S/N</th>
+                                <th>#</th>
                                 <th>Full Name</th>
                                 <th>Username</th>
                                 <th>Level</th>
@@ -30,16 +30,16 @@ if(mysqli_num_rows($result_set)>0){
                                 <th>Gender</th>
                                 <th>Picture</th>
                                 <th>Activator</th>
-                                <th>User-Type</th>
+                                <th>User Type</th>
                                 <th>User Mode</th>
                                 <th>Control</th>
                                 <th>Control</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="panel-body">
 <?php
 }else{
-    echo "N0 LOGS TO DISPLAY";
+    echo "<div style='font-weight:bold'>NO LOGS TO DISPLAY</div>";
 }
 ?>
 <?php
@@ -66,10 +66,10 @@ if(mysqli_num_rows($result_set)>0){
                         <td><?php if($row['status'] == '10'){ echo "Deactivated"; }else if($row['status'] == '5'){ echo "New User"; } ?></td>
                         
                         <td>
-				<a href="?activate=<?php echo $row['id']; ?>" class="activate_btn" style="color:blue;"><button class="btn btn-success">Activate</button></a>
+				<a href="?activate=<?php echo $row['id']; ?>"><button class="nacoss-btn">Activate</button></a>
 						</td>
                         <td>
-				<a href="?deactivate=<?php echo $row['id']; ?>" class="inactivate_btn" style="color:red;"><button class="btn btn-danger">Deactivate</button></a>
+				<a href="?deactivate=<?php echo $row['id']; ?>"><button class="nacoss-btn border-warning">Deactivate</button></a>
 						</td>
 						</tr>
 

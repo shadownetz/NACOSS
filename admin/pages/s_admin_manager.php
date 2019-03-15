@@ -25,20 +25,22 @@ if ($user_type == "super_admin" && isset($_GET['super_admin'])) {
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="nacoss-form">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Admin Center (All Admins And Super Admins)</h1>
+                    <div class="col-md-12">
+                        <h3 class="page-header">Admins And Super Admins </h3>
+                        </div>
 
-<div class="table-responsive">
+<div class="col-md-12 nacoss-all-discuss nacoss-my-discuss overf">
+<div class="panel document-panel">
 <?php
 $query = "SELECT * FROM nacoss.all_students WHERE user_type = 'admin' OR user_type = 'super_admin' AND uname !='$uname' ORDER BY user_type ";
 $result_set = User::find_by_sql($query);
 if(mysqli_num_rows($result_set)>0){
 ?>
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                     <thead>
+                                <table class="table table-responsive">
+                                     <thead class="panel-heading">
                             <tr>
                                 <th>S/N</th>
                                 <th>Full Name</th>
@@ -54,13 +56,11 @@ if(mysqli_num_rows($result_set)>0){
                                 <th>Control</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="panel-body">
 <?php
 }
 ?>
 <?php
-#$query = "SELECT * FROM nacoss.all_students WHERE user_type = 'admin' OR user_type = 'super_admin' AND uname !='$uname' ORDER BY user_type ";
-#$result_set = User::find_by_sql($query);
  $counter=1;
        	while ( $row = mysqli_fetch_array($result_set) ) {
                 $picture = $row['picture'];
@@ -82,10 +82,10 @@ if(mysqli_num_rows($result_set)>0){
                         <td><?php echo $usertype; ?></td>
                         
                         <td>
-				<a href="?<?php if($row['user_type']=='super_admin'){echo 'admin';}elseif($row['user_type']=='admin'){echo 'super_admin';} ?>=<?php echo $row['id']; ?>" class="activate_btn" style="color:blue;"><button class="btn btn-success"><?php if($row['user_type']=='super_admin'){echo 'Make Admin';}elseif($row['user_type']=='admin'){echo 'Make Super Admin';} ?></button></a>
+				<a href="?<?php if($row['user_type']=='super_admin'){echo 'admin';}elseif($row['user_type']=='admin'){echo 'super_admin';} ?>=<?php echo $row['id']; ?>"><button class="nacoss-btn border-grass" style="width:100%"><?php if($row['user_type']=='super_admin'){echo 'Make Admin';}elseif($row['user_type']=='admin'){echo 'Make Super Admin';} ?></button></a>
 						</td>
                         <td>
-				<a href="?user=<?php echo $row['id']; ?>" class="inactivate_btn" style="color:red;"><button class="btn btn-warning">Make User</button></a>
+				<a href="?user=<?php echo $row['id']; ?>"><button class="nacoss-btn border-grass" style="width:100%">Make User</button></a>
 						</td>
 						</tr>
 
@@ -96,10 +96,9 @@ if(mysqli_num_rows($result_set)>0){
         ?>
           </tbody>
                                 </table>
+                                </div>
                             </div>
                         
-                    </div>
-                    <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>

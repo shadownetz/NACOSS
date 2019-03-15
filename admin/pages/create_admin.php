@@ -7,7 +7,7 @@ if($user_type == 'admin' || $user_type == 'super_admin' && isset($_POST['submit'
     $user = $database->escape_value($_POST ['user']);
     $update = User::find_by_sql("UPDATE all_students SET user_type = 'user_admin', a_activator = '$activator' WHERE rnumber = '$user' ");
     if($update){
-        echo "<script> alert('Done!'); window.location='create_admin.php'; </script>";
+        echo "<script> alert('Admin created successfully!'); window.location='create_admin.php'; </script>";
     }
 }
 ?>
@@ -20,8 +20,8 @@ if($user_type == 'admin' || $user_type == 'super_admin' && isset($_POST['submit'
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
+        <div id="page-wrapper" class="nacoss-form">
+            <div class="container nacoss-new-discuss">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Admin Center</h1>
@@ -36,14 +36,14 @@ while($r=mysqli_fetch_assoc($query)){
 
 <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-3">
+            <div class="col-md-5 col-md-offset-2">
                 <div class="result-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">MAKE ADMIN</h3>
+                        <h2 class="panel-title">Create Admin</h2>
                     </div>
                     <div class="panel-body">
-                        <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
-                            <fieldset>
+                        <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
+                            <fieldset class="form-content">
                                 
                                 <div class="form-group">
                                     <label>REG NUMBER:</label>
@@ -57,7 +57,7 @@ while($r=mysqli_fetch_assoc($query)){
                                     </select>
                                 </div>
                     
-                                <button class="btn btn-lg btn-success btn-block" name="submit">Make Admin</button>
+                                <button class="nacoss-btn" style="width:100%" name="submit">Make Admin</button>
                             </fieldset>
                         </form>
                     </div>

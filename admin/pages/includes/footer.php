@@ -9,7 +9,7 @@
               </p>
             </div>
             <div class="credits">
-              Powered by <strong><a href="https://sdc.com/">SDC Group</a></strong>
+              Powered by the&nbsp;<strong><a href="https://sdcunn.com/">SDC Group</a></strong>
             </div>
           </div>
         </div>
@@ -30,11 +30,31 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Alert Script --->
+    <!-- Custom Script --->
     <script>
-    $(function(){
+   var tmp =  $(function(){
         $('#alert-box').slideDown(700).delay(10000).slideUp(700)
-    })
+
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                pre = input.parentNode;
+                pre = pre.parentNode;
+                pre = pre.parentNode;
+                image = 'url("' + e.target.result + ' ") '
+                pre.style.backgroundImage = image
+                pre.style.backgroundSize = 'cover'
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(".profile-img").change(function(){
+        readURL(this);
+    });
+
+    });
     </script>
 
 </body>

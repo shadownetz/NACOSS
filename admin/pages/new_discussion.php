@@ -4,7 +4,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" style="overflow-x:hidden" >
 
         <!-- Navigation -->
         <?php include('includes/navigation.php'); ?>

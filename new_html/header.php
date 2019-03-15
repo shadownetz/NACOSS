@@ -70,10 +70,13 @@
 									</button>
                 <!-- Brand -->
                 <a class="navbar-brand page-scroll sticky-logo" href="index.php">
-                  <h1><span>NACOSS</span>&nbsp;UNN</h1>
-                  <!-- Uncomment below if you prefer to use an image logo -->
-                  <!-- <img src="img/logo.png" alt="" title=""> -->
-								</a>
+                  <div class="row">
+                  <img class="nacoss-img" src="./photos/default.png">
+                  <h1 class="nacoss-img-txt">NACOSS UNN</h1>
+                  </div>
+                <!-- <img class="nacoss-img" src="./photos/default.png">
+                  <h1>NACOSS UNN</h1> -->
+                  </a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">

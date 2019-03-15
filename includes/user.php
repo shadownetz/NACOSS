@@ -210,8 +210,9 @@ class User{
     public static function num_rows($result_set){
         return mysqli_num_rows($result_set);
     }
+    //$uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword
 
-    public static function create_student($uname="", $fname="", $lname="",/* $oname="",*/ $semail="", /*$oemail="",*/ $level="", $pnumber="", $rnumber="", $gender="", $pword="", $id=""){
+    public static function create_student($uname="", $fname="", $lname="",$semail="", $level="", $pnumber="", $rnumber="", $gender="", $pword="", $id=""){
         global $database;
         $epassword = md5($pword);
         /*$query = "INSERT INTO all_students SET date=NOW(), uname='{$uname}', fname='{$fname}', lname='{$lname}', oname='{$oname}', semail='{$semail}', oemail='{$oemail}', level='{$level}', pnumber='{$pnumber}', rnumber='{$rnumber}', gender='{$gender}', pword='{$epassword}', unique_id='{$id}'";*/

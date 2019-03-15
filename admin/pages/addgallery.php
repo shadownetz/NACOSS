@@ -3,6 +3,7 @@
 <?php
 
 	if (isset($_POST['submit'])) {
+        $errors = array();
 
 		$album = $_POST['album'];
 
@@ -168,107 +169,46 @@
 
         <!-- Page Content -->
         <div id="page-wrapper" class="nacoss-form">
-            <div class="container-fluid nacoss-new-discuss">
+            <div class="container-fluid nacoss-new-discuss nacoss-addgallery">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 col-sm-6 col-sm-offset-4">
                         <div class="result-panel panel panel-default">
-                            <div class="panel-heading text-center"><strong>Add Gallery</strong></div>
+                            <div class="panel-heading text-center">Add New Info</div>
                             <?php //echo display_error(); ?>
                         <div class="panel-body">
                             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
-                                <div class="row">
+                                
+                            <div class="row">
                                     <div class="col-md-12">
                                         <label>Album Name</label>
-                                        <div class="col-md-12 input-group">
-                                            <span class="input-group-addon"></span>
-                                            <input type="text" class="form-control" placeholder="Album Name" name="album">
+                                        <input type="text" class="form-control" placeholder="Enter Album Name" name="album">
+                                    </div>
+
+                                    <div class="col-md-12">
+
+                                        <!-- Gallery List One -->
+                                        <div class="row gallery-add-list">
+                                            <div class="col-md-3 img-block">
+                                                <div class="gallery-img-block" onmouseover="displayImageOverlay(this)" onmouseout="hideImageOverlay(this)">
+                                                    <div class="img-overlay animated fadeIn" >
+                                                        <label class="inner-n-vsble">
+                                                        Change Image<br><i class="fa fa-camera"></i>
+                                                            <input class="profile-img form-control " name="file1" type="file" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 gallery-img-input">
+                                                <textarea class="form-control" placeholder="Enter Message Here" name="img1-msg" required></textarea>
+                                            </div>
                                         </div>
+                                        <!-- End of Gallery List One -->
+
                                     </div>
-                                <div class="col-md-12 col-md-offset-5"><strong>IMAGES</strong></div>
-                                <div class="column">
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">1</span>
-                                            <input name="file1"  type="file" class="form-control" required>
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img1-msg" required></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">2</span>
-                                            <input name="file2" type="file" class="form-control" required>
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img2-msg" required></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">3</span>
-                                            <input name="file3" type="file" class="form-control" required>
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img3-msg" required></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">4</span>
-                                            <input name="file4" type="file" class="form-control" required>
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img4-msg" required></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">5</span>
-                                            <input name="file5" type="file" class="form-control" >
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img5-msg" ></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">6</span>
-                                            <input name="file6" type="file" value="" class="form-control"/>
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img6-msg" ></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">7</span>
-                                            <input name="file7" type="file" value="" class="form-control">
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img7-msg" ></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">8</span>
-                                            <input name="file8" type="file" value="" class="form-control" >
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img8-msg" ></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">9</span>
-                                            <input name="file9" type="file" value="" class="form-control" >
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img9-msg" ></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">10</span>
-                                            <input name="file10" type="file" value="" class="form-control" >
-                                            <label>Message</label>
-                                            <span><input type="text" class="form-control" placeholder="message" name="img10-msg" ></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="col-md-6 col-md-offset-5"><button type="submit" name="submit" class="btn btn-info" required>Upload</button>   </div>
-                                    </div>
+
+                                    <div class="col-md-6 col-md-offset-5 margin-top-15x"><button type="submit" name="submit" class="nacoss-btn" required>Upload</button>   </div>
+                                    
+                            </div>
                             </form>
                         </div>
 

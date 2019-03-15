@@ -43,18 +43,17 @@ function chechPost($post=""){
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
+        <div id="page-wrapper" class="nacoss-form">
+            <!-- <div class="container-fluid"> -->
                 <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h1 class="page-header">REGISTERED CANDIDATES FOR ELECTION</h1>
+                    <div class="col-md-12 text-center">
+                        <h2 class="page-header" style="text-transform:capitalize">registered candidates for election</h2>
                         
-                        <div class="container">
+                        <div class="nacoss-all-discuss nacoss-my-discuss">
         <div class="row">
-                <div class="col-md-8 col-md-offset-1">
-                    <div class="panel panel-default">
+                <div class="col-md-12">
+                    <div class="panel document-panel">
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
 
 <?php
 $query = User::find_by_sql("SELECT * FROM nacoss.voting_system ORDER BY post");
@@ -62,9 +61,9 @@ $query = User::find_by_sql("SELECT * FROM nacoss.voting_system ORDER BY post");
 $counter_candidate=1;
 if(mysqli_num_rows($query)>0){
 ?>
-                            <table width="" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-responsive" style="text-align:left">
    
-                                <thead>
+                                <thead class="panel-heading">
                                     <tr>
                                         <th>#</th>
                                         <th>Candidate's Name</th>
@@ -73,7 +72,7 @@ if(mysqli_num_rows($query)>0){
                                         <th>Registrar</th>
                                     </tr>
                                 </thead>
-                                 <tbody>        
+                                 <tbody class="panel-body">         
 <?php
 }
 while ( $row = mysqli_fetch_array($query) ) {
@@ -94,12 +93,12 @@ while ( $row = mysqli_fetch_array($query) ) {
 }
   ?> 
                                
-                                    <tr class="odd gradeX">
-                                        <td><h4 style="float:left;"><?php echo $counter_candidate;?></h4></td>
-                                        <td><h4><?php echo $candidate_full_name; ?></h4></td>
-                                        <td><h4><?php echo $candidate_rnumber; ?></h4></td>
-                                        <td><h4><?php $value = chechPost($candidate_post); echo $value; ?></h4></td>
-                                        <td><h4><?php echo $user_fullname; ?></h4></td>
+                                    <tr>
+                                        <td><?php echo $counter_candidate;?></td>
+                                        <td><?php echo $candidate_full_name; ?></td>
+                                        <td><?php echo $candidate_rnumber; ?></td>
+                                        <td><?php $value = chechPost($candidate_post); echo $value; ?></td>
+                                        <td><?php echo $user_fullname; ?></td>
                                     </tr>
                             
                                 
@@ -110,7 +109,6 @@ while ( $row = mysqli_fetch_array($query) ) {
 
                                 </tbody>
                                 </table>
-                    </div>
                 </div>
             </div>
         </div>
@@ -121,8 +119,6 @@ while ( $row = mysqli_fetch_array($query) ) {
                 </div>
                 <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-        </div>
         <!-- /#page-wrapper -->
 
     </div>

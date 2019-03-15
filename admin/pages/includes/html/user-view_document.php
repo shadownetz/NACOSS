@@ -6,10 +6,9 @@
         </p>
     </div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-9">
                 <div class="document-panel panel panel-default">
-                    <!-- <div class="panel-heading">
-                    </div> -->
+                    <div class="panel-heading"></div>
                     <div class="panel-body">
                         <table class="table table-responsive">
                             <tbody>

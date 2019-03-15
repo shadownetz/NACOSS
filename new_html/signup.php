@@ -30,31 +30,23 @@
         <div class="row form-content">
 
                 <div class="col-md-6">
-                    <label for="fname">Other Name</label>
-                    <input class="form-control" type="text" id="oname" name="oname" placeholder="Othername" required>
-                </div>
-                <div class="col-md-6">
                     <label for="lname">Username</label>
                     <input class="form-control" type="text" id="uname" placeholder="Username" name="uname" required>
                 </div>
-
-        </div>
-        <div class="row form-content">
 
                 <div class="col-md-6">
                     <label for="email">School Email</label>
                     <input class="form-control" type="email"  name="semail" placeholder="mail@example.com" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="email">Other Email</label>
-                    <input class="form-control" type="email"  name="oemail" placeholder="mail@example.com" required>
-                </div>
+
         </div>
         <div class="row form-content">
+
                 <div class="col-md-6">
                     <label for="phone">Phone Number</label>
-                    <input class="form-control" type="tel"  name="pnumber" placeholder="phone-number" required>
+                    <input class="form-control" type="text"  name="pnumber" placeholder="phone-number" required>
                 </div>
+
                 <div class="col-md-6">
                     <label for="phone">Reg. Number</label>
                     <input class="form-control" type="text"  name="rnumber" placeholder="Reg-number" required>

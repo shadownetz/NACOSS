@@ -2388,9 +2388,9 @@ padding-left:10px!important
 .fpass_block .overlay{
 position: absolute;
 width:100%;
-height:84.5%;
+height:500px;
 right:0;
-top:0;
+top:20px;
 background-color: rgba(10,20,50,0.5)
 }
 .fpass_block .fpass_body{
@@ -2490,7 +2490,7 @@ margin-top:25%
 #nacoss-signup{
   padding-top:50px;
   background:url("../images/signup.jpeg") no-repeat fixed center;
-  background-size:100%
+  background-size:cover
 }
 .nacoss-signup{
   background-color:rgba(10,20,50,0.5);height:100%;

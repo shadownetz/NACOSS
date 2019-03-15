@@ -1,8 +1,15 @@
-
+<div class="user-profile">
 <form  method="post" action="<?php $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">  
-    <div class="container-fluid" style="text-align:center">
-  <img src="<?php echo $imagepath; ?>" alt="user image" height="100" class="...col-lg-offset-5 img-rounded ">
-<?php //echo display_error(); ?>
+    <div class="container" style="text-align:center; margin-bottom:20px">
+  <!-- <img src="<?php echo $imagepath; ?>" alt="user image" height="100" class="...col-lg-offset-5 img-rounded "> -->
+  <div class="col-md-3 col-sm-3 col-xs-3 col-sm-offset-4  col-xs-offset-4 col-md-offset-4 img-block" style='background-image:url("<?php echo $imagepath; ?>"); height:100px;width:100px;border-radius:50px;background-size:cover' onmouseover="displayImageOverlay(this)" onmouseout="hideImageOverlay(this)">
+		<div class="img-overlay animated fadeIn" style="width:100px;width:100px;border-radius:50px;padding-top:20px">
+            <label class="inner-n-vsble">
+                Change Image<br><i class="fa fa-camera"></i>
+                 <input class="profile-img form-control " name="user_pic" type="file" required>
+                     </label>
+                        </div>
+						</div>
 </div>
 
     <!-- to display error-->
@@ -91,4 +98,5 @@
 
     <div class="text-center"><button class="nacoss-btn" type="update" name="update">Update</button></div>
 </form>
+</div>
 <br>

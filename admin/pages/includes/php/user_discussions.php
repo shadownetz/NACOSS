@@ -53,9 +53,9 @@ if(isset($_GET['details'])){
             </tr>
         </thead>
 </div>
-<div class="panel-body">
+<div>
     <!-- <table class="table table-responsive"> -->
-        <tbody>
+        <tbody class="panel-body">
 <?php
 $counter = 1;               
 $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE discussion_id = '$details_id' AND status = '0'");
@@ -67,9 +67,9 @@ $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE d
                 <td><?php echo $discussion_topic; ?></td>
                 <td><?php echo $table_row['uname']; ?></td>
                 <td><?php echo $table_row['rnumber']; ?></td>
-                <td><a href="?accept=<?php echo $table_row['rnumber']; ?>" class="nacoss-btn">Accept</a>
+                <td><a href="?accept=<?php echo $table_row['rnumber']; ?>" class="nacoss-btn" style="text-decoration:none">Accept</a>
                 </td>
-                <td><a href="?decline=<?php echo $table_row['rnumber']; ?>" class="nacoss-btn border-warning">Decline</a>
+                <td><a href="?decline=<?php echo $table_row['rnumber']; ?>" class="nacoss-btn border-warning" style="text-decoration:none">Decline</a>
                 </td>
     
             </tr>    

@@ -5,9 +5,9 @@ if(isset($_POST['signup'])){
     $uname = $_POST ['uname'];
     $fname = $_POST ['fname'];
     $lname = $_POST ['lname'];
-    $oname = $_POST ['oname'];
+    //$oname = $_POST ['oname'];
     $semail = $_POST ['semail'];
-    $oemail = $_POST ['oemail'];
+    //$oemail = $_POST ['oemail'];
     $level = $_POST ['level'];
     $pnumber = $_POST ['pnumber'];
     $rnumber = $_POST ['rnumber'];
@@ -54,7 +54,7 @@ window.location="account.php";
         redirect_to(account.php);
 die();
 			}                     
-$result_set = User::create_student($uname, $fname, $lname, $oname, $semail, $oemail, $level, $pnumber, $rnumber, $gender, $pword);
+$result_set = User::create_student($uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword);
    
        		if ($result_set){ 		
 			?>

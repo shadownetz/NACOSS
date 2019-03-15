@@ -32,7 +32,7 @@
                     <input type="password" class="form-control" placeholder="password" name="pword">
                 </div>
                 <div class="column">
-                  <div class="col-md-6 re col-sm-6"> <label><strong><a href="signup.php">Not yet registered ? </a><strong></label></div>
+                  <div class="col-md-6 re col-sm-6"> <label><strong><a href="sign-up.php">Not yet registered ? </a><strong></label></div>
                   <div class="col-md-6 re"> <label><strong><a href="fpass.php">Forgotten password ? </a><strong></label></div>
               </div>
                 

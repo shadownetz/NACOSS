@@ -16,9 +16,65 @@ All Rights Reserved.
 
 /* Color Themes */
 .nacoss-blue{
-    background-color: rgb(32, 91, 139);
+    /* background-color: rgb(32, 91, 139); */
+    background-color:rgb(11, 99, 11);
     color:rgb(250,250,250)
 }
+.margin-top-15x{
+    margin-top:15px
+}
+.overf{
+    overflow:auto
+}
+.overf-x-hide{
+    overflow-x:hidden
+}
+.bg-white{
+    background-color: #fff!important
+}
+
+/* Image Overlay */
+.img-overlay{
+    position: absolute;
+    width:58.5%;
+    height:97%;
+    border-radius: 50%;
+    background:rgb(11, 99, 11,.5);
+    display:none;
+    color:#fff;
+    transition: all 1s ease;
+    text-align:center;
+    padding:5%
+}
+@media screen and (min-width:320px){
+    .img-overlay{
+display: block;
+width:100px;
+height:100%;
+
+    }
+}
+@media screen and (min-width:1024px){
+    .img-overlay{
+        display: none;
+        width:58.5%;
+    height:97%;
+            }
+}
+/* End of Image Overlay */
+
+/* No visibility for inner contents */
+.inner-n-vsble{
+    width:100%
+}
+.inner-n-vsble input{
+    visibility: hidden;
+}
+.inner-n-vsble:hover{
+    cursor: pointer;
+}
+/* End of visibility for inner contents */
+
 /* Alert Animation */
 @keyframes slide-in{
     from{
@@ -32,6 +88,7 @@ All Rights Reserved.
         top:5px;
     }
 }
+
 /* Alert Notification Box */
 #alert-box{
     display: none;
@@ -45,6 +102,18 @@ All Rights Reserved.
     color:rgb(50,50,50);
     padding-top:5px;
     padding-right:5px;
+}
+@media screen and (min-width:320px){
+    #alert-box{
+        width:50%;
+        padding-top:2px
+    }
+}
+@media screen and (min-width:1024px){
+    #alert-box{
+        width:25%;
+        padding-top:5px
+    }
 }
 .slide-in{
     display:block;
@@ -73,7 +142,7 @@ margin-top:10px
 
 /* Nacoss Input[type="file"] Style */
 .nacoss-select-file{
-    border: 1px solid #fff;
+    border: 1px solid rgb(11, 99, 11);
     transition: all ease;
     width:100%
 }
@@ -85,9 +154,10 @@ margin-top:10px
     transition: all linear .5s
 }
 .nacoss-select-file:hover{
-    border-color: #3EC1D5;
+    border-color: transparent;
+    background-color:rgb(13, 131, 13);
     cursor: pointer;
-    color:rgb(182, 179, 179)
+    color:#fff
 }
 .nacoss-select-file > input[type="file"]{
     visibility: hidden;
@@ -98,24 +168,42 @@ margin-top:10px
 /* Nacoss Button Style */
 .nacoss-btn{
     border-radius: 0;
-    border: 1px solid rgb(32, 91, 139);
+    border: 1px solid rgb(11, 99, 11);
     width: 30%;
     padding: 10px;
     background: transparent;
     transition: all linear .3s
 }
+@media screen and (min-width:320px){
+    .nacoss-btn{
+        width:100%
+    }
+}
+@media screen and (min-width:1024px){
+    .nacoss-btn{
+        width:30%
+    }
+}
 .nacoss-btn:hover{
-background: rgb(32, 91, 139);
+background: rgb(17, 139, 17);
+border-color: transparent;
 color: rgb(250, 250, 250)
 }
 .nacoss-btn.border-warning{
-    border: 1px solid rgb(165, 173, 40);
+    border: 1px solid rgb(193, 204, 45);
+}
+.nacoss-btn.border-grass{
+    border: 1px solid rgb(22, 122, 67);
+}
+.nacoss-btn.border-grass:hover{
+    background-color:rgb(19, 116, 63);
+    color:rgb(250,250,250)
 }
 .nacoss-btn.border-danger{
     border: 1px solid rgb(173, 40, 40);
 }
 .nacoss-btn.border-warning:hover{
-    background-color:rgba(164, 173, 40, 0.795);
+    background-color:rgb(200, 211, 40);
     color:rgb(250, 250, 250)
 }
 .nacoss-btn.border-danger:hover{
@@ -137,6 +225,12 @@ margin-left:5px
 .nacoss-admin-nav .nacoss-admin-header a.navbar-brand{
 color:rgb(250,250,250)!important
 }
+.navbar-default.nacoss-admin-nav .navbar-toggle {
+    border-color: rgb(11, 99, 11);
+}
+.navbar-default.nacoss-admin-nav .navbar-toggle:hover {
+    background-color: rgb(20, 177, 20)!important;
+}
 .nacoss-admin-nav .nav.navbar-top-links li > a{
 color: rgb(250,250,250); transition: all .5s
 }
@@ -150,10 +244,12 @@ color: rgb(250,250,250); transition: all .5s
     color: rgb(50,50,50)
 }
 .nacoss-admin-nav .navbar-default.sidebar .sidebar-nav > ul > li a{
-    color: rgb(32, 91, 139); transition: all .5s
+    /* color: rgb(32, 91, 139); */
+    color: rgb(11, 99, 11);
+    transition: all .5s
 }
 .nacoss-admin-nav .navbar-default.sidebar .sidebar-nav > ul > li a:hover{
-    color:rgb(13, 45, 71)
+    color:rgb(6, 65, 6)
 }
 @media screen and (min-width: 320px){
     .nacoss-nav-img{
@@ -163,7 +259,7 @@ color: rgb(250,250,250); transition: all .5s
     .nacoss-dash .box{
         height:170px;
         margin: 20px 0px;
-        background-color: rgba(32, 91, 139,.8);
+        background-color: rgba(11, 99, 11,.9);
         text-align: center;
        padding-top:30px;
        transition: all linear .1s
@@ -193,6 +289,9 @@ color: rgb(250,250,250); transition: all .5s
         padding-top:5px;
         box-shadow: 1px 1px 1px #000
     }
+    .nacoss-dash h1.page-header{
+        margin-top:3%
+    }
     /* End of Dashboard Styles */
 }
 /* End of Nacoss Admin Navigation styles */
@@ -207,18 +306,24 @@ color: rgb(250,250,250); transition: all .5s
 
 /* User Profile Styles */
 div.nacoss-form{
-    background-color: rgba(0,0,0,.5)!important;
-    color:rgb(250, 250, 250)
+    background-color: rgba(200,200,200,.5)!important;
+    /* background-color:#fff */
+    color:rgb(50, 50, 50)
+}
+div.nacoss-form .page-header{
+border-bottom-color: rgb(50,50,50);
+
 }
 .nacoss-profile > .form-content{
     margin-bottom:15px
 }
 .nacoss-profile input{
-border: 1px solid rgb(32, 91, 139);
+border: 1px solid rgb(11, 99, 11);
 border-radius:0px;
 resize:  none;
 background: transparent;
-color: rgb(250, 250, 250)
+color: rgb(50, 50, 50);
+/* transition: all .3s linear */
 }
 .nacoss-profile input:disabled{
     border: 2px solid rgba(128, 17, 17, 0.6);
@@ -227,73 +332,87 @@ color: rgb(250, 250, 250)
 }
 .nacoss-profile input:focus{
     box-shadow:none;
-    border-color:#3EC1D5
+    border-color:rgb(7, 66, 7);
+    border-width:1.5px
 }
 .nacoss-profile .form-content select{
-border: 1px solid rgb(32, 91, 139);
+border: 1px solid rgb(11, 99, 11);
 border-radius:0px;
 resize:  none;
 background: transparent;
-color: rgb(250, 250, 250);
+color: rgb(50, 50, 50);
 transition: all linear .3s
 }
 .nacoss-profile .form-content select:focus{
-    border-color:#3EC1D5;
-    box-shadow: none
+    border-color:rgb(7,66,7);
+    box-shadow: none;
+    border-width:1.2px
 }
 .nacoss-profile > .form-content select > option{
     color: rgb(50,50,50);
 }
 .nacoss-profile .form-content textarea{
-border: 1px solid rgb(32, 91, 139);
+border: 1px solid rgb(11, 99, 11);
 border-radius:0px;
 resize:  none;
 background: transparent;
-color: rgb(250, 250, 250);
+color: rgb(50, 50, 50);
 font-size: 1.3em
 }
 .nacoss-profile .form-content textarea:focus{
-    border-color:#3EC1D5;
-    box-shadow: none
+    border-color:rgb(7, 66, 7);
+    box-shadow: none;
+    border-width:1.4px
 }
 
 /* New Discussion Styles */
 .nacoss-new-discuss{
     color: rgb(250,250,250)
 }
+.nacoss-new-discuss h1.page-header{
+    font-size:1.5em;
+    border-bottom-color: #000;
+    color:rgb(50,50,50)
+}
 .nacoss-new-discuss .result-panel{
     border-radius: 0;
-    background: rgba(0,0,0,.3);
-    border: 0px transparent
+    background: rgb(250,250,250);
+    border: 0px transparent;
+    box-shadow:-2px -2px 2px rgb(50,50,50), 2px 2px 2px rgb(50, 50, 50);
 }
 .nacoss-new-discuss .panel-heading{
     border-radius: 0;
-    background-color: rgba(255,255,255,.5);
-    border:0px
+    background-color: rgb(13, 150, 13);
+    border:0px;
+    color:#fff
 }
 .nacoss-new-discuss .panel-body{
-    background: rgba(0, 0, 0,.5);
-    color:rgb(250,250,250)
+    background: rgba(250,250,250,.8);
+    color:rgb(50,50,50);
 }
 .nacoss-new-discuss form input, .nacoss-new-discuss form select{
     border-radius: 0;
     background:transparent;
-    border-color: #ffff;
+    border-color: rgb(11, 99, 11);
     transition: all linear .3s;
-    color: rgb(250,250,250)
+    color: #000
 }
 .nacoss-new-discuss form input:focus, .nacoss-new-discuss form select:focus{
-    border-color:#3EC1D5;
+    border-color:rgb(11, 99, 11);
+    background-color: transparent;
+    border-width:1.4px;
     box-shadow: none
 }
 .nacoss-new-discuss form select > option{
     color: rgb(50,50,50)
 }
 .nacoss-new-discuss form .nacoss-btn{
-    border-color:#3EC1D5; transition-duration: .2s
+    border-color:rgb(11, 99, 11); transition-duration: .2s;
+    color: #000
 }
 .nacoss-new-discuss form .nacoss-btn:hover{
-    border-color:transparent
+    border-color:transparent;
+    color:#fff
 }
 /* End of New Discussion Styles */
 
@@ -306,8 +425,8 @@ font-size: 1.3em
     border:0
 }
 .nacoss-all-discuss .panel-body{
-    background: rgba(0, 0, 0,.5);
-    color:rgb(250,250,250)
+    background: rgb(250,250,250);
+    color:rgb(50,50,50)
 }
 .nacoss-all-discuss .panel-body, .nacoss-all-discuss .panel-heading{
     overflow:auto
@@ -335,22 +454,26 @@ font-size: 1.3em
 }
 .nacoss-all-discuss .document-panel{
     border-radius: 0;
-    background-color: rgba(0, 0, 0,.5);
+    background-color: rgb(250,250,250);
     border:0px;
     overflow:auto;
+    box-shadow: 2px 2px 2px #000, -2px -2px 2px #000
 }
 .nacoss-all-discuss .panel-heading{
     border-radius: 0;
     border:0;
     padding-bottom:0;
-    background: rgba(255, 255, 255,.5);
-    color:rgb(50,50,50)
+    background: rgb(13,150,13);
+    color:#fff
 }
 /* End of All Discussion Styles */
 
 /* My Discussions Styles */
 .nacoss-all-discuss.nacoss-my-discuss table > tbody.panel-body >tr, .nacoss-all-discuss.nacoss-my-discuss  table > tbody.panel-body >tr:first-child > td{
     border:0
+}
+.nacoss-all-discuss.nacoss-my-discuss table td a{
+    color:rgb(50,50,50)
 }
 .nacoss-all-discuss.nacoss-my-discuss .nacoss-btn{
     width:100%
@@ -361,14 +484,63 @@ font-size: 1.3em
 .nacoss-view-doc .document-panel .panel-body table > tbody > tr:first-child > td{
 border:0
 }
+.nacoss-view-doc .document-panel table tbody tr td a{
+    color:rgb(50, 50, 50)
+}
 /* End of View Document Styles */
 
 /* Student GP Styles */
-.nacoss-gp .list:not(:last-child){
-border-bottom: 1px solid rgb(250,250,250);
-margin-bottom:20px;
-padding-bottom: 10px;
-padding-right:30px
+@media screen and (min-width:320px){
+    .nacoss-gp .list:not(:last-child){
+        border-bottom: 1px solid rgb(50,50,50);
+        padding-bottom: 10px;
+        padding-right:0;
+        word-wrap: break-word;
+        color:rgb(50, 50, 50)
+        }
+        .nacoss-gp .list div:first-child{
+            font-weight:bold
+        }
+        .nacoss-gp .list div:nth-child(n+2){
+            font-style: bold
+        }
+        .nacoss-gp .list:not(:first-child){
+            margin-top:1%
+        }
+}
+@media screen and (min-width:1024px){
+    .nacoss-gp .list:not(:last-child){
+        margin-bottom:20px;
+        padding-bottom: 10px;
+        padding-right:30px;
+        }
+}
+@media screen and (min-width:320px){
+    .ext-nav{
+        text-align:center;
+        background:rgb(14, 131, 14); 
+        color:#fff;
+        padding:initial
+    }
+    .ext-nav .f-left, .ext-nav .f-leright{
+        float: none;
+    }
+}
+@media screen and (min-width:768px) and (min-height:1024px){
+    .ext-nav{
+        padding-left:40%
+    }
+}
+@media screen and (min-width:1024px){
+    .ext-nav{
+        padding:5px 10% 5px 30%;
+    }
+    .ext-nav .f-left{
+        float:left
+    }
+    .ext-nav .f-right{
+        float:right
+    }
 }
 
 /* Uploading Documents Styles */
@@ -392,6 +564,98 @@ padding-right:30px
 }
 /* End of View Documents Styles */
 
+/* Add Gallery Styles */
+.nacoss-new-discuss.nacoss-addgallery{
+    padding-top:10%
+}
+@media screen and (min-width:320px){
+    .nacoss-new-discuss.nacoss-addgallery .img-block{
+        height:100px;
+        margin-bottom:10px;
+        }
+}
+@media screen and (min-width:1024px){
+    .nacoss-new-discuss.nacoss-addgallery .img-block{
+        margin-bottom: auto
+        }
+}
+
+.nacoss-new-discuss.nacoss-addgallery .gallery-img-block{
+width:70%;
+height:97%;
+background:#fff url("../../images/default_news.png") no-repeat center center;
+background-size: 70%;
+border-radius: 50%;
+margin-top:.5%;
+transition: all .3s linear;
+}
+.nacoss-new-discuss.nacoss-addgallery .gallery-img-block:hover{
+    cursor: pointer;
+    border-color:transparent
+}
+@media screen and (min-width:320px){
+    .nacoss-new-discuss.nacoss-addgallery .gallery-img-block{
+        width:100px;
+        height:100px;
+        border:1px solid rgb(50,50,50);
+        border-radius:50px;
+        margin-left:30%;
+    }
+}
+@media screen and (min-width:1024px){
+    .nacoss-new-discuss.nacoss-addgallery .gallery-img-block{
+        width:70%;
+        height:97%;
+        border-radius:50%;
+    }
+}
+.nacoss-new-discuss.nacoss-addgallery .gallery-img-input input[type="text"]{
+height:100px
+}
+.nacoss-new-discuss.nacoss-addgallery .gallery-add-list{
+    margin-top:1.5%
+}
+.nacoss-new-discuss.nacoss-addgallery .gallery-img-input textarea{
+    border: 1px solid rgb(11, 99, 11);
+    border-radius:0px;
+    resize:  none;
+    background: transparent;
+    color: rgb(50, 50, 50);
+    font-size: 1em;
+    height:100px;
+    }
+.nacoss-new-discuss.nacoss-addgallery .gallery-img-input textarea:focus{
+        border-color:rgb(11, 99, 11);
+        border-width:1.4px;
+        box-shadow: none
+}
+/* End of Add Gallery Styles */
+
+/* Manage Gallery Styles */
+.nacoss-new-discuss.nacoss-managegallery .manage-block{
+    margin:1%
+}
+.nacoss-new-discuss.nacoss-managegallery .manage-block .img-overlay, .user-profile .img-overlay{
+width:100%;
+height:100%;
+border-radius: 0;
+left:0;
+padding-top:13%
+}
+
+.nacoss-new-discuss.nacoss-managegallery .img-block, .user-profile .img-block{
+background:rgb(200, 200, 200) no-repeat center center;
+background-size:50%;
+height:100px
+}
+.nacoss-new-discuss.nacoss-managegallery .input-block{
+    height:100px
+}
+.nacoss-new-discuss.nacoss-managegallery a{
+    color:rgb(50,50,50)
+}
+/* End of Manage Gallery Styles */
+
 /* Cast Vote Styles */
 .nacoss-all-discuss.nacoss-vote .document-panel table  tbody > tr td{
 text-align: left
@@ -406,14 +670,54 @@ text-align: left
 }
 /* End of Cast Vote Styles */
 
+/* Contact Logs */
+.nacoss-all-discuss.nacoss-my-discuss.contact{
+    overflow:auto;
+    box-shadow: 2px 2px 2px rgb(50,50,50), -2px -2px rgb(50,50,50)
+}
+.c-logs{
+    /* display: inline-block; */
+    word-wrap: break-word;
+    text-align: left;
+    /* max-width:250px; */
+    height:100px ;
+    overflow: hidden auto;
+}
+/* End of Contact Logs */
+
+/* News Styles */
+.nacoss-all-discuss.nacoss-my-discuss.news{
+
+}
+.nacoss-all-discuss.nacoss-my-discuss.news .blk{
+height:150px;
+background:#fff no-repeat center center;
+background-size: cover;
+}
+.nacoss-all-discuss.nacoss-my-discuss.news .blk .img-overlay{
+    border-radius: 0;
+    width:100%;
+    height:100%;
+    left:0
+}
+.nacoss-all-discuss.nacoss-my-discuss.news .txt{
+margin-top: 10px
+}
+.nacoss-all-discuss.nacoss-my-discuss.news .txt input[type="text"]{
+    font-size:1.4em;
+    height:60px
+}
+
 /* Footer Styles */
 .footer-area-bottom{
     padding:20px;
-    background: rgb(230,230,230)
+    background: rgb(11, 99, 11);
+    color: rgb(250,250,250)
 }
 .footer-area-bottom .credits{
-    text-align:center
+    text-align:center;
 }
 .footer-area-bottom .credits a{
-    text-decoration: none
+    text-decoration: none;
+    color:rgb(17, 180, 17);
 }

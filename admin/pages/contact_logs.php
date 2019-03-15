@@ -10,11 +10,11 @@
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="nacoss-form">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Contact-Us Logs</h1>
+                        <h2 class="page-header">Contact-Us Logs</h2>
                         <?php require_once('includes/php/contactLogs.php'); ?>
                     </div>
                     <!-- /.col-lg-12 -->

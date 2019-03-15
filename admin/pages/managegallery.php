@@ -1,7 +1,7 @@
         <!-- Header -->
         <?php include('includes/header.php'); ?>
 <?php
-
+$errors = array();
 	if (isset($_GET['no'])) {
 		$no = $_GET['no'];
 	$result = User::find_by_sql("UPDATE gallery SET no_of_images='$no' WHERE status='1' ");
@@ -752,18 +752,12 @@ $admin_id = $_SESSION['id'];
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
+        <div id="page-wrapper" class="nacoss-form">
+            <div class="container-fluid nacoss-new-discuss nacoss-addgallery nacoss-managegallery">
                 <div class="row">
-
-                                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-					<?php //echo display_error(); ?>
-                        <strong>Number Of Image To Be Displayed</strong>
-                            </div>
-							<div class="panel-body col-md-12" style="overflow:auto">
+                         <div class="col-md-12">
+                    <div class="result-panel panel panel-default">
+							<!-- <div class="panel-body col-md-12" style="overflow:auto">
 							<span class="input-group-addon"><a href="managegallery.php?no=1">1</a></span>
 							<span class="input-group-addon"><a href="managegallery.php?no=2">2</a></span>
 							<span class="input-group-addon"><a href="managegallery.php?no=3">3</a></span>
@@ -774,35 +768,39 @@ $admin_id = $_SESSION['id'];
 							<span class="input-group-addon"><a href="managegallery.php?no=8">8</a></span>
 							<span class="input-group-addon"><a href="managegallery.php?no=9">9</a></span>
 							<span class="input-group-addon"><a href="managegallery.php?no=10">10</a></span>
-							</div>
-							<br><br>
-						<center><h3>Active Gallery</h3></center>
+							</div> -->
+						<div class="panel-heading text-center">Active Gallery</div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                     <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Album</th>
-								<!--<th>Message</th>-->
-								<th>Image1</th>
-								<th>Image2</th>
-								<th>Image3</th>
-								<th>Image4</th>
-								<th>Image5</th>
-								<th>Image6</th>
-								<th>Image7</th>
-								<th>Image8</th>
-								<th>Image9</th>
-								<th>Image10</th>
+								<div class="row">
+									
+								<!-- Active Gallery List -->
+									<div class="col-md-12">
+										<div class="row manage-block">
+											<div class="col-md-3 img-block" style='background-image:url("../../images/default_news.png")' onmouseover="displayImageOverlay(this)" onmouseout="hideImageOverlay(this)">
+													<div class="img-overlay animated fadeIn" >
+                                                        <label class="inner-n-vsble">
+                                                        Change Image<br><i class="fa fa-camera"></i>
+                                                            <input class="profile-img form-control " name="file1" type="file" required>
+                                                        </label>
+                                                    </div>
+											</div>
+											<div class="col-md-7 gallery-img-input">
+												<textarea placeholder="Image Message" class="form-control">Default</textarea>
+											</div>
+											<div class="col-md-2">
+												<div style="margin-bottom:3%">
+												<a href="#"><button class="nacoss-btn" style="width:100%">Apply Changes&nbsp;<i class="fa fa-check"></i></button></a>
+												</div>
+												<div>
+												<a href="#"><button class="nacoss-btn border-danger" style="width:100%">Remove</button></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- End of Active Gallery List -->
+									
 
-
-                                <th>Date</th>
-
- <!--                               <th>Control</th>				-->
-                            </tr>
-                        </thead>
-                        <tbody>
+								</div>
 <?php
 $query = "SELECT * ";
 $query .= "FROM nacoss.gallery ";
@@ -839,10 +837,10 @@ $query .= "WHERE status = '1' ";
                 $imagepath10 = "../../galleryphotos/".$image10;
 
                 ?>
-                <tr>
+                <!-- <tr>
                         <td><?php echo $counter;?></td>
                         <td><?php echo $row['album'];?></td>
-						<!--<td><php echo $row['message']></td>-->
+						<td><php echo $row['message']></td>
 						<td><img src="<?php echo $imagepath1; ?>" alt="user image" height="50" class="img-rounded"><?php echo $row['imageMessage1'];?></td>
 						<td><img src="<?php echo $imagepath2; ?>" alt="user image" height="50" class="img-rounded"><?php echo $row['imageMessage2'];?></td>
 						<td><img src="<?php echo $imagepath3; ?>" alt="user image" height="50" class="img-rounded"><?php echo $row['imageMessage3'];?></td>
@@ -857,25 +855,84 @@ $query .= "WHERE status = '1' ";
 
                         <td><?php echo $row['date']?></td>
 
-                </tr>
+                </tr> -->
 
 
                 <?php
                 $counter++;
         }
         ?>
-          </tbody>
-                                </table>
-                            </div>
-
-                        </div>
                     </div>
-                    <!--End Advanced Tables -->
                 </div>
-
-
-        </div>
+		</div>
+	</div>
 		<div class="row">
+			<div class="col-md-12">
+                    <div class="result-panel panel panel-default">
+						<div class="panel-heading text-center">Inactive Gallery</div>
+						<div class="panel-body" style="overflow:auto">
+
+								<!-- InActive Gallery List -->
+								<table class="table table-responsive">
+         							<thead>
+            							<tr>
+                							<th class="no-border">ID</th>
+               								<th class="no-border">Album Name</th>
+											<th class="no-border">Image 1</th>
+											<th class="no-border">Control</th>
+											<th class="no-border">Control</th>
+            							</tr>
+									</thead>
+										<tbody>
+											<!-- Inactive Gallery List -->
+											<tr>
+												<td>1</td>
+												<td>Default Name</td>
+												<td>
+											<div class="col-md-12 img-block" style='background-image:url("../../images/default_news.png");height:70px' >
+											</div>
+												</td>
+												<td>
+												<a href="#"><button class="nacoss-btn" style="width:100%">Activate&nbsp;<i class="fa fa-check"></i></button></a>
+												</td>
+												<td>
+												<a href="#"><button class="nacoss-btn border-danger" style="width:100%">Delete&nbsp;<i class="fa fa-close"></i></button></a>
+												</td>
+											</tr>
+										</tbody>
+										<!-- End of Inactive Gallery List -->
+										
+								</table>
+								<!-- <div class="col-md-12">
+										<div class="row manage-block">
+											<div class="col-md-3 img-block" style='background-image:url("../../images/default_news.png")' onmouseover="displayImageOverlay(this)" onmouseout="hideImageOverlay(this)">
+													<div class="img-overlay animated fadeIn" >
+                                                        <label class="inner-n-vsble">
+                                                        Change Image<br><i class="fa fa-camera"></i>
+                                                            <input class="profile-img form-control " name="file1" type="file" required>
+                                                        </label>
+                                                    </div>
+											</div>
+											<div class="col-md-7 gallery-img-input">
+												<textarea placeholder="Image Message" class="form-control">Default</textarea>
+											</div>
+											<div class="col-md-2">
+												<div style="margin-bottom:3%">
+												<a href="#"><button class="nacoss-btn" style="width:100%">Activate&nbsp;<i class="fa fa-check"></i></button></a>
+												</div>
+												<div>
+												<a href="#"><button class="nacoss-btn border-danger" style="width:100%">Delete&nbsp;<i class="fa fa-close"></i></button></a>
+												</div>
+											</div>
+										</div>
+									</div> -->
+									<!-- End of InActive Gallery List -->
+
+						</div>
+					</div>
+				</div>
+		</div>
+		<!-- <div class="row">
 <div class="column">
 	<center><strong><h3>Edit Active Gallery</h3></strong></center>
 	<div class="col-sm-4">
@@ -1072,11 +1129,10 @@ $query .= "WHERE status = '1' ";
 
 
 		</div>
-		</div>
-		 <div class="row">
+		</div> -->
+		 <!-- <div class="row">
 
                                 <div class="col-md-12">
-                    <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
 
@@ -1089,7 +1145,7 @@ $query .= "WHERE status = '1' ";
                             <tr>
                                 <th>id</th>
                                 <th>Album</th>
-								<!--<th>Message</th>-->
+								<th>Message</th>
 								<th>Image1</th>
 								<th>Image2</th>
 								<th>Image3</th>
@@ -1150,7 +1206,7 @@ $query .= "WHERE status = 'O' ";
                 <tr>
                         <td><?php echo $counter;?></td>
                         <td><?php echo $row['album'];?></td>
-						<!--<td><php echo $row['message']></td>-->
+						<td><php echo $row['message']></td>
 
 						<td><img src="<?php echo $imagepath1; ?>" alt="user image" height="50" class="img-rounded"><?php echo $row['imageMessage1'];?></td>
 						<td><img src="<?php echo $imagepath2; ?>" alt="user image" height="50" class="img-rounded"><?php echo $row['imageMessage2'];?></td>
@@ -1186,11 +1242,10 @@ $query .= "WHERE status = 'O' ";
 
                         </div>
                     </div>
-                    <!--End Advanced Tables -->
                 </div>
 
 
-        </div>
+        </div> -->
 <?php
     $idmain = 0;
 	if (isset($_GET['edit'])) {

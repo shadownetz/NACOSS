@@ -21,28 +21,28 @@ if($user_type == 'super_admin' && isset($_POST['submit'])){
 
 
         <!-- Page Content -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="nacoss-form">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                       
                         
                         
-                        <h1 class="page-header text-center">Super Admin Master Page</h1>
+                        <h2 class="page-header text-center">Super Admin Master Page</h2>
 
 
-<div class="container">
+<div class="container nacoss-new-discuss">
         <div class="row">
-            <div class="col-md-4 col-md-offset-3">
+            <div class="col-md-5 col-md-offset-2">
                 <div class="result-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Super Admin</h3>
+                        <!-- <h3 class="panel-title">Super Admin</h3> -->
                     </div>
                     <div class="panel-body">
 <?php
 if($user_type == 'super_admin' && isset($_POST['check_details'])){
     $check_rnumber = $_POST['rnumber'];
-    if($check_rnumber == "SUPER_ADMIN_QUERY"){
+    if(md5($check_rnumber) == "c16e79e234485123f1ea463d7c51ceee"){
         ?>
                         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
                             <fieldset>
@@ -51,7 +51,7 @@ if($user_type == 'super_admin' && isset($_POST['check_details'])){
                                     <input type="text" name="sql" class="form-control" required>
                                 </div>
                     
-                                <button class="btn btn-lg btn-success btn-block" name="submit">QUERY</button>
+                                <button class="nacoss-btn" name="submit"  style="width:100%">QUERY</button>
                             </fieldset>
                         </form>           
                         <?php
@@ -86,7 +86,7 @@ if($user_type == 'super_admin' && isset($_POST['check_details'])){
                                     <input type="text" name="rnumber" class="form-control" required>
                                 </div>
                     
-                                <button class="btn btn-lg btn-success btn-block" name="check_details">CHECK DETAILS</button>
+                                <button class="nacoss-btn" name="check_details"  style="width:100%">CHECK USER DETAILS</button>
                             </fieldset>
                         </form>
     <?php
@@ -100,7 +100,7 @@ if($user_type == 'super_admin' && isset($_POST['check_details'])){
                                     <input type="text" name="rnumber" class="form-control" required>
                                 </div>
                     
-                                <button class="btn btn-lg btn-success btn-block" name="check_details">CHECK DETAILS</button>
+                                <button class="nacoss-btn" name="check_details" style="width:100%">CHECK USER DETAILS</button>
                             </fieldset>
                         </form>
     <?php
