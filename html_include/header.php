@@ -133,6 +133,9 @@ if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
                     <a class="page-scroll" href="#portfolio">Portfolio</a>
                   </li>
                   <li>
+                    <a class="page-scroll" href="#staff">Staffs</a>
+                  </li>
+                  <li>
                     <a class="page-scroll" href="faq.php">Faqs</a>
                   </li>
                   <li>

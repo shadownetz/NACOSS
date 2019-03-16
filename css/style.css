@@ -2510,6 +2510,128 @@ margin-top:25%
 .nacoss-signup label{
   color:rgb(250,250,250)
 }
+/* About Styles */
+/* rgba(11, 99, 11,.9) */
+@media screen and (min-width:320px){
+  #about .carousel .item img{
+    width:100%;
+    /* height:400px */
+  }
+  #about .carousel .item .about-overlay{
+    position: absolute;
+    left:25%;
+    right:25%;
+    width:50%;
+    height:100%;
+    /* background-color: rgba(11, 99, 11,.8); */
+    background: url("../images/about_img.jpg") no-repeat center center;
+    text-align:center;
+    }
+    #about .carousel .carousel-control.left{
+      background-image: linear-gradient(to right, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 100%)
+    }
+    #about .carousel .carousel-control.right{
+      background-image: linear-gradient(to right, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 100%)
+    }
+    #about .carousel .carousel-control{
+    color:rgb(50,50,50)
+    }
+    #about .carousel .item .about-overlay > .block{
+        height:70%;
+        width:80%;
+        margin:9% 10% 0% 10%;
+        border-left: 1px solid #fff;
+    border-right:1px solid #fff;
+    padding:3%;
+    padding-top:1%;
+    text-align:left;
+    }
+    #about .carousel .item .about-overlay > .block::before{
+      content: "";
+      position: absolute;
+      border: 1px solid #fff;
+      height:0px;
+      left:10%;
+      top:7%;
+      background:#fff;
+      width:10%
+    }
+    #about .carousel .item .about-overlay > .block::after{
+      content: "";
+      position: absolute;
+      border: 1px solid #fff;
+      height:0px;
+      right:10%;
+      bottom:22%;
+      background:#fff;
+      width:10%
+    }
+    
+    #about .carousel .item .about-overlay > .block .txt{
+      color:rgb(250,250,250);
+    }
+    #about .carousel .item .about-overlay > .block .txt .heading{
+      display: block;
+      font-size:.6em;
+      line-height: 10px;
+      font-weight:bold;
+      text-shadow: 1px 1px 1px #000;
+      text-align:center
+    }
+    #about .carousel .item .about-overlay > .block .txt .semes{
+      height:100%;
+      background:rgba(255,255,255,.8);
+      color:rgb(50,50,50);
+      margin-top:4%
+    }
+    #about .carousel .item .about-overlay > .block .txt .semes .head{
+      display:block;  
+      margin-top:0%;
+      font-size: .5em;
+      text-align: center;
+      font-weight:bold;
+    }
+    #about .carousel .item .about-overlay > .block .txt .semes ul{
+      /* list-style-type: square; */
+      font-size:.5em;
+      text-align:center
+    }
+    #about .carousel .item .about-overlay > .block .txt .semes ul>li{ 
+      line-height: 10px
+    }
+}
+@media screen and (min-width:1024px){
+  #about .carousel .item img{
+    height:400px
+  }
+  #about .carousel .item .about-overlay > .block{
+    height:75.5%;
+    /* width:80%; */
+    margin:5% 10% 0% 10%;
+    /* background: rgb(100,20,20) */
+} 
+#about .carousel .item .about-overlay > .block::after{
+  bottom:17%;
+}
+#about .carousel .item .about-overlay > .block .txt .heading{
+font-size:1.2em
+}
+#about .carousel .item .about-overlay > .block .txt .semes ul{
+  /* list-style-type: square; */
+  font-size:1em
+}
+#about .carousel .item .about-overlay > .block .txt .semes ul>li{ 
+  line-height: 25px
+}
+#about .carousel .item .about-overlay > .block .txt .semes .head{
+  margin-top:5%;
+  font-weight:bold;
+  font-size:1em;
+}
+}
+
+/* End of About Styles */
+
 /*----------------------------------------
  .End CSS
 ----------------------------------------*/
