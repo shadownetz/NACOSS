@@ -7,7 +7,7 @@ require_once("../../includes/initialize.php");
 <style>
 button[type="submit"].comment-respond{
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #3ec1d5;
+  border: 1px solid rgb(20, 172, 20);
   border-radius: 20px;
   box-shadow: none;
   color: #444;
@@ -24,9 +24,9 @@ button[type="submit"].comment-respond{
   white-space: nowrap;
 }
 button[type="submit"].comment-respond:hover {
-  border: 1px solid #3EC1D5;
+  border: 1px solid rgb(20, 172, 20);
   color: #fff;
-  background: #3EC1D5;
+  background: rgb(20, 172, 20);
   cursor:pointer;
 }
 </style>
@@ -206,7 +206,7 @@ while($col=mysqli_fetch_assoc($query)):
                         <div>
                         <p style="margin-top:10px;text-align:justify">
                         <b><?php echo $member_uname; ?></b>
-                          <span style="font-size:1.2em;float:right;color:rgb(27, 53, 124)">
+                          <span style="font-size:1em;float:right;color:rgb(50, 50, 50)">
                           &nbsp;<?php echo $member_message_date; ?> <i class="fa fa-calendar"></i> &nbsp; <?php echo $member_message_time; ?> 
                           </span>
                           <br>

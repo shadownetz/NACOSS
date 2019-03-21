@@ -27,7 +27,9 @@ if(mysqli_num_rows($query)>1){
 <?php
 }else{
   ?>
-  <div class="recent-post">
+  <h4>Related groups</h4>
+  <div class="recent-post" style="text-align:center">
+    <i>No related groups found</i>
   <?php
   }
 $new_id_array = array();
@@ -128,4 +130,9 @@ for($z=0; $z<count($newid_array); $z++){
       </div>
     </div>
   </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
         </div>

@@ -51,7 +51,7 @@ window.location="account.php";
 </script>
 <?php
 		
-        redirect_to(account.php);
+        redirect_to('account.php');
 die();
 			}                     
 $result_set = User::create_student($uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword);

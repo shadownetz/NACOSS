@@ -15,29 +15,23 @@
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-blog">
               <div class="single-blog-img">
-                <a href="blog.html">
 										<img src="img/blog/1.jpg" alt="">
-									</a>
               </div>
               <div class="blog-meta">
-                <span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">13 comments</a>
-									</span>
                 <span class="date-type">
 										<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
 									</span>
               </div>
               <div class="blog-text">
                 <h4>
-                                        <a href="blog.html">Election Result</a>
+                    Election Result
 									</h4>
                 <p>
                   Successful list of candidates that participated in the recent departmental election have been released...
                 </p>
               </div>
               <span>
-									<a href="#" class="ready-btn">Read more</a>
+									<a href="news-details.php" class="ready-btn">Read more</a>
 								</span>
             </div>
             <!-- Start single blog -->
@@ -47,29 +41,23 @@
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-blog">
               <div class="single-blog-img">
-                <a href="blog.html">
 										<img src="img/blog/2.jpg" alt="">
-									</a>
               </div>
               <div class="blog-meta">
-                <span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">130 comments</a>
-									</span>
                 <span class="date-type">
 										<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
 									</span>
               </div>
               <div class="blog-text">
                 <h4>
-                                        <a href="blog.html">ASSU Strike</a>
+                    ASSU Strike
 									</h4>
                 <p>
                   NLC has declared indefinite strike for all Federal Universities and also mandated that all universites comply to avoid sanction...
                 </p>
               </div>
               <span>
-									<a href="#" class="ready-btn">Read more</a>
+									<a href="news-details.php" class="ready-btn">Read more</a>
 								</span>
             </div>
             <!-- Start single blog -->
@@ -79,29 +67,23 @@
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-blog">
               <div class="single-blog-img">
-                <a href="blog.html">
 										<img src="img/blog/3.jpg" alt="">
-									</a>
               </div>
               <div class="blog-meta">
-                <span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">10 comments</a>
-									</span>
                 <span class="date-type">
 										<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
 									</span>
               </div>
               <div class="blog-text">
                 <h4>
-                                        <a href="blog.html">Departmental Dues</a>
+                     Departmental Dues
 									</h4>
                 <p>
                   In view of the recent changes in the department, the current executives have met and decided that departmental dues be increased to N2000...
                 </p>
               </div>
               <span>
-									<a href="#" class="ready-btn">Read more</a>
+									<a href="news-details.php" class="ready-btn">Read more</a>
 								</span>
             </div>
           </div>

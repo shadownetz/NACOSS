@@ -10,7 +10,7 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label>Input Number of Info to create:</label>
-                                    <input class="form-control" placeholder="Enter digit" name="document_name" type="number" value="">
+                                    <input class="form-control" placeholder="Enter digit" name="gallery_num" type="text" value="">
                                 </div>
                                 
                                 <button class="nacoss-btn" name="select_gallery" style="width:100%">Create Gallery</button>

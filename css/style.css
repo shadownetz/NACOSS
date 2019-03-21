@@ -88,7 +88,7 @@ a {
 }
 
 a:hover {
-  color: #3EC1D5;
+  color: rgb(20, 172, 20);
   text-decoration: none;
 }
 
@@ -110,7 +110,7 @@ body {
 .back-to-top {
   position: fixed;
   display: none;
-  background: rgb(62, 145, 213);
+  background: rgb(17, 180, 17);
   color: #fff;
   padding: 6px 12px 9px 12px;
   font-size: 16px;
@@ -133,7 +133,7 @@ body {
 }
 
 .back-to-top:hover {
-  background: #3cd6ed;
+  background: rgb(14, 129, 14);
   color: #fff;
 }
 
@@ -226,7 +226,7 @@ div#preloader {
   left: 0;
   width: 100%;
   height: auto;
-  background: rgb(32, 91, 139);
+  background: rgb(11, 99, 11);
   z-index: 9;
 }
 
@@ -241,14 +241,21 @@ div#preloader {
   padding: 0px 13px;
 }
 
+@media screen and (min-width:320px){
 .main-menu ul.navbar-nav li a {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  color: #fff;
+  color: rgb(50,50,50);
   font-size: 15px;
   font-weight: 500;
   padding: 24px 0px;
   text-transform: capitalize;
   letter-spacing: 1px;
+}
+}
+@media screen and (min-width:768px){
+  .main-menu ul.navbar-nav li a {
+    color: #fff;
+  }
 }
 
 .main-menu ul.navbar-nav li.active a::after {
@@ -269,14 +276,22 @@ div#preloader {
   color: #fff;
 }
 
-.main-menu ul.navbar-nav li.active a {
+@media screen and (min-width:320px){
+  .main-menu ul.navbar-nav li.active a {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  color: #fff;
+  color: rgb(11, 99, 11);
   position: relative;
 }
+}
+@media screen and (min-width:768px){
+  .main-menu ul.navbar-nav li.active a {
+    color: #fff;
+  }
+}
+
 
 .main-menu ul.navbar-nav li a:hover {
-  color: #3EC1D5;
+  color: rgb(20, 172, 20);
 }
 
 .navbar {
@@ -337,7 +352,7 @@ div#preloader {
 /*--------------------------------*/
 
 .header-area.stick {
-  background-color: rgba(47, 116, 172,0.9);
+  background-color: rgba(11, 99, 11,0.9);
   height: 70px;
   position: fixed;
   top: 0;
@@ -383,11 +398,19 @@ div#preloader {
   color: #fff;
 }
 
-.stick .main-menu ul.navbar-nav li.active a {
+@media screen and (min-width:320px){
+  .stick .main-menu ul.navbar-nav li.active a {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  color: #fff;
+  color: rgb(50,50,50);
   position: relative;
 }
+}
+@media screen and (min-width:768px){
+  .stick .main-menu ul.navbar-nav li.active a {
+    color: #fff;
+  }
+}
+
 
 .stick .mainmenu ul#nav>li:hover>a, .stick .mainmenu ul#nav li .mega-menu, .stick .mainmenu ul#nav li ul.sub-menu {
   background-color: #f5f5f5;
@@ -407,15 +430,24 @@ div#preloader {
   margin-top: 0px;
 }
 
-.stick .main-menu ul.nav>li>a {
-  color: #fff;
+@media screen and (min-width:320px){
+  .stick .main-menu ul.nav>li>a {
+  color: rgb(50,50,50);
   line-height: 22px;
   padding: 24px 0px;
   text-transform: capitalize;
   letter-spacing: 1px;
 }
+}
+@media screen and (min-width:768px){
+  .stick .main-menu ul.nav>li>a {
+    color: #fff;
+  }
+}
+
+
 .stick .main-menu ul.nav >li>a:hover{
-color:#3EC1D5
+color:rgb(20, 172, 20)
 }
 .stick .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff;
@@ -1057,8 +1089,8 @@ color:#3EC1D5
 }
 
 .project-menu li a.active, .project-menu li a:hover {
-  border-color: #3EC1D5;
-  background: #3EC1D5;
+  border-color: rgb(20, 172, 20);
+  background: rgb(20, 172, 20);
   color: #fff;
   text-decoration: none;
 }
@@ -1402,7 +1434,7 @@ color:#3EC1D5
 }
 
 .testimonial-carousel.owl-carousel.owl-theme .owl-controls .owl-dots div.owl-dot.active span {
-  background: #3EC1D5;
+  background: rgb(20, 172, 20);
 }
 
 .testi-text.text-center>h6 {
@@ -1600,9 +1632,9 @@ color:#3EC1D5
 
 .contact-form input[type="text"], .contact-form input[type="email"],.contact-form input[type="password"] {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #ccc;
-  border-radius: 0;
-  color: #fff;
+  border: 1px solid rgb(20, 172, 20);
+  /* border-radius: 0; */
+  color: rgb(50,50,50);
   height: 40px;
   margin-bottom: 16px;
   padding-left: 20px;
@@ -1615,8 +1647,8 @@ color:#3EC1D5
 
 .contact-form textarea  {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #ccc;
-  border-radius: 0;
+  border: 1px solid rgb(20, 172, 20)!important;
+  /* border-radius: 0; */
   color: #444;
   height: 140px;
   padding: 20px;
@@ -1625,7 +1657,7 @@ color:#3EC1D5
 
 .contact-form button[type="submit"] {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(11,99,11);
   color: #444;
   font-size: 16px;
   font-weight: 700;
@@ -1638,8 +1670,8 @@ color:#3EC1D5
 
 .contact-form button[type=submit]:hover {
   color: #fff;
-  border: 1px solid #3EC1D5;
-  background: #3EC1D5;
+  border: 1px solid rgb(20, 172, 20);
+  background: rgb(20, 172, 20);
 }
 
 .contact-form  #sendmessage {
@@ -1734,7 +1766,7 @@ color:#3EC1D5
 }
 
 .footer-logo h2 span {
-  color: rgb(32, 91, 139);
+  color: rgb(20, 172, 20);
 }
 
 .footer-icons ul li {
@@ -1765,7 +1797,7 @@ color:#3EC1D5
 }
 
 .footer-contacts p span {
-  color: rgb(32, 91, 139);
+  color: rgb(20, 172, 20);
   font-weight: 700;
 }
 
@@ -1779,8 +1811,8 @@ color:#3EC1D5
 }
 
 .popular-tag ul li a:hover, .footer-icons ul li a:hover {
-  background: #3EC1D5;
-  border: 1px solid #3EC1D5;
+  background: rgb(20, 172, 20);
+  border: 1px solid rgb(20, 172, 20);
   color: #fff;
 }
 
@@ -1802,7 +1834,7 @@ color:#3EC1D5
 }
 
 .footer-area-bottom {
-  background: #f1f1f1 none repeat scroll 0 0;
+  background: rgb(11, 99, 11) none repeat scroll 0 0;
   padding: 15px 0;
 }
 
@@ -1817,16 +1849,17 @@ color:#3EC1D5
 
 .copyright>p {
   margin-bottom: 0;
-  color: #444;
+  color: #fff;
 }
 
 .copyright a, .credits a {
-  color: #3EC1D5;
+  color: rgb(17, 180, 17);
 }
 
 .credits {
   padding-top: 5px;
   text-align: center;
+  color:#fff
 }
 
 /*----------------------------------------*/
@@ -1968,7 +2001,7 @@ color:#3EC1D5
 
 .ready-btn {
   border: 1px solid #fff;
-  border-radius: 30px;
+  border-radius: 20px;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -1984,8 +2017,8 @@ color:#3EC1D5
 
 .ready-btn:hover {
   color: #fff;
-  background: #3EC1D5;
-  border: 1px solid #3EC1D5;
+  background: rgb(20, 172, 20);
+  border: 1px solid rgb(20, 172, 20);
   text-decoration: none;
 }
 
@@ -2003,7 +2036,7 @@ color:#3EC1D5
 }
 
 .pst-content p a:hover, .left-blog ul li a:hover {
-  color: #3EC1D5;
+  color: rgb(14, 129, 14);
 }
 
 .blog-page .single-blog {
@@ -2096,7 +2129,7 @@ color:#3EC1D5
 
 .entry-content blockquote {
   background: #fff none repeat scroll 0 0;
-  border-left: 5px solid #3EC1D5;
+  border-left: 5px solid rgb(14, 129, 14);
   font-size: 17.5px;
   font-style: italic;
   margin: 0 0 20px 40px;
@@ -2317,7 +2350,7 @@ span.email-notes {
 Additional Css
 --------------------------------
 */
-#nacoss{text-align:center;color:#fff;background-color: rgb(32, 91, 139);padding-top: 5%}
+#nacoss{text-align:center;color:#fff;background-color: rgb(11, 99, 11);padding-top: 5%}
 #nacoss h1{font-size:3em;font-family: cursive;color:#fff;font-variant:small-caps}
 #nacoss .fadeIn{animation-delay: 1s;animation-duration: 2s}
 #nacoss .fadeInUp{animation-duration: 1s}
@@ -2329,11 +2362,12 @@ Additional Css
  float:right;color:rgb(44, 48, 49);
 }
 .form.contact-form.contact{
-  padding:10%;height:100%;color:rgb(250,250,250)
+  padding:10%;height:100%;color:rgb(50,50,50)
 }
 .form.contact-form.contact button[type="submit"]:hover{
-background-color:transparent;border-color:rgba(10,20,100,0.5);
-border-style:inset
+background-color:rgb(20, 172, 20);
+border-color:rgba(20, 172, 20,.5);
+border-style:solid
 }
 .faq-area.area-padding{padding-top:48px}
 .faq-area .faq-bg{
@@ -2359,8 +2393,8 @@ border-style:inset
   padding:10px
 }
 .faq-groups .faq-groups-icn{
-  background:#BBEAF7;border-radius:20px;padding:10px;
-  text-align: center;margin: 3.5% auto
+  background:rgb(24, 133, 24);border-radius:20px;padding:10px;
+  text-align: center;margin: 3.5% auto; color:#fff;
 }
 .faq-groups .faq-groups-txt .head{
   text-align:center;color:rgb(20, 19, 19);font-family:cursive;
@@ -2461,7 +2495,7 @@ background: rgb(32, 91, 139);
   }
   .faq-groups{padding-left:5px;}
   .faq-groups .faq-groups-icn{
-    background:#BBEAF7;border-radius:50px;padding:5px;
+    background:rgb(13, 119, 13);border-radius:50px;padding:5px;
   text-align: center;margin: 0 2px
   }
   .faq-groups .row{
@@ -2493,25 +2527,39 @@ margin-top:25%
   background-size:cover
 }
 .nacoss-signup{
-  background-color:rgba(10,20,50,0.5);height:100%;
-  padding:30px 30px;box-shadow:-2px 2px 1px rgba(250,250,250,.5), 2px -2px 1px rgba(250,250,250,.5);
+  background-color:rgba(255,255,255,0.6);
+  height:100%;
+  padding:30px 30px;
+  box-shadow:-2px 2px 1px rgba(50,50,50,.5), 2px -2px 1px rgba(50,50,50,.5);
   animation-duration: 2s
 }
-.nacoss-signup   input,textarea,select{
-  border-radius:0!important; resize: none
+.nacoss-signup   input,textarea{
+  resize: none;
+  background-color: transparent;
+  border-color: rgb(20, 172, 20)
+}
+.nacoss-signup select{
+  background-color: transparent!important;
+  border-color: rgb(20, 172, 20)!important;
+}
+.nacoss-signup textarea,.nacoss-signup select:focus{
+  border-color: rgb(11,99,11)
 }
 .nacoss-signup textarea, .sm[type="submit"]{
-  color: rgb(250,250,250)!important
+  color: rgb(50,50,50)
 }
 .nacoss-signup input:focus{
-  border-color: #3EC1D5
+  border-color: rgb(11,99,11)
 }
 /*3EC1D5 */
 .nacoss-signup label{
-  color:rgb(250,250,250)
+  color:rgb(50,50,50)
 }
 /* About Styles */
 /* rgba(11, 99, 11,.9) */
+.nacoss-txt-theme{
+  color: rgb(11, 99, 11)!important;
+}
 @media screen and (min-width:320px){
   #about .carousel .item img{
     width:100%;
@@ -2525,13 +2573,16 @@ margin-top:25%
     height:100%;
     /* background-color: rgba(11, 99, 11,.8); */
     background: url("../images/about_img.jpg") no-repeat center center;
+    background-size:cover;
     text-align:center;
     }
     #about .carousel .carousel-control.left{
-      background-image: linear-gradient(to right, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 100%)
+      background-image: linear-gradient(to right, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 100%);
+      color:rgb(20, 172, 20);
     }
     #about .carousel .carousel-control.right{
-      background-image: linear-gradient(to right, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 100%)
+      background-image: linear-gradient(to right, rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 100%);
+      color:rgb(20, 172, 20);
     }
     #about .carousel .carousel-control{
     color:rgb(50,50,50)
@@ -2542,6 +2593,7 @@ margin-top:25%
         margin:9% 10% 0% 10%;
         border-left: 1px solid #fff;
     border-right:1px solid #fff;
+    box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
     padding:3%;
     padding-top:1%;
     text-align:left;
@@ -2575,14 +2627,22 @@ margin-top:25%
       font-size:.6em;
       line-height: 10px;
       font-weight:bold;
-      text-shadow: 1px 1px 1px #000;
+      text-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
       text-align:center
     }
     #about .carousel .item .about-overlay > .block .txt .semes{
       height:100%;
-      background:rgba(255,255,255,.8);
+      background:rgba(255,255,255,.8)  url("../images/about_img_corner.png") top right no-repeat;
+     background-size: 10%;
       color:rgb(50,50,50);
       margin-top:4%
+    }
+    #about .carousel .item .about-overlay > .block .txt .semes .f-abt p:first-child{
+color:rgb(11, 99, 11);
+text-align:center;
+font-size:.5em;
+line-height:10px;
+padding-top:4%
     }
     #about .carousel .item .about-overlay > .block .txt .semes .head{
       display:block;  
@@ -2599,6 +2659,25 @@ margin-top:25%
     #about .carousel .item .about-overlay > .block .txt .semes ul>li{ 
       line-height: 10px
     }
+}
+@media screen and (min-width:768px) and (max-height:1024px){
+  #about .carousel .item .about-overlay > .block .txt .heading{
+font-size:1em
+  }
+  #about .carousel .item .about-overlay > .block .txt .semes .head{
+font-size:1em
+  }
+  #about .carousel .item .about-overlay > .block .txt .semes ul{
+    /* list-style-type: square; */
+    font-size:1em;
+  }
+  #about .carousel .item .about-overlay > .block .txt .semes ul>li{ 
+    line-height: 30px
+  }
+  #about .carousel .item .about-overlay > .block .txt .semes .f-abt p:first-child{
+    font-size:1em;
+    /* line-height:10px; */
+        }
 }
 @media screen and (min-width:1024px){
   #about .carousel .item img{

@@ -683,7 +683,7 @@ $count_users = mysqli_num_rows($result_set);
                         <li>
                             <a href="#"><i class="fa fa-file-image-o fa-fw"></i> Gallery<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                              <li><a href="addgallery.php">Add Gallery </a></li>
+                              <li><a href="select_gallery.php">Add Gallery </a></li>
                               <li><a href="managegallery.php">Manage Gallery</a> </li>
                               <!-- <li><a href="removedgallery.php">Removed Gallery</a> </li> -->
                             </ul>

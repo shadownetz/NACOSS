@@ -41,6 +41,11 @@ if(isset($_GET['details'])){
             if($discussion_type == 'private'){
 ?>
 <!-- <div class="panel-heading"> -->
+<?php
+$counter = 1;               
+$query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE discussion_id = '$details_id' AND status = '0'");
+    if(mysqli_num_rows($query_set)>0){
+?>
     <table class="table table-responsive" id="dataTables-example">
          <thead class="panel-heading">
             <tr>
@@ -57,9 +62,9 @@ if(isset($_GET['details'])){
     <!-- <table class="table table-responsive"> -->
         <tbody class="panel-body">
 <?php
-$counter = 1;               
-$query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE discussion_id = '$details_id' AND status = '0'");
-    if(mysqli_num_rows($query_set)>0){
+// $counter = 1;               
+// $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE discussion_id = '$details_id' AND status = '0'");
+//     if(mysqli_num_rows($query_set)>0){
         while($table_row=mysqli_fetch_assoc($query_set)){
 ?>        
             <tr>
@@ -78,6 +83,8 @@ $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE d
     
         $counter++;
         }    
+    }else{
+        echo "<script> alert('No user found!'); </script>";
     }
     
 

@@ -5,6 +5,22 @@
     <div id="wrapper">
 
 <?php include('includes/navigation.php') ?>
+<?php
+require_once("../../includes/initialize.php");
+if(isset($_POST['select_gallery'])){
+    $gallery_num = $_POST['gallery_num'];
+    if($gallery_num > 1 && $gallery_num <= 10){
+        $_SESSION['gallery_num'] = $gallery_num;
+        echo "<script> window.location='addgallery.php'; </script>";
+    }else{
+        echo "<script> alert('Invalid Number, It must range from 2 to 10 numbers'); </script>";
+    }
+    
+    
+}    
+
+    
+?>
 
 <!-- Page Content -->
  <div id="page-wrapper" class="nacoss-form">

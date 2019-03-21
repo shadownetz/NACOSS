@@ -1,6 +1,6 @@
 
   <!-- Start Bottom Header -->
-  <div class="header-bg page-area" style="background-size:100%;height:100%">
+  <div class="header-bg page-area" style="background-size:cover;height:100%;background-position:fixed">
     <div class="home-overly"></div>
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12" >
@@ -16,9 +16,9 @@
           </div>
         </div>
         <!-- Start  contact -->
-        <div class="col-md-6 col-sm-6 col-xs-12" style="background-color:rgba(10,20,50,0.5);margin-top:1.5%;">
+        <div class="col-md-6 col-sm-6 col-xs-12" style="background-color:rgba(255,255,255,0.6);margin-top:1.5%;margin-bottom:1%;box-shadow:-1px -1px 1px #000,-1px -1px 1px #fff,-1px -1px 1px #000">
             <div class="form contact-form contact">
-            <h3 style="text-align: center;color:#fff  ">User Login</h3>
+            <h3 style="text-align: center; ">Student Login</h3>
               <div id="errormessage"></div>
               <form role="form" method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" >
 
@@ -32,13 +32,13 @@
                     <input type="password" class="form-control" placeholder="password" name="pword">
                 </div>
                 <div class="column">
-                  <div class="col-md-6 re col-sm-6"> <label><strong><a href="sign-up.php">Not yet registered ? </a><strong></label></div>
-                  <div class="col-md-6 re"> <label><strong><a href="fpass.php">Forgotten password ? </a><strong></label></div>
+                  <div class="col-md-6 re col-sm-6"> <label><strong><a href="sign-up.php" style="color:rgb(11,99,11)">Not yet registered ? </a><strong></label></div>
+                  <div class="col-md-6 re"> <label><strong><a href="fpass.php" style="color:rgb(11,99,11)">Forgotten password ? </a><strong></label></div>
               </div>
                 
                 
                 
-                <div class="text-center"><button type="submit" name="signin" style="color:#fff">Signin</button></div>
+                <div class="text-center"><button type="submit" name="signin">Signin</button></div>
 
             </form>
             </div>
