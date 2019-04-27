@@ -3,8 +3,9 @@
 if(!isset($_SESSION['id'])){
     header('location: ../../account.php');
 }
-if($_SESSION['user_location'] != "super_admin"){
-    header('location: ../../account.php');
+if($_SESSION['user_location'] != "admin"){
+    $loc = $_SESSION['user_location'];
+    header("location: ../../$loc/pages/dashboard.php");
 }
 
 ?>

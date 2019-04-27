@@ -18,12 +18,12 @@ if($row['user_type'] == "user"){
     redirect_to("user/pages/dashboard.php");
 }else if($row['user_type'] == "admin"){
     $_SESSION['user_location'] = "admin";
-    $_SESSION['my_portal_location'] = 'admin/pages/dashboard.php?admin_test';
+    $_SESSION['my_portal_location'] = 'admin/pages/dashboard.php';
     redirect_to("admin/pages/dashboard.php?admin_test");
 }if($row['user_type'] == "super_admin"){
     $_SESSION['user_location'] = "super_admin";
-    $_SESSION['my_portal_location'] = 'admin/pages/dashboard.php?admin_test';
-    redirect_to("admin/pages/dashboard.php?super_admin_test");
+    $_SESSION['my_portal_location'] = 'super_admin/pages/dashboard.php';
+    redirect_to("super_admin/pages/dashboard.php");
 }
 
 die();

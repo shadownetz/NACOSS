@@ -18,15 +18,17 @@
         </div>
 
          <?php include('../html_include/footer.php'); ?>
-         <script>
-        /*function moveWin(){
-            window.scroll(0, 10000);
-            setTimeout('moveWin();', 100);
-        }*/
-        $(function(){
-          setInterval(function(){
-                $("#messageLogs").load("messageLogs.php");
-            }, 1000);
-        })
-       
-    </script>
+	<script type="text/javascript">
+  $(document).ready(function(){
+    //$("#messageLogs").load("messageLogs.php");
+    $.ajax({
+      cache:true,
+      success:function(status){
+  setInterval(function(){
+      $("#messageLogs").load("messageLogs.php"); // Adds to the #messageLogs to start ajax requests
+    },1000);
+  }
+  });
+  });
+
+</script>

@@ -141,6 +141,19 @@
       }
     }
   });
+  // Slider carousel
+  var owl = $('.owl-carousel')
+  owl.owlCarousel({
+    animateOut: 'fadeOutDown',
+    animateIn: 'pulse',
+    items: 1,
+    margin: 0,
+    loop: true,
+    autoplay: true,
+    // autoplayHoverPause: true,
+    stagePadding:0,
+    smartSpeed:450
+});
   /*----------------------------
    isotope active
   ------------------------------ */

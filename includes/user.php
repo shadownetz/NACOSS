@@ -65,7 +65,7 @@ class User{
 
     }
     
-    public static function mailer($uname="", $pword="", $semail="", $oemail="", $id=""){
+    public static function mailer($uname="", $pword="", $semail="", $id=""){
         global $database;
 
         $to = $semail;
@@ -79,6 +79,7 @@ class User{
 		------------------------
 		UserName: '.$uname.'
 		Password: '.$pword.'
+        Unique Id: '.$id.'
 		------------------------
 
 		Please click this link to visit our site for help:
@@ -210,13 +211,11 @@ class User{
     public static function num_rows($result_set){
         return mysqli_num_rows($result_set);
     }
-    //$uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword
 
-    public static function create_student($uname="", $fname="", $lname="",$semail="", $level="", $pnumber="", $rnumber="", $gender="", $pword="", $id=""){
+    public static function create_student($uname="", $fname="", $lname="",$semail="", $level="", $pnumber="", $rnumber="", $gender="", $pword="", $id="", $skills="", $aim=""){
         global $database;
         $epassword = md5($pword);
-        /*$query = "INSERT INTO all_students SET date=NOW(), uname='{$uname}', fname='{$fname}', lname='{$lname}', oname='{$oname}', semail='{$semail}', oemail='{$oemail}', level='{$level}', pnumber='{$pnumber}', rnumber='{$rnumber}', gender='{$gender}', pword='{$epassword}', unique_id='{$id}'";*/
-        $query = "INSERT INTO all_students SET status='0', verified='0', date=NOW(), uname='{$uname}', fname='{$fname}', lname='{$lname}', semail='{$semail}', level='{$level}', pnumber='{$pnumber}', rnumber='{$rnumber}', gender='{$gender}', pword='{$epassword}', unique_id='{$id}', picture='default.png', user_type='user'";
+        $query = "INSERT INTO all_students SET status='0', verified='0', date=NOW(), uname='{$uname}', fname='{$fname}', lname='{$lname}', semail='{$semail}', level='{$level}', pnumber='{$pnumber}', rnumber='{$rnumber}', gender='{$gender}', pword='{$epassword}', unique_id='{$id}',skills='{$skills}',aim='{$aim}', picture='default.png', user_type='user'";
         
         return $result_set = self::find_by_sql($query);
     }
@@ -237,16 +236,16 @@ class User{
     
 
     
-    public static function edit_student_profile($fname="", $lname="", $oname="", $oemail="", $level="", $pnumber="", $gender="", /*$pword="",*/ $bio="", $stud_id=0){
+    public static function edit_student_profile($fname="", $lname="", $oname="", $oemail="", $level="", $pnumber="", $gender="", $skills="", $aim="", $stud_id=0, $main_picture='default.png'){
         global $database;
         if (empty($pword)){
         $query = "UPDATE all_students SET fname = '$fname', lname = '$lname', oname = '$oname', oemail = '$oemail', ";
-        $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', bio = '$bio' WHERE id = '$stud_id'";
+        $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', skills='$skills', aim = '$aim', picture='$main_picture' WHERE id = '$stud_id'";
 
         }else{
         $epassword = md5($pword);
         $query = "UPDATE all_students SET fname = '$fname', lname = '$lname', oname = '$oname', oemail = '$oemail', ";
-        $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', pword = '$epassword' WHERE id = '$stud_id'";
+        $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', skills='$skills', pword = '$epassword', aim = '$aim' WHERE id = '$stud_id'";
         }
         return $result_set = self::find_by_sql($query);  
     }

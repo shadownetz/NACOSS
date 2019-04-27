@@ -8,7 +8,7 @@
                   <?php echo $discussion_aim; ?>
                 </p>
                 <div class="single-post-comments faqs-body">
-                  <div onLoad="moveWin();" class="comments-list" id="messageLogs">
+                  <div class="comments-list" id="messageLogs">
                         <!--MESSAGE LOGS APPEARS HERE-->
                   </div>
                 </div>
@@ -92,7 +92,7 @@ $query = User::find_by_sql("SELECT * FROM joined_members WHERE discussion_id='$d
                 <!-- Modal -->
               <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:20%">
                 <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color:rgb(11, 99, 11)">
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:#fff;">
                 &times;
@@ -103,11 +103,11 @@ $query = User::find_by_sql("SELECT * FROM joined_members WHERE discussion_id='$d
                 <div class="modal-body">
                   <div class="col-md-12 col-sm-12 col-xs-12">
                   <label>Username:</label>
-                    <input name="uname" type="text" class="form-control" placeholder="username">
+                    <input name="uname" type="text" class="form-control" placeholder="username" style="border-color:transparent">
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12">
                   <label style="padding-top:5px">Password:</label>
-                    <input name="pword" type="password" class="form-control" placeholder="password">
+                    <input name="pword" type="password" class="form-control" placeholder="password" style="border-color:transparent">
                   </div>
                   
                 </div>

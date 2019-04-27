@@ -88,15 +88,32 @@
                 <input type="password" class="form-control" name="repass" placeholder="re-type password here" required>
             </div>
         </div>
-
+            <!--NEW-->
         <div class="row form-content">
 
-                <div class="col-md-12">
-                <label for="bio">What do you aim to achieve with us&#63;</label>
-                <textarea class="form-control form-text" rows=3 placeholder="Type Here" name="bio" required></textarea>
+                <div class="col-md-6">
+                    <label>Skills:</label>
+                    <select name="skills" class="form-control" required>
+                        <option value="">Select Skills</option>
+                        <option value="web">Web Design</option>
+                        <option value="android">Android</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="cyber">Cyber Security</option>
+                        <option value="networking">Networking</option>
+                    </select>
                 </div>
 
-        </div>    
+
+                <div class="row form-content">
+                    <div class="col-md-6">
+                    <label for="bio">What do you aim to achieve with us&#63;</label>
+                        <textarea class="form-control form-text" rows=1 placeholder="Type Here" name="aim" required></textarea>
+                    </div>
+                </div>
+
+        </div>
+        
+        
     </div>
     
 

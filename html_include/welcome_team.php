@@ -20,7 +20,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-										<img src="img/team/1.jpg" alt="" style="width:cover">
+										<img src="img/team/1.jpg" alt="">
 									</a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -53,7 +53,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-										<img src="img/team/2.jpg" alt="" style="width:cover">
+										<img src="img/team/2.jpg" alt="">
 									</a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -86,7 +86,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-										<img src="img/team/3.jpg" alt="" style="width:cover">
+										<img src="img/team/3.jpg" alt="" >
 									</a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -119,7 +119,7 @@
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-										<img src="img/team/4.jpg" alt="" style="width:cover">
+										<img src="img/team/4.jpg" alt="" >
 									</a>
                 <div class="team-social-icon text-center">
                   <ul>
@@ -161,7 +161,7 @@
       <div class="single-team-member">
         <div class="team-img">
           <a href="#">
-              <img src="img/team/4.jpg" alt="" style="width:cover">
+              <img src="img/team/4.jpg" alt="" >
             </a>
           <div class="team-social-icon text-center">
             <ul>
@@ -194,7 +194,7 @@
       <div class="single-team-member">
         <div class="team-img">
           <a href="#">
-              <img src="img/team/3.jpg" alt="" style="width:cover">
+              <img src="img/team/3.jpg" alt="" >
             </a>
           <div class="team-social-icon text-center">
             <ul>
@@ -227,7 +227,7 @@
       <div class="single-team-member">
         <div class="team-img">
           <a href="#">
-              <img src="img/team/1.jpg" alt="" style="width:cover">
+              <img src="img/team/1.jpg" alt="" >
             </a>
           <div class="team-social-icon text-center">
             <ul>
@@ -260,7 +260,7 @@
       <div class="single-team-member">
         <div class="team-img">
           <a href="#">
-              <img src="img/team/2.jpg" alt="" style="width:cover">
+              <img src="img/team/2.jpg" alt="" >
             </a>
           <div class="team-social-icon text-center">
             <ul>

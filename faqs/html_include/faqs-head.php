@@ -205,7 +205,7 @@ while($row=mysqli_fetch_assoc($get_query)){
                 $creator = $r['fname'].' '.$r['lname'].'('.$r['uname'].')';
             }
             
-        $D_date = date('dS F, Y', strtotime($discussion_date));
+        $D_date = date('jS F, Y', strtotime($discussion_date));
         $D_time = date('h:i:s a', strtotime($discussion_date));
 }
 

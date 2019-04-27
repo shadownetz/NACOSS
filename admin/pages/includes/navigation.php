@@ -55,33 +55,37 @@ function calculateNewDiscussions($rnumber = "", $pass_id = "", $count = ""){
 }
 
     $result_set = User::find_by_sql("SELECT * FROM `read_messages` WHERE rnumber = '$rnumber' ");
-    while ( $row = mysqli_fetch_array($result_set) ) :
-        $count_groups = mysqli_num_rows($result_set);
-        $collect[] = $row['discussion_id'];
-        //$hold[] = $row[no_of_read];
-    endwhile;
-    $sum_all_messages = calculateNewDiscussions($rnumber, $collect, $count_groups);
+    $total_unread_messages = 0;
+if(mysqli_num_rows($result_set)>0){
+        while ( $row = mysqli_fetch_array($result_set) ) :
+            $count_groups = mysqli_num_rows($result_set);
+            $collect[] = $row['discussion_id'];
+            //$hold[] = $row[no_of_read];
+        endwhile;
+        $sum_all_messages = calculateNewDiscussions($rnumber, $collect, $count_groups);
 
-    $total_read = 0;
-    for($y=0; $y < $count_groups; $y++){
-        $result_set = User::find_by_sql("SELECT * FROM `read_messages` WHERE rnumber = '$rnumber' AND discussion_id='$collect[$y]' ");
-        while($row=mysqli_fetch_array($result_set)){
-            $no_of_read = $row['no_of_read'];
-            $total_read +=  $no_of_read;
-            $hold[] = $no_of_read;
+        $total_read = 0;
+        for($y=0; $y < $count_groups; $y++){
+            $result_set = User::find_by_sql("SELECT * FROM `read_messages` WHERE rnumber = '$rnumber' AND discussion_id='$collect[$y]' ");
+            while($row=mysqli_fetch_array($result_set)){
+                $no_of_read = $row['no_of_read'];
+                $total_read +=  $no_of_read;
+                $hold[] = $no_of_read;
+            }
         }
+    //print_r($hold)."     "; //read messages
+    //print_r($collect)."   "; //discussion id
+    //echo $sum_all_messages;
+    for($i = 0; $i < $count_groups; $i++){
+        $unread = array();
+        $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' ");
+        $sum_for_id = mysqli_num_rows($result_set);
+        $unread[$i] = $sum_for_id - $hold[$i];
+        $hold2[] = $unread[$i];
     }
-//print_r($hold)."     "; //read messages
-//print_r($collect)."   "; //discussion id
-//echo $sum_all_messages;
-for($i = 0; $i < $count_groups; $i++){
-    $unread = array();
-    $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' ");
-    $sum_for_id = mysqli_num_rows($result_set);
-    $unread[$i] = $sum_for_id - $hold[$i];
-    $hold2[] = $unread[$i];
+    $total_unread_messages = $sum_all_messages - $total_read;
 }
-$total_unread_messages = $sum_all_messages - $total_read;
+
 
 //echo $total_unread_messages."<br>";
 
@@ -113,170 +117,171 @@ $total_unread_messages = $sum_all_messages - $total_read;
                
                     <ul class="dropdown-menu dropdown-messages">
  <?php
-                    
- for($i = 0; $i < $count_groups; $i++){
-    $unread = array();
-    $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' ORDER BY id DESC LIMIT $hold2[$i] ");
-     if(mysqli_num_rows($result_set) == 1){
-         while ($result= mysqli_fetch_assoc($result_set)):
-         
-        $discussion_id = $result['discussion_id']; $rnumber =$result['rnumber']; $topic = $result['topic']; $uname = $result['uname']; $message = $result['message']; $date = $result['date'];
-         
-        $explode1 = explode(" ", $date); $explode2 = explode("-", $explode1[0]); $message_year = $explode2[0];
-         $message_month = $explode2[1]; $message_day = $explode2[2];
-         
-         $explode3 = explode(":", $explode1[1]); $message_hour = $explode3[0]; $message_min = $explode3[1]; $message_sec = $explode3[2];
-             
-         $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
-         
-             if($message_year == $current_year && $message_month == $current_month){
-                $days = $current_day - $message_day;
-                 if($current_day == $message_day){
-                    $check_hrs = $current_hour - $message_hour;
-                    $check_min = $current_min - $message_min;
-                    if($current_hour == $message_hour){
-                        $period = $check_min." minutes ago";
-                    }else{
-                        $period = $check_hrs." hours ago";
+if(mysqli_num_rows($result_set)>0){                    
+     for($i = 0; $i < $count_groups; $i++){
+        $unread = array();
+        $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' ORDER BY id DESC LIMIT $hold2[$i] ");
+         if(mysqli_num_rows($result_set) == 1){
+             while ($result= mysqli_fetch_assoc($result_set)):
+
+            $discussion_id = $result['discussion_id']; $rnumber =$result['rnumber']; $topic = $result['topic']; $uname = $result['uname']; $message = $result['message']; $date = $result['date'];
+
+            $explode1 = explode(" ", $date); $explode2 = explode("-", $explode1[0]); $message_year = $explode2[0];
+             $message_month = $explode2[1]; $message_day = $explode2[2];
+
+             $explode3 = explode(":", $explode1[1]); $message_hour = $explode3[0]; $message_min = $explode3[1]; $message_sec = $explode3[2];
+
+             $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
+
+                 if($message_year == $current_year && $message_month == $current_month){
+                    $days = $current_day - $message_day;
+                     if($current_day == $message_day){
+                        $check_hrs = $current_hour - $message_hour;
+                        $check_min = $current_min - $message_min;
+                        if($current_hour == $message_hour){
+                            $period = $check_min." minutes ago";
+                        }else{
+                            $period = $check_hrs." hours ago";
+                        }
+
+                    }else if($days == 1){
+                        $period = "yesterday";
+                    }else if($days > 1){
+                        $period = $days." days ago"; 
                     }
-                    
-                }else if($days == 1){
-                    $period = "yesterday";
-                }else if($days > 1){
-                    $period = $days." days ago"; 
-                }
-                 
-             }else if($message_year == $current_year && $current_month > $message_month){
-                 $chech_months = $current_month - $message_month;
-                 if($chech_months == 1){
-                     $period = $chech_months." month ago";
+
+                 }else if($message_year == $current_year && $current_month > $message_month){
+                     $chech_months = $current_month - $message_month;
+                     if($chech_months == 1){
+                         $period = $chech_months." month ago";
+                     }else{
+                        $period = $chech_months." months ago";
+                     }
                  }else{
-                    $period = $chech_months." months ago";
+                     $check_year = $current_year - $message_year;
+                     if($check_year == 1){
+                        $period = $check_year." year ago"; 
+                     }else{
+                        $period = $check_year." years ago";
+                     }
                  }
-             }else{
-                 $check_year = $current_year - $message_year;
-                 if($check_year == 1){
-                    $period = $check_year." year ago"; 
-                 }else{
-                    $period = $check_year." years ago";
-                 }
-             }
-         
-       //  print_r($explode3);              
-  ?>                                          
-<?php
-$explode = uniqid('', true);
-$explodeid = explode('.', $explode);
-$new_end = end($explodeid);
-$new_start = $explodeid[0];                        
-                        
-                        
-?>
-                        <li>
-                            <a href="../../../faqs/dev@hub/index.php?status=zigma&alpha=<?php echo $new_start; ?>&delta=<?php echo $new_end; ?>&zigma=<?php echo $new_end.$discussion_id.$new_start;?>">
-                                <div>
-                                    <strong><?php echo $uname; ?> @<?php echo $result['topic']; ?></strong>
-                                    <span class="pull-right text-muted">
-                                        <em><?php echo $period; ?></em>
-                                    </span>
-                                </div>
-                                <div><?php echo $message; ?></div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        
-   <?php
-        $explode = uniqid('', true);
-        $explodeid = explode('.', $explode);
-        $new_end = end($explodeid);
-        $new_start = $explodeid[0];
-         endwhile;
-     }
-     $discussion_id = $collect[$i];
-         if(mysqli_num_rows($result_set) > 1){
-             $no_of_rows = mysqli_num_rows($result_set);
-            
-             
-             $result = User::find_by_sql("SELECT * FROM read_messages WHERE rnumber='$rnumber' AND discussion_id='$collect[$i]' LIMIT 1");
-             while($col = mysqli_fetch_assoc($result)){
-             $last_message_id = $col['last_message_id'];
-                $resultset = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' AND id ='$last_message_id' ");
-                 while($r=mysqli_fetch_assoc($resultset)){
-                     $last_message_date = $r['date'];
-                     
-         $explode1 = explode(" ", $last_message_date); $explode2 = explode("-", $explode1[0]); $message_year = $explode2[0];
-         $message_month = $explode2[1]; $message_day = $explode2[2];
-         
-         $explode3 = explode(":", $explode1[1]); $message_hour = $explode3[0]; $message_min = $explode3[1]; $message_sec = $explode3[2];
-             
-         $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
-         
-             if($message_year == $current_year && $message_month == $current_month){
-                $days = $current_day - $message_day;
-                 if($current_day == $message_day){
-                    $check_hrs = $current_hour - $message_hour;
-                    $check_min = $current_min - $message_min;
-                    if($current_hour == $message_hour){
-                        $period = $check_min." minutes ago";
-                    }else{
-                        $period = $check_hrs." hours ago";
-                    }
-                    
-                }else if($days == 1){
-                    $period = "yesterday";
-                }else if($days > 1){
-                    $period = $days." days ago"; 
-                }
-                 
-             }else if($message_year == $current_year && $current_month > $message_month){
-                 $chech_months = $current_month - $message_month;
-                 if($chech_months == 1){
-                     $period = $chech_months." month ago";
-                 }else{
-                    $period = $chech_months." months ago";
-                 }
-             }else{
-                 $check_year = $current_year - $message_year;
-                 if($check_year == 1){
-                    $period = $check_year." year ago"; 
-                 }else{
-                    $period = $check_year." years ago";
-                 }
-             }
-                 }
-             }
-             $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' ORDER BY id DESC LIMIT 1");
-             while($row = mysqli_fetch_assoc($result_set)):
-     ?>                                          
-<?php
-$explode = uniqid('', true);
-$explodeid = explode('.', $explode);
-$new_end = end($explodeid);
-$new_start = $explodeid[0];                                              
-?>
-                        <li>
-                            <a href="../../../faqs/dev@hub/index.php?status=zigma&alpha=<?php echo $new_start; ?>&delta=<?php echo $new_end; ?>&zigma=<?php echo $new_end.$discussion_id.$new_start;?>">
-                                <div>
-                                    <strong><?php echo $no_of_rows; ?> unread messages @<?php echo $row['topic']; ?></strong>
-                                    <span class="pull-right text-muted">
-                                        <em>From <?php echo $period; ?></em>
-                                    </span>
-                                </div>
-                                <div></div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        
-   <?php  
-                $explode = uniqid('', true);
-                $explodeid = explode('.', $explode);
-                $new_end = end($explodeid);
-                $new_start = $explodeid[0];
+
+           //  print_r($explode3);              
+      ?>                                          
+    <?php
+    $explode = uniqid('', true);
+    $explodeid = explode('.', $explode);
+    $new_end = end($explodeid);
+    $new_start = $explodeid[0];                        
+
+
+    ?>
+                            <li>
+                                <a href="../../../faqs/dev@hub/index.php?status=zigma&alpha=<?php echo $new_start; ?>&delta=<?php echo $new_end; ?>&zigma=<?php echo $new_end.$discussion_id.$new_start;?>">
+                                    <div>
+                                        <strong><?php echo $uname; ?> @<?php echo $result['topic']; ?></strong>
+                                        <span class="pull-right text-muted">
+                                            <em><?php echo $period; ?></em>
+                                        </span>
+                                    </div>
+                                    <div><?php echo $message; ?></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+       <?php
+            $explode = uniqid('', true);
+            $explodeid = explode('.', $explode);
+            $new_end = end($explodeid);
+            $new_start = $explodeid[0];
              endwhile;
-     }
-                  
-     
- }                
+         }
+         $discussion_id = $collect[$i];
+             if(mysqli_num_rows($result_set) > 1){
+                 $no_of_rows = mysqli_num_rows($result_set);
+
+
+                 $result = User::find_by_sql("SELECT * FROM read_messages WHERE rnumber='$rnumber' AND discussion_id='$collect[$i]' LIMIT 1");
+                 while($col = mysqli_fetch_assoc($result)){
+                 $last_message_id = $col['last_message_id'];
+                    $resultset = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' AND id ='$last_message_id' ");
+                     while($r=mysqli_fetch_assoc($resultset)){
+                         $last_message_date = $r['date'];
+
+             $explode1 = explode(" ", $last_message_date); $explode2 = explode("-", $explode1[0]); $message_year = $explode2[0];
+             $message_month = $explode2[1]; $message_day = $explode2[2];
+
+             $explode3 = explode(":", $explode1[1]); $message_hour = $explode3[0]; $message_min = $explode3[1]; $message_sec = $explode3[2];
+
+             $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
+
+                 if($message_year == $current_year && $message_month == $current_month){
+                    $days = $current_day - $message_day;
+                     if($current_day == $message_day){
+                        $check_hrs = $current_hour - $message_hour;
+                        $check_min = $current_min - $message_min;
+                        if($current_hour == $message_hour){
+                            $period = $check_min." minutes ago";
+                        }else{
+                            $period = $check_hrs." hours ago";
+                        }
+
+                    }else if($days == 1){
+                        $period = "yesterday";
+                    }else if($days > 1){
+                        $period = $days." days ago"; 
+                    }
+
+                 }else if($message_year == $current_year && $current_month > $message_month){
+                     $chech_months = $current_month - $message_month;
+                     if($chech_months == 1){
+                         $period = $chech_months." month ago";
+                     }else{
+                        $period = $chech_months." months ago";
+                     }
+                 }else{
+                     $check_year = $current_year - $message_year;
+                     if($check_year == 1){
+                        $period = $check_year." year ago"; 
+                     }else{
+                        $period = $check_year." years ago";
+                     }
+                 }
+                     }
+                 }
+                 $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE discussion_id = '$collect[$i]' ORDER BY id DESC LIMIT 1");
+                 while($row = mysqli_fetch_assoc($result_set)):
+         ?>                                          
+    <?php
+    $explode = uniqid('', true);
+    $explodeid = explode('.', $explode);
+    $new_end = end($explodeid);
+    $new_start = $explodeid[0];                                              
+    ?>
+                            <li>
+                                <a href="../../../faqs/dev@hub/index.php?status=zigma&alpha=<?php echo $new_start; ?>&delta=<?php echo $new_end; ?>&zigma=<?php echo $new_end.$discussion_id.$new_start;?>">
+                                    <div>
+                                        <strong><?php echo $no_of_rows; ?> unread messages @<?php echo $row['topic']; ?></strong>
+                                        <span class="pull-right text-muted">
+                                            <em>From <?php echo $period; ?></em>
+                                        </span>
+                                    </div>
+                                    <div></div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+
+       <?php  
+                    $explode = uniqid('', true);
+                    $explodeid = explode('.', $explode);
+                    $new_end = end($explodeid);
+                    $new_start = $explodeid[0];
+                 endwhile;
+         }
+
+
+     }  
+}
   ?>     
                         
                         <li>
@@ -520,7 +525,7 @@ $new_start = $explodeid[0];
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        A<span style="color:red;"><?php if($total_unread_messages != 0){ echo $total_unread_messages; } ?></span><i class="fa fa-bell fa-fw"></i><i class="fa fa-caret-down"></i>
+                        A<span style="color:red;"><?php if(isset($total_unread_messages)){ if($total_unread_messages != 0){ echo $total_unread_messages; } } ?></span><i class="fa fa-bell fa-fw"></i><i class="fa fa-caret-down"></i>
                     </a>
                     
                     
@@ -562,48 +567,7 @@ $count_users = mysqli_num_rows($result_set);
                     <!-- /.dropdown-user -->
                 </li>
                 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        SA<span style="color:red;"><?php if($total_unread_messages != 0){ echo $total_unread_messages; } ?></span><i class="fa fa-bell fa-fw"></i><i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><div>
-                                    <i class="<?php if($total_unread_messages == 0){ echo "fa fa-envelope-o"; }else if($total_unread_messages > 1){ echo "fa fa-envelope"; }else{ echo "fa fa-envelope-open-o"; }; ?>"></i><span <?php if($total_unread_messages == 0){ echo "style='color:green;'"; }else{ echo "style='color:red;'"; } ?> ><?php if($total_unread_messages == 0){ }else{ echo $total_unread_messages; }; ?></span><?php if($total_unread_messages == 0){ echo " No Unread Messages"; }else if($total_unread_messages > 1){ echo " Unread Messages"; }else{ echo " Unread Message"; }; ?>
-                                    <span class="pull-right text-muted small"><?php if(isset($period)){ echo "From ".$period; }?></span>
-                                </div>
-                            </a>
-                        </li><li class="divider"></li>
-<?php
-$count_users = 0;
-$result_set = User::find_by_sql("SELECT * FROM nacoss.all_students WHERE status = '5' ");
-$count_users = mysqli_num_rows($result_set);                              
-?>
-                        <!--<li>
-                            <a href="s_admin_activate_user.php">
-                                <div>
-                                    <i class="<?php if($count_users == 0){ echo "fa fa-user-times"; }else if($count_users > 1){ echo "fa fa-users"; }else{ echo "fa fa-user-plus"; }; ?>"></i> <span style="color:blue;"><?php if($count_users == 0){ }else{ echo $count_users; }; ?></span><?php if($count_users == 0){ echo " No New Users"; }else if($count_users > 1){ echo " New Users"; }else{ echo " New User"; }; ?>
-                                </div>
-                            </a>
-                            
-                            
-                        </li>-->
-                        <li><a href="s_admin_activate_user.php"><i class="<?php if($count_users == 0){ echo "fa fa-user-times"; }else if($count_users > 1){ echo "fa fa-users"; }else{ echo "fa fa-user-plus"; }; ?>"></i> Confirm Users</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="s_create_admin.php"><i class="fa fa-user-md fa-fw"></i> Confirm Admin</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="s_registered_votes.php"><i class="fa fa-group fa-fw"></i> Registered Candidates</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="s_admin_page.php"><i class="fa fa-exclamation-triangle fa-fw"></i> Super Admin Page</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="s_admin_manager.php"><i class="fa fa-user-secret fa-fw"></i> Admins & Super Admins</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+                
 
                 <?php
                 $query_status = User::find_by_sql("SELECT my_status FROM nacoss.all_students WHERE id='$session->user_id' LIMIT 1");
@@ -681,27 +645,27 @@ $count_users = mysqli_num_rows($result_set);
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="#"><i class="fa fa-thumbs-up fa-fw"></i> Voting System<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="cast_vote.php">Cast Vote</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Staff<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                              <li><a href="register_staff.php">Add Staff </a></li>
+                              <li><a href="managestaff.php">Manage Staff</a> </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-file-image-o fa-fw"></i> Gallery<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                               <li><a href="select_gallery.php">Add Gallery </a></li>
                               <li><a href="managegallery.php">Manage Gallery</a> </li>
-                              <!-- <li><a href="removedgallery.php">Removed Gallery</a> </li> -->
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-thumbs-up fa-fw"></i> Voting System<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <!--<li>
-                                    <a href="voting_system.php">Register Candidate</a>
-                                </li>-->
-                                <li>
-                                    <a href="cast_vote.php">Cast Vote</a>
-                                </li>
-                                <!--<li>
-                                    <a href="completed_vote_results.php" disabled>View Results</a>
-                                </li>-->
-                            </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-newspaper-o"></i>&nbsp; News<span class="fa arrow"></span></a>

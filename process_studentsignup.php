@@ -2,19 +2,36 @@
 require_once ("includes/initialize.php");
 if(isset($_POST['signup'])){
 
-    $uname = $_POST ['uname'];
-    $fname = $_POST ['fname'];
-    $lname = $_POST ['lname'];
-    //$oname = $_POST ['oname'];
-    $semail = $_POST ['semail'];
-    //$oemail = $_POST ['oemail'];
-    $level = $_POST ['level'];
-    $pnumber = $_POST ['pnumber'];
-    $rnumber = $_POST ['rnumber'];
-    $gender = $_POST ['gender'];
-    $pword = $_POST ['pword'];
-    $repass = $_POST ['repass'];
+    $uname = htmlentities($_POST ['uname']);
+    $fname = htmlentities($_POST ['fname']);
+    $lname = htmlentities($_POST ['lname']);
+    $semail = htmlentities($_POST ['semail']);
+    $level = htmlentities($_POST ['level']);
+    $pnumber = htmlentities($_POST ['pnumber']);
+    $rnumber = htmlentities($_POST ['rnumber']);
+    $gender = htmlentities($_POST ['gender']);
+    $pword = htmlentities($_POST ['pword']);
+    $repass = htmlentities($_POST ['repass']);
+    $skills = htmlentities($_POST ['skills']);
+    $aim = htmlentities($_POST ['aim']);
     
+    function generate_unique_id(){
+        $explode = uniqid('', true);
+        $exp = explode('.', $explode);
+        $unique_id = end($exp);
+        return $unique_id;
+    }
+    
+    $go = false;
+    while($go == false){
+        $unique_id = generate_unique_id();
+        $query = User::find_by_sql("SELECT unique_id FROM all_students WHERE unique_id='$unique_id'");
+        if(mysqli_num_rows($query)>0){
+            $unique_id = generate_unique_id();
+        }else{
+            $go = true;
+        }
+    }
 	if( strlen($pword) < 6  )
    { ?>
    <script type="text/javascript">
@@ -54,13 +71,14 @@ window.location="account.php";
         redirect_to('account.php');
 die();
 			}                     
-$result_set = User::create_student($uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword);
+$result_set = User::create_student($uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword, $unique_id, $skills, $aim);
    
-       		if ($result_set){ 		
+       		if ($result_set){
+                User::mailer($uname, $pword, $semail, $unique_id);
 			?>
 	<script type="text/javascript">
-alert("Registration Successful. The student can now log into the system");
-window.location="account.php";
+alert("Registration Successful, A verification message is sent to your school email address for you to verify before you can login!");
+//window.location="account.php";
 </script>
 
 <?php
