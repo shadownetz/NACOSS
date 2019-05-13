@@ -13,21 +13,6 @@
         
 global $session_student;
     
-
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
         
         
         $explodestudent = explode('/', $session_student);
@@ -37,140 +22,140 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_third_second";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
-            
-            
-                $cos352 = $row['cos352'];
-                $cos372 = $row['cos372'];
-                $cos374 = $row['cos374'];
+                while($row = mysqli_fetch_assoc($check_query)){
             
             
-            
+                    $cos352 = $row['cos352'];
+                    $cos372 = $row['cos372'];
+                    $cos374 = $row['cos374'];
                 
-                $elective1 = $row['elective1'];
-                    if($elective1 == "cos314" ){
-                        $new_elective1 = "COS 314 (Switching Algebra and Discrete Struct. II)";
-                    }else if($elective1 == "mth342" ){
-                        $new_elective1 = "MTH 342 (Discrete Mathematics II)";
-                    }else if($elective1 == "cos316" ){
-                        $new_elective1 = "COS 316 (Automata Theory & Formal Languages)";
-                    }else if($elective1 == "cos322" ){
-                        $new_elective1 = "COS 322 (Data Base Design & Management II)";
-                    }else if($elective1 == "cos334" ){
-                        $new_elective1 = "COS 334 (Operating System II)";
-                    }else if($elective1 == "cos342" ){
-                        $new_elective1 = "COS 342 (Computer Architecture II)";
-                    }else if($elective1 == "ece312" ){
-                        $new_elective1 = "ECE 312 (Circuit Theory II)";
-                    }else if($elective1 == "ece322" ){
-                        $new_elective1 = "ECE 322 (Applied Electronics)";
-                    }else{
-                        $new_elective1 = $elective1;
-                    }    
+                
+                
+                    
+                    $elective1 = $row['elective1'];
+                        if($elective1 == "cos314" ){
+                            $new_elective1 = "COS 314 (Switching Algebra and Discrete Struct. II)";
+                        }else if($elective1 == "mth342" ){
+                            $new_elective1 = "MTH 342 (Discrete Mathematics II)";
+                        }else if($elective1 == "cos316" ){
+                            $new_elective1 = "COS 316 (Automata Theory & Formal Languages)";
+                        }else if($elective1 == "cos322" ){
+                            $new_elective1 = "COS 322 (Data Base Design & Management II)";
+                        }else if($elective1 == "cos334" ){
+                            $new_elective1 = "COS 334 (Operating System II)";
+                        }else if($elective1 == "cos342" ){
+                            $new_elective1 = "COS 342 (Computer Architecture II)";
+                        }else if($elective1 == "ece312" ){
+                            $new_elective1 = "ECE 312 (Circuit Theory II)";
+                        }else if($elective1 == "ece322" ){
+                            $new_elective1 = "ECE 322 (Applied Electronics)";
+                        }else{
+                            $new_elective1 = $elective1;
+                        }    
+                
+                    $elective1_ans = $row['elective1_ans'];
+                    
+                
+                    $elective2 = $row['elective2'];
+                        if($elective2 == "cos314" ){
+                            $new_elective2 = "COS 314 (Switching Algebra and Discrete Struct. II)";
+                        }else if($elective2 == "mth342" ){
+                            $new_elective2 = "MTH 342 (Discrete Mathematics II)";
+                        }else if($elective2 == "cos316" ){
+                            $new_elective2 = "COS 316 (Automata Theory & Formal Languages)";
+                        }else if($elective2 == "cos322" ){
+                            $new_elective2 = "COS 322 (Data Base Design & Management II)";
+                        }else if($elective2 == "cos334" ){
+                            $new_elective2 = "COS 334 (Operating System II)";
+                        }else if($elective2 == "cos342" ){
+                            $new_elective2 = "COS 342 (Computer Architecture II)";
+                        }else if($elective2 == "ece312" ){
+                            $new_elective2 = "ECE 312 (Circuit Theory II)";
+                        }else if($elective2 == "ece322" ){
+                            $new_elective2 = "ECE 322 (Applied Electronics)";
+                        }else{
+                            $new_elective2 = $elective2;
+                        }    
+                
+                    $elective2_ans = $row['elective2_ans'];
+                
+                
+                    $elective3 = $row['elective3'];
+                        if($elective3 == "cos314" ){
+                            $new_elective3 = "COS 314 (Switching Algebra and Discrete Struct. II)";
+                        }else if($elective3 == "mth342" ){
+                            $new_elective3 = "MTH 342 (Discrete Mathematics II)";
+                        }else if($elective3 == "cos316" ){
+                            $new_elective3 = "COS 316 (Automata Theory & Formal Languages)";
+                        }else if($elective3 == "cos322" ){
+                            $new_elective3 = "COS 322 (Data Base Design & Management II)";
+                        }else if($elective3 == "cos334" ){
+                            $new_elective3 = "COS 334 (Operating System II)";
+                        }else if($elective3 == "cos342" ){
+                            $new_elective3 = "COS 342 (Computer Architecture II)";
+                        }else if($elective3 == "ece312" ){
+                            $new_elective3 = "ECE 312 (Circuit Theory II)";
+                        }else if($elective3 == "ece322" ){
+                            $new_elective3 = "ECE 322 (Applied Electronics)";
+                        }else{
+                            $new_elective3 = $elective1;
+                        }    
+                
+                    $elective3_ans = $row['elective3_ans'];
+                
+                
+                    $elective4 = $row['elective4'];
+                        if($elective4 == "cos314" ){
+                            $new_elective4 = "COS 314 (Switching Algebra and Discrete Struct. II)";
+                        }else if($elective4 == "mth342" ){
+                            $new_elective4 = "MTH 342 (Discrete Mathematics II)";
+                        }else if($elective4 == "cos316" ){
+                            $new_elective4 = "COS 316 (Automata Theory & Formal Languages)";
+                        }else if($elective4 == "cos322" ){
+                            $new_elective4 = "COS 322 (Data Base Design & Management II)";
+                        }else if($elective4 == "cos334" ){
+                            $new_elective4 = "COS 334 (Operating System II)";
+                        }else if($elective4 == "cos342" ){
+                            $new_elective4 = "COS 342 (Computer Architecture II)";
+                        }else if($elective4 == "ece312" ){
+                            $new_elective4 = "ECE 312 (Circuit Theory II)";
+                        }else if($elective4 == "ece322" ){
+                            $new_elective4 = "ECE 322 (Applied Electronics)";
+                        }else{
+                            $new_elective4 = $elective4;
+                        }    
+                
+                    $elective4_ans = $row['elective4_ans'];
+                
+                
+                    $elective5 = $row['elective5'];
+                        if($elective5 == "cos314" ){
+                            $new_elective5 = "COS 314 (Switching Algebra and Discrete Struct. II)";
+                        }else if($elective5 == "mth342" ){
+                            $new_elective5 = "MTH 342 (Discrete Mathematics II)";
+                        }else if($elective5 == "cos316" ){
+                            $new_elective5 = "COS 316 (Automata Theory & Formal Languages)";
+                        }else if($elective5 == "cos322" ){
+                            $new_elective5 = "COS 322 (Data Base Design & Management II)";
+                        }else if($elective5 == "cos334" ){
+                            $new_elective5 = "COS 334 (Operating System II)";
+                        }else if($elective5 == "cos342" ){
+                            $new_elective5 = "COS 342 (Computer Architecture II)";
+                        }else if($elective5 == "ece312" ){
+                            $new_elective5 = "ECE 312 (Circuit Theory II)";
+                        }else if($elective5 == "ece322" ){
+                            $new_elective5= "ECE 322 (Applied Electronics)";
+                        }else{
+                            $new_elective5 = $elective5;
+                        }    
+                
+                    $elective5_ans = $row['elective5_ans'];
             
-                $elective1_ans = $row['elective1_ans'];
-                 
             
-                $elective2 = $row['elective2'];
-                    if($elective2 == "cos314" ){
-                        $new_elective2 = "COS 314 (Switching Algebra and Discrete Struct. II)";
-                    }else if($elective2 == "mth342" ){
-                        $new_elective2 = "MTH 342 (Discrete Mathematics II)";
-                    }else if($elective2 == "cos316" ){
-                        $new_elective2 = "COS 316 (Automata Theory & Formal Languages)";
-                    }else if($elective2 == "cos322" ){
-                        $new_elective2 = "COS 322 (Data Base Design & Management II)";
-                    }else if($elective2 == "cos334" ){
-                        $new_elective2 = "COS 334 (Operating System II)";
-                    }else if($elective2 == "cos342" ){
-                        $new_elective2 = "COS 342 (Computer Architecture II)";
-                    }else if($elective2 == "ece312" ){
-                        $new_elective2 = "ECE 312 (Circuit Theory II)";
-                    }else if($elective2 == "ece322" ){
-                        $new_elective2 = "ECE 322 (Applied Electronics)";
-                    }else{
-                        $new_elective2 = $elective2;
-                    }    
-            
-                $elective2_ans = $row['elective2_ans'];
-            
-            
-                $elective3 = $row['elective3'];
-                    if($elective3 == "cos314" ){
-                        $new_elective3 = "COS 314 (Switching Algebra and Discrete Struct. II)";
-                    }else if($elective3 == "mth342" ){
-                        $new_elective3 = "MTH 342 (Discrete Mathematics II)";
-                    }else if($elective3 == "cos316" ){
-                        $new_elective3 = "COS 316 (Automata Theory & Formal Languages)";
-                    }else if($elective3 == "cos322" ){
-                        $new_elective3 = "COS 322 (Data Base Design & Management II)";
-                    }else if($elective3 == "cos334" ){
-                        $new_elective3 = "COS 334 (Operating System II)";
-                    }else if($elective3 == "cos342" ){
-                        $new_elective3 = "COS 342 (Computer Architecture II)";
-                    }else if($elective3 == "ece312" ){
-                        $new_elective3 = "ECE 312 (Circuit Theory II)";
-                    }else if($elective3 == "ece322" ){
-                        $new_elective3 = "ECE 322 (Applied Electronics)";
-                    }else{
-                        $new_elective3 = $elective1;
-                    }    
-            
-                $elective3_ans = $row['elective3_ans'];
-            
-            
-                $elective4 = $row['elective4'];
-                    if($elective4 == "cos314" ){
-                        $new_elective4 = "COS 314 (Switching Algebra and Discrete Struct. II)";
-                    }else if($elective4 == "mth342" ){
-                        $new_elective4 = "MTH 342 (Discrete Mathematics II)";
-                    }else if($elective4 == "cos316" ){
-                        $new_elective4 = "COS 316 (Automata Theory & Formal Languages)";
-                    }else if($elective4 == "cos322" ){
-                        $new_elective4 = "COS 322 (Data Base Design & Management II)";
-                    }else if($elective4 == "cos334" ){
-                        $new_elective4 = "COS 334 (Operating System II)";
-                    }else if($elective4 == "cos342" ){
-                        $new_elective4 = "COS 342 (Computer Architecture II)";
-                    }else if($elective4 == "ece312" ){
-                        $new_elective4 = "ECE 312 (Circuit Theory II)";
-                    }else if($elective4 == "ece322" ){
-                        $new_elective4 = "ECE 322 (Applied Electronics)";
-                    }else{
-                        $new_elective4 = $elective4;
-                    }    
-            
-                $elective4_ans = $row['elective4_ans'];
-            
-            
-                $elective5 = $row['elective5'];
-                    if($elective5 == "cos314" ){
-                        $new_elective5 = "COS 314 (Switching Algebra and Discrete Struct. II)";
-                    }else if($elective5 == "mth342" ){
-                        $new_elective5 = "MTH 342 (Discrete Mathematics II)";
-                    }else if($elective5 == "cos316" ){
-                        $new_elective5 = "COS 316 (Automata Theory & Formal Languages)";
-                    }else if($elective5 == "cos322" ){
-                        $new_elective5 = "COS 322 (Data Base Design & Management II)";
-                    }else if($elective5 == "cos334" ){
-                        $new_elective5 = "COS 334 (Operating System II)";
-                    }else if($elective5 == "cos342" ){
-                        $new_elective5 = "COS 342 (Computer Architecture II)";
-                    }else if($elective5 == "ece312" ){
-                        $new_elective5 = "ECE 312 (Circuit Theory II)";
-                    }else if($elective5 == "ece322" ){
-                        $new_elective5= "ECE 322 (Applied Electronics)";
-                    }else{
-                        $new_elective5 = $elective5;
-                    }    
-            
-                $elective5_ans = $row['elective5_ans'];
-        
-        
             }
         }else{ 
             ?>
@@ -184,6 +169,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='third_second.php'; </script>";
+    }
 
 
 

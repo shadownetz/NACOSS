@@ -19,8 +19,8 @@
 
          <?php include('../html_include/footer.php'); ?>
 	<script type="text/javascript">
+  $("#messageLogs").load("messageLogs.php");
   $(document).ready(function(){
-    //$("#messageLogs").load("messageLogs.php");
     $.ajax({
       cache:true,
       success:function(status){

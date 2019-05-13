@@ -12,22 +12,6 @@
 <?php 
         
 global $session_student;
-    
-
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
         
         
         $explodestudent = explode('/', $session_student);
@@ -37,47 +21,47 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_third_first";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
-            
-            
-                $cos301 = $row['cos301'];
-                $cos303 = $row['cos303'];
-                $cos311 = $row['cos311'];
-                $cos331 = $row['cos331'];
-                $cos333 = $row['cos333'];
-                $cos341 = $row['cos341'];
+                while($row = mysqli_fetch_assoc($check_query)){
             
             
-                $ced341 = $row['ced341'];
-                    
+                    $cos301 = $row['cos301'];
+                    $cos303 = $row['cos303'];
+                    $cos311 = $row['cos311'];
+                    $cos331 = $row['cos331'];
+                    $cos333 = $row['cos333'];
+                    $cos341 = $row['cos341'];
                 
-                $elective = $row['elective'];
-                    if($elective == "mth341" ){
-                        $new_elective = "MTH 341 (Discrete Mathematics I)";
-                    }else if($elective == "cos313" ){
-                        $new_elective = "COS 313 (Switching Algebra & Discrete Structures)";
-                    }else if($elective == "cos315" ){
-                        $new_elective = "COS 315 (Operation Research I)";
-                    }else if($elective == "cos321" ){
-                        $new_elective = "COS 321 (Data Base Design & Management I)";
-                    }else if($elective == "cos335" ){
-                        $new_elective = "COS 335 (Systems Analysis & Design)";
-                    }else if($elective == "ece311" ){
-                        $new_elective = "ECE 311 (Circuit Theory I)";
-                    }else if($elective == "ece321" ){
-                        $new_elective = "ECE 321 (Physical Electronics)";
-                    }else{
-                        $new_elective = $elective;
-                    }    
+                
+                    $ced341 = $row['ced341'];
+                        
+                    
+                    $elective = $row['elective'];
+                        if($elective == "mth341" ){
+                            $new_elective = "MTH 341 (Discrete Mathematics I)";
+                        }else if($elective == "cos313" ){
+                            $new_elective = "COS 313 (Switching Algebra & Discrete Structures)";
+                        }else if($elective == "cos315" ){
+                            $new_elective = "COS 315 (Operation Research I)";
+                        }else if($elective == "cos321" ){
+                            $new_elective = "COS 321 (Data Base Design & Management I)";
+                        }else if($elective == "cos335" ){
+                            $new_elective = "COS 335 (Systems Analysis & Design)";
+                        }else if($elective == "ece311" ){
+                            $new_elective = "ECE 311 (Circuit Theory I)";
+                        }else if($elective == "ece321" ){
+                            $new_elective = "ECE 321 (Physical Electronics)";
+                        }else{
+                            $new_elective = $elective;
+                        }    
+                
+                    $elective_ans = $row['elective_ans'];
+                    
             
-                $elective_ans = $row['elective_ans'];
-                 
-        
-        
+            
             }
         }else{ 
             ?>
@@ -91,6 +75,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='third_first.php'; </script>";
+    }
 
 
 

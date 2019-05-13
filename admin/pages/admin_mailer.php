@@ -3,13 +3,21 @@
         <?php include('includes/header.php'); ?>
 <?php
 require_once('includes/php/assign_variables.php');
+if(isset($_GET["address"])){
+    $_SESSION['address'] = $database->escape_value($_GET["address"]);
+    echo "<script> window.location='admin_mailer.php'; </script>";
+}
 $deliver_mail = false;
 if ($user_type == "admin" || $user_type == "super_admin" && isset($_POST['send_mail'])) {
-    $address = $database->escape_value($_POST ['address']);
+    $address = $_SESSION['address'];
     $msg = $database->escape_value($_POST ['msg']);
 
     if(!empty($address) && !empty($msg)){
         $deliver_mail = User::admin_mailer($address,$msg);
+        if($deliver_mail){
+            echo "<script> alert('Mail sent successfully'); </script>";
+            unset($_SESSION['address']);
+        }
     }
 }
 ?>
@@ -27,11 +35,6 @@ if ($user_type == "admin" || $user_type == "super_admin" && isset($_POST['send_m
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Admin Mailer Page</h1>
-<?php
-// if($deliver_mail){
-//     echo "<script>alert('Message Delivered');</script>";
-// }
-?>
                         <div class="container nacoss-new-discuss">
                             <div class="row">
                                 <div class="col-md-5 col-md-offset-2">
@@ -40,9 +43,6 @@ if ($user_type == "admin" || $user_type == "super_admin" && isset($_POST['send_m
                                         <div class="panel-body">
                                             <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
                                                 <fieldset class="form-content">
-                                                    <div class="form-group">
-                                                    <input type="hidden" value="<?php echo $_GET["address"]; ?>" name="address">
-                                                    </div>
                                                     <div class="form-group">
                                                     <label for="msg">Write Message::</label>
                                                     <textarea class="form-control" rows=3 placeholder="Type Here" name="msg" required></textarea>

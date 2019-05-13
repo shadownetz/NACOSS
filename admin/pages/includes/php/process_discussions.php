@@ -10,9 +10,9 @@ if(isset($_POST['create'])){
     
 
         
-    $topic = $database->escape_value($_POST['topic']);
-    $discussion_type = $database->escape_value($_POST['discussion_type']);
-    $aim = $database->escape_value($_POST['aim']);
+    $topic = $database->escape_value(htmlentities($_POST['topic']));
+    $discussion_type = $database->escape_value(htmlentities($_POST['discussion_type']));
+    $aim = $database->escape_value(htmlentities($_POST['aim']));
     $display_picture = $_FILES['file']['name'];
         $fileExt = explode('.',$display_picture);
             $fileActualExt = strtolower(end($fileExt));

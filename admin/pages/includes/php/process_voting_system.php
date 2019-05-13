@@ -6,30 +6,13 @@ $session_student = $_SESSION['rnumber'];
     
 if(isset($_POST['submit'])){
     global $session_student;
-    
-
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-    
-    $_SESSION['dbconnect'] = $dbconnect;
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
         
-    $rnumber = mysqli_real_escape_string($dbconnect, $_POST['rnumber']);
-    $post = mysqli_real_escape_string($dbconnect, $_POST['post']);
+    $rnumber = $database->escape_value($_POST['rnumber']);
+    $post = $database->escape_value($_POST['post']);
 
 
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `all_students` WHERE rnumber='$rnumber' ");
-        $result = mysqli_num_rows($check_query);
+        $check_query = User::find_by_sql("SELECT * FROM `all_students` WHERE rnumber='$rnumber' ");
+        $result = $database->num_rows($check_query);
         
         if(empty($result)){
             ?>
@@ -55,7 +38,7 @@ if(isset($_POST['submit'])){
             $user_full_name = $user_fname." ".$user_lname;
             }
                 
-            $create_table_query = mysqli_query($dbconnect, "
+            $create_table_query = User::find_by_sql("
             CREATE TABLE IF NOT EXISTS `voting_system` (
               `id` int(11) NOT NULL auto_increment,
               `rnumber` varchar(50) NOT NULL,
@@ -68,10 +51,8 @@ if(isset($_POST['submit'])){
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB ");
             
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `voting_system` WHERE rnumber='$user_rnumber' ");
-        $result = mysqli_num_rows($check_query);
-        
-        if(!empty($result)){
+        $check_query = User::find_by_sql("SELECT * FROM `voting_system` WHERE rnumber='$user_rnumber' ");
+        if($database->num_rows($check_query)>0){
             ?>
                <script type="text/javascript">
             alert("Candidate Already registered");
@@ -82,7 +63,6 @@ if(isset($_POST['submit'])){
                         $_SESSION['user_full_name'] = $user_full_name;
                         $_SESSION['user_post'] = $post;
                         $_SESSION['user_rnumber'] = $user_rnumber; 
-                        $_SESSION['dbconnect'] = $dbconnect;
                        ?>
                        
                        window.location="includes/php/confirm_voting_system.php";
@@ -92,11 +72,11 @@ if(isset($_POST['submit'])){
             </script>
             <?php
 
-            die();
+            //die();
         }else{
             
             //$insert_query = User::create_candidate_query($user_rnumber, $user_full_name, $post);
-            $insert_query = mysqli_query($dbconnect, "INSERT INTO `voting_system` SET  registrar='$session_student', rnumber='$user_rnumber', full_name='$user_full_name', post='$post', date=NOW()");
+            $insert_query = User::find_by_sql("INSERT INTO `voting_system` SET  registrar='$session_student', rnumber='$user_rnumber', full_name='$user_full_name', post='$post', date=NOW()");
 
                 if($insert_query){
 

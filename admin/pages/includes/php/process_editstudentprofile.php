@@ -5,15 +5,28 @@ require_once ("../../includes/initialize.php");
 if(isset($_POST['update'])){
     
     $fileName = $_FILES['file']['name'];
-		$fileType = $_FILES['file']['type'];
+        $fname = $database->escape_value(htmlentities($_POST ['fname']));
+        $lname = $database->escape_value(htmlentities($_POST ['lname']));
+        $uname = $database->escape_value(htmlentities($_POST ['uname'])); 
+        $semail = $database->escape_value(htmlentities($_POST['semail']));
+        $oname = $database->escape_value(htmlentities($_POST ['oname']));
+        $oemail = $database->escape_value(htmlentities($_POST ['oemail']));
+        $level = $database->escape_value(htmlentities($_POST ['level']));
+        $pnumber = $database->escape_value(htmlentities($_POST ['pnumber']));
+        $gender = $database->escape_value(htmlentities($_POST ['gender']));
+        $skills = $database->escape_value(htmlentities($_POST ['skills']));
+        $aim = $database->escape_value(htmlentities($_POST ['aim']));
+
+
+    if(!empty($fileName)){
+        $fileType = $_FILES['file']['type'];
 					$fileExt = explode('.',$fileName);
 						$fileActualExt = strtolower(end($fileExt));
 		$allowed = array('jpeg','jpg','png');
 		if (!in_array($fileActualExt, $allowed)){
 			echo "<script> alert('File Type Not Allowed!'); window.location='profile.php'; </script>";
-        die();
-		}else{
-    
+            die();
+        }else{
             $picture = $database->escape_value($_FILES['file']['name']);
             $epicture = explode(".", $picture);
             $img_type = end($epicture);
@@ -32,49 +45,24 @@ if(isset($_POST['update'])){
             $img_initial = "IMG-".$current_year.$current_new_month.$current_day.$current_hour.$current_min.$current_sec."-";
             $main_picture = $img_initial.$array2.".".$img_type;
             
+            $update = User::find_by_sql("UPDATE all_students SET picture='$main_picture' WHERE id='$session->user_id'");
+            if($update){
             move_uploaded_file($_FILES["file"]["tmp_name"],"../../photos/".$main_picture);
-            
-    $fname = $database->escape_value($_POST ['fname']);
-    $lname = $database->escape_value($_POST ['lname']);
-    $oname = $database->escape_value($_POST ['oname']);
-    $oemail = $database->escape_value($_POST ['oemail']);
-    $level = $database->escape_value($_POST ['level']);
-    $pnumber = $database->escape_value($_POST ['pnumber']);
-    $gender = $database->escape_value($_POST ['gender']);
-    $skills = $database->escape_value($_POST ['skills']);
-    $aim = $database->escape_value($_POST ['aim']);
-   
-
-
-$result_set = User::edit_student_profile($fname, $lname, $oname, $oemail, $level, $pnumber, $gender, $skills, $aim, $session->user_id, $main_picture);
-
-if ($result_set){
-	
-	 ?>
-   <script type="text/javascript">
-alert("Changes Saved successfully");
-
-window.location="profile.php";
-</script>
-<?php
-
-die();
-   
-   }else{
-
-?> 
-<script type="text/javascript">
-alert("Unable to Save Changes");
-window.location="profile.php";
-</script>
-
-<?php
-}
-            
-            
+            }
+       
+        $result_set = User::edit_student_profile($uname, $semail, $fname, $lname, $oname, $oemail, $level, $pnumber, $gender, $skills, $aim, $session->user_id);
+            if($result_set){ 
+                echo "<script> alert('Changes Saved successfully'); window.location='profile.php'; </script>";
+            }
         }
-    
 
+    }else{ 
+
+        $result_set = User::edit_student_profile($uname, $semail, $fname, $lname, $oname, $oemail, $level, $pnumber, $gender, $skills, $aim, $session->user_id);
+        if($result_set){ 
+            echo "<script> alert('Changes Saved successfully'); window.location='profile.php'; </script>";
+        }
+   }        
 }
 
 

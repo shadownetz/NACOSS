@@ -75,7 +75,7 @@ for($z=0; $z<count($newid_array); $z++){
                  if(in_array($newid_array[$z], $my_discussion_id)){  
 ?>
                   <!-- start single post -->
-                  <div class="recent-single-post">
+                  <div class="recent-single-post" style="height:100px">
                     <div class="post-img">
                       <a href="#">
 												   <img src="../img/<?php echo $row['display_picture']; ?>" alt="">
@@ -90,7 +90,7 @@ for($z=0; $z<count($newid_array); $z++){
                   }else{
                       ?>
                    <!-- start single post -->
-                  <div class="recent-single-post">
+                  <div class="recent-single-post" style="height:100px">
                     <div class="post-img">
                       <a href="#">
 												   <img src="../img/<?php echo $row['display_picture']; ?>" alt="">
@@ -107,7 +107,7 @@ for($z=0; $z<count($newid_array); $z++){
                 $_SESSION['check'] = "yes";
                 ?>
                  <!-- start single post -->
-                  <div class="recent-single-post">
+                  <div class="recent-single-post" style="height:100px">
                     <div class="post-img">
                       <a href="#">
 												   <img src="../img/<?php echo $row['display_picture']; ?>" alt="">

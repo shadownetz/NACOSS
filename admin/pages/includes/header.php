@@ -76,11 +76,20 @@ if($count > 0){
 
     <title>Student's Portal</title>
 
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/nacoss-ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/nacoss-ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/nacoss-ico/favicon-16x16.png">
+    <link rel="manifest" href="../../images/nacoss-ico/site.webmanifest">
+    <link rel="mask-icon" href="../../images/nacoss-ico/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link    href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">

@@ -7,7 +7,7 @@ if(isset($_GET["delete_doc"]) && !empty($_GET["delete_doc"])){
 }
 
 $result = User::find_by_sql("SELECT * FROM  nacoss.students_documents WHERE rnumber='$session_student' ");
-
+if(mysqli_num_rows($result)>0){
 $counter=1;
         while($row = mysqli_fetch_assoc($result)){
 
@@ -34,3 +34,6 @@ $counter=1;
 		$counter++;
 }
 	?>
+<?php }else{
+    echo "<script> alert('NO UPLOADED DOCUMENTS!'); window.location='dashboard.php' </script>";
+} ?>

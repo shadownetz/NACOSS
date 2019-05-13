@@ -93,9 +93,6 @@
                   <li>
                     <a class="page-scroll" href="account.php">Signin</a>
                   </li>
-                  <li>
-                    <a class="page-scroll" href="sign-up.php">Signup</a>
-                  </li>
                 </ul>
               </div>
               <!-- navbar-collapse -->

@@ -12,23 +12,7 @@
 <?php 
         
 global $session_student;
-    
 
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
-        
         
         $explodestudent = explode('/', $session_student);
         $start = $explodestudent[0];
@@ -37,129 +21,129 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_final_first";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
-            
-            
-                $cos451 = $row['cos451'];
-                $cos461 = $row['cos461'];
-                $cos471 = $row['cos471'];
+                while($row = mysqli_fetch_assoc($check_query)){
             
             
-            
+                    $cos451 = $row['cos451'];
+                    $cos461 = $row['cos461'];
+                    $cos471 = $row['cos471'];
                 
-                $elective1 = $row['elective1'];
-                    if($elective1 == "cos415" ){
-                        $new_elective1 = "COS 415 (Systems Modelling & Simulation)";
-                    }else if($elective1 == "cos411" ){
-                        $new_elective1 = "COS 411 (Numerical Methods)";
-                    }else if($elective1 == "cos413" ){
-                        $new_elective1 = "COS 413 (Queing Theory)";
-                    }else if($elective1 == "cos431" ){
-                        $new_elective1 = "COS 431 (Software Engineering & Management)";
-                    }else if($elective1 == "cos453" ){
-                        $new_elective1 = "COS 453 (Computer Process Control)";
-                    }else if($elective1 == "cos455" ){
-                        $new_elective1 = "COS 455 (Data Communication & Networks I)";
-                    }else if($elective1 == "cos457" ){
-                        $new_elective1 = "COS 457 (Computer Graphics)";
-                    }else{
-                        $new_elective1 = $elective1;
-                    }    
+                
+                
+                    
+                    $elective1 = $row['elective1'];
+                        if($elective1 == "cos415" ){
+                            $new_elective1 = "COS 415 (Systems Modelling & Simulation)";
+                        }else if($elective1 == "cos411" ){
+                            $new_elective1 = "COS 411 (Numerical Methods)";
+                        }else if($elective1 == "cos413" ){
+                            $new_elective1 = "COS 413 (Queing Theory)";
+                        }else if($elective1 == "cos431" ){
+                            $new_elective1 = "COS 431 (Software Engineering & Management)";
+                        }else if($elective1 == "cos453" ){
+                            $new_elective1 = "COS 453 (Computer Process Control)";
+                        }else if($elective1 == "cos455" ){
+                            $new_elective1 = "COS 455 (Data Communication & Networks I)";
+                        }else if($elective1 == "cos457" ){
+                            $new_elective1 = "COS 457 (Computer Graphics)";
+                        }else{
+                            $new_elective1 = $elective1;
+                        }    
+                
+                    $elective1_ans = $row['elective1_ans'];
+                    
+                
+                    $elective2 = $row['elective2'];
+                        if($elective2 == "cos415" ){
+                            $new_elective2 = "COS 415 (Systems Modelling & Simulation)";
+                        }else if($elective2 == "cos411" ){
+                            $new_elective2 = "COS 411 (Numerical Methods)";
+                        }else if($elective2 == "cos413" ){
+                            $new_elective2 = "COS 413 (Queing Theory)";
+                        }else if($elective2 == "cos431" ){
+                            $new_elective2 = "COS 431 (Software Engineering & Management)";
+                        }else if($elective2 == "cos453" ){
+                            $new_elective2 = "COS 453 (Computer Process Control)";
+                        }else if($elective2 == "cos455" ){
+                            $new_elective2 = "COS 455 (Data Communication & Networks I)";
+                        }else if($elective2 == "cos457" ){
+                            $new_elective2 = "COS 457 (Computer Graphics)";
+                        }else{
+                            $new_elective2 = $elective2;
+                        }    
+                
+                    $elective2_ans = $row['elective2_ans'];
+                
+                
+                    $elective3 = $row['elective3'];
+                        if($elective3 == "cos415" ){
+                            $new_elective3 = "COS 415 (Systems Modelling & Simulation)";
+                        }else if($elective3 == "cos411" ){
+                            $new_elective3 = "COS 411 (Numerical Methods)";
+                        }else if($elective3 == "cos413" ){
+                            $new_elective3 = "COS 413 (Queing Theory)";
+                        }else if($elective3 == "cos431" ){
+                            $new_elective3 = "COS 431 (Software Engineering & Management)";
+                        }else if($elective3 == "cos453" ){
+                            $new_elective3 = "COS 453 (Computer Process Control)";
+                        }else if($elective3 == "cos455" ){
+                            $new_elective3 = "COS 455 (Data Communication & Networks I)";
+                        }else if($elective3 == "cos457" ){
+                            $new_elective3 = "COS 457 (Computer Graphics)";
+                        }else{
+                            $new_elective3 = $elective3;
+                        }    
+                
+                    $elective3_ans = $row['elective3_ans'];
+                
+                
+                    $elective4 = $row['elective4'];
+                        if($elective4 == "cos415" ){
+                            $new_elective4 = "COS 415 (Systems Modelling & Simulation)";
+                        }else if($elective4 == "cos411" ){
+                            $new_elective4 = "COS 411 (Numerical Methods)";
+                        }else if($elective4 == "cos413" ){
+                            $new_elective4 = "COS 413 (Queing Theory)";
+                        }else if($elective4 == "cos431" ){
+                            $new_elective4 = "COS 431 (Software Engineering & Management)";
+                        }else if($elective4 == "cos453" ){
+                            $new_elective4 = "COS 453 (Computer Process Control)";
+                        }else if($elective4 == "cos455" ){
+                            $new_elective4 = "COS 455 (Data Communication & Networks I)";
+                        }else if($elective4 == "cos457" ){
+                            $new_elective4 = "COS 457 (Computer Graphics)";
+                        }else{
+                            $new_elective4 = $elective4;
+                        }    
+                
+                    $elective4_ans = $row['elective4_ans'];
+                
+                
+                    $elective5 = $row['elective5'];
+                        if($elective5 == "cos415" ){
+                            $new_elective5 = "COS 415 (Systems Modelling & Simulation)";
+                        }else if($elective5 == "cos411" ){
+                            $new_elective5 = "COS 411 (Numerical Methods)";
+                        }else if($elective5 == "cos413" ){
+                            $new_elective5 = "COS 413 (Queing Theory)";
+                        }else if($elective5 == "cos431" ){
+                            $new_elective5 = "COS 431 (Software Engineering & Management)";
+                        }else if($elective5 == "cos453" ){
+                            $new_elective5 = "COS 453 (Computer Process Control)";
+                        }else if($elective5 == "cos455" ){
+                            $new_elective5 = "COS 455 (Data Communication & Networks I)";
+                        }else if($elective5 == "cos457" ){
+                            $new_elective5 = "COS 457 (Computer Graphics)";
+                        }else{
+                            $new_elective5 = $elective5;
+                        }    
+                
+                    $elective5_ans = $row['elective5_ans'];
             
-                $elective1_ans = $row['elective1_ans'];
-                 
-            
-                $elective2 = $row['elective2'];
-                    if($elective2 == "cos415" ){
-                        $new_elective2 = "COS 415 (Systems Modelling & Simulation)";
-                    }else if($elective2 == "cos411" ){
-                        $new_elective2 = "COS 411 (Numerical Methods)";
-                    }else if($elective2 == "cos413" ){
-                        $new_elective2 = "COS 413 (Queing Theory)";
-                    }else if($elective2 == "cos431" ){
-                        $new_elective2 = "COS 431 (Software Engineering & Management)";
-                    }else if($elective2 == "cos453" ){
-                        $new_elective2 = "COS 453 (Computer Process Control)";
-                    }else if($elective2 == "cos455" ){
-                        $new_elective2 = "COS 455 (Data Communication & Networks I)";
-                    }else if($elective2 == "cos457" ){
-                        $new_elective2 = "COS 457 (Computer Graphics)";
-                    }else{
-                        $new_elective2 = $elective2;
-                    }    
-            
-                $elective2_ans = $row['elective2_ans'];
-            
-            
-                $elective3 = $row['elective3'];
-                    if($elective3 == "cos415" ){
-                        $new_elective3 = "COS 415 (Systems Modelling & Simulation)";
-                    }else if($elective3 == "cos411" ){
-                        $new_elective3 = "COS 411 (Numerical Methods)";
-                    }else if($elective3 == "cos413" ){
-                        $new_elective3 = "COS 413 (Queing Theory)";
-                    }else if($elective3 == "cos431" ){
-                        $new_elective3 = "COS 431 (Software Engineering & Management)";
-                    }else if($elective3 == "cos453" ){
-                        $new_elective3 = "COS 453 (Computer Process Control)";
-                    }else if($elective3 == "cos455" ){
-                        $new_elective3 = "COS 455 (Data Communication & Networks I)";
-                    }else if($elective3 == "cos457" ){
-                        $new_elective3 = "COS 457 (Computer Graphics)";
-                    }else{
-                        $new_elective3 = $elective3;
-                    }    
-            
-                $elective3_ans = $row['elective3_ans'];
-            
-            
-                $elective4 = $row['elective4'];
-                    if($elective4 == "cos415" ){
-                        $new_elective4 = "COS 415 (Systems Modelling & Simulation)";
-                    }else if($elective4 == "cos411" ){
-                        $new_elective4 = "COS 411 (Numerical Methods)";
-                    }else if($elective4 == "cos413" ){
-                        $new_elective4 = "COS 413 (Queing Theory)";
-                    }else if($elective4 == "cos431" ){
-                        $new_elective4 = "COS 431 (Software Engineering & Management)";
-                    }else if($elective4 == "cos453" ){
-                        $new_elective4 = "COS 453 (Computer Process Control)";
-                    }else if($elective4 == "cos455" ){
-                        $new_elective4 = "COS 455 (Data Communication & Networks I)";
-                    }else if($elective4 == "cos457" ){
-                        $new_elective4 = "COS 457 (Computer Graphics)";
-                    }else{
-                        $new_elective4 = $elective4;
-                    }    
-            
-                $elective4_ans = $row['elective4_ans'];
-            
-            
-                $elective5 = $row['elective5'];
-                    if($elective5 == "cos415" ){
-                        $new_elective5 = "COS 415 (Systems Modelling & Simulation)";
-                    }else if($elective5 == "cos411" ){
-                        $new_elective5 = "COS 411 (Numerical Methods)";
-                    }else if($elective5 == "cos413" ){
-                        $new_elective5 = "COS 413 (Queing Theory)";
-                    }else if($elective5 == "cos431" ){
-                        $new_elective5 = "COS 431 (Software Engineering & Management)";
-                    }else if($elective5 == "cos453" ){
-                        $new_elective5 = "COS 453 (Computer Process Control)";
-                    }else if($elective5 == "cos455" ){
-                        $new_elective5 = "COS 455 (Data Communication & Networks I)";
-                    }else if($elective5 == "cos457" ){
-                        $new_elective5 = "COS 457 (Computer Graphics)";
-                    }else{
-                        $new_elective5 = $elective5;
-                    }    
-            
-                $elective5_ans = $row['elective5_ans'];
-        
         
             }
         }else{ 
@@ -174,6 +158,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='final_first.php'; </script>";
+    }
 
 
 

@@ -10,7 +10,7 @@
         <form role="form" enctype="multipart/form-data" method="post">
             <label>School Email or Unique ID</label>
             <input type="text" placeholder="Enter email or ID Here !" name="fpass" class="form-control f-input">
-            <button type="submit" class="nacoss-btn f-btn" name="re_fpass">Request New Password</button>
+            <button type="submit" class="nacoss-btn f-btn b-wh" name="re_fpass">Request New Password</button>
         </form>
     </div>
 </div>

@@ -29,12 +29,9 @@ if(mysqli_num_rows($query)>0){
 ?>      
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-team-member">
-              <div class="team-img">
-                <a href="#">
-										<img src="staffphotos/<?php echo $staff_picture; ?>" alt="" style="width:cover">
-									</a>
+              <div class="team-img" style='background:url("staffphotos/<?php echo $staff_picture; ?>") no-repeat center center;background-size:cover'>
                 <div class="team-social-icon text-center">
-                  <ul>
+                  <!-- <ul>
                     <li>
                       <a href="#">
 													<i class="fa fa-facebook"></i>
@@ -50,7 +47,7 @@ if(mysqli_num_rows($query)>0){
 													<i class="fa fa-instagram"></i>
 												</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
               <div class="team-content text-center">

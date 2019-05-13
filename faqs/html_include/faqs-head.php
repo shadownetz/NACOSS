@@ -59,33 +59,49 @@ if(isset($_POST['send_message'])){
 }
     
     
-function cal($value=""){
-    $split = str_split($value);
-    $count = count($split);
-    $val = $split[0];
-    if($count==3){ $num = $val.'h'; }
-    elseif($count==4){ $num = $val.'k'; }
-    elseif($count==5){ $val2 = $split[1]; $num = $val.$val2.'k'; }
-    elseif($count==6){ $val2 = $split[1]; $val3 = $split[2]; $num = $val.$val2.$val3.'k'; }else{$num = $value;}
-    return $num;
-}
-function star($num=""){
-    if($num < 100){ $progress = 1;}elseif($num >= 100 && $num < 200){$progress = 2;}elseif($num >= 200 && $num < 300){$progress = 3;}elseif($num >= 300 && $num < 400){$progress = 4;}elseif($num >= 400){ $progress = 5;}else{$progress = 0;}
-    return $progress;
-}
+//LAST TWO FUNCTIONS
 
 
+if(isset($_GET['status']) && isset($_GET['alpha']) && isset($_GET['delta']) && isset($_GET['zigma'])){
     $zigma = $database->escape_value($_GET['zigma']);
     $alpha = $database->escape_value($_GET['alpha']);
 	$delta = $database->escape_value($_GET['delta']);
-    $status = $database->escape_value($_GET['status']);	
+    $status = $database->escape_value($_GET['status']);
+    if(strlen($zigma)!=23 || strlen($alpha)!=14 || strlen($delta)!=8){
+        echo "<script> alert('Invalid url!'); window.location='../../faq.php'; </script>";
+        die();
+    }	
 
-	$explode1 = explode($alpha, $zigma);
-	$explode2 = explode($delta, $explode1[0]);
+    $explode1 = explode($alpha, $zigma);
+    $explode2 = explode($delta, $explode1[0]);
 	
-	$discussion_id = $explode2[1];
-    $_SESSION['discussion_id'] = $discussion_id;
-//echo $discussion_id;
+    $discussion_id = $explode2[1];
+    //validate if id is set true
+    if(!isset($explode2[1])){
+        echo "<script> alert('Not Working!'); window.location='../../faq.php'; </script>";
+        die();
+    }
+    
+    $confirm_id_query = User::find_by_sql("SELECT * FROM discussions WHERE id='{$discussion_id}' ");
+    if(mysqli_num_rows($confirm_id_query)>0){
+        $_SESSION['discussion_id'] = $discussion_id;
+        $_SESSION['status'] = $status;
+        echo "<script> window.location='index.php'; </script>";
+    }else{
+        //if the id doesnt exist in the database
+        echo "<script> alert('Invalid url!'); window.location='../../faq.php' </script>";
+        die();
+    }
+    //$_SESSION['discussion_id'] = $discussion_id;
+}else{
+    $discussion_id = $_SESSION['discussion_id'];
+    $status =  $_SESSION['status'];
+}
+    // else{
+    //     //the number of get requests is not match
+    //     echo "<script> alert('Invalid urlthis!'); window.location='../../faq.php' </script>";
+    //     die();
+    // }
 
 function returnQuery($min, $check_counter){
     global $discussion_id;
@@ -213,7 +229,7 @@ while($row=mysqli_fetch_assoc($get_query)){
 <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="single-blog">
               <div class="single-blog-img" style="margin-top:0.5%;background:url('../img/<?php echo $display_picture; ?>') center center;height:250px;background-size:100%;background-repeat:no-repeat"></div>
-              <div class="blog-meta" style="float:right;padding:0px 7px">
+              <div class="blog-meta" style="padding:0px 10px">
                 <span class="creator-type">
 										<i class="fa fa-user-secret">Created by:</i>
 										<span><?php echo $creator; ?></span>

@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 nacoss-dash">
-                        <h1 class="page-header">Dashboard</h1>
+                        <h1 class="page-header text-center">Student's Portal</h1>
                         <a href="#">
                             <div class="col-md-3 col-sm-12 col-xs-12 box" >
                                 <i class="fa fa-envelope fa-5x"></i>

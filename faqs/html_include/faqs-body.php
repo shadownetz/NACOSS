@@ -4,7 +4,7 @@
     
                 <h3 style="text-align: center"><?php echo $discussion_topic; ?></h3>
                 <hr/>
-                <p style="font-weight:bold;text-align: justify;border-left:10px solid rgb(20, 172, 20);padding-left:10px">
+                <p style="font-weight:bold;text-align: justify;border-left:10px solid #227222;padding-left:10px">
                   <?php echo $discussion_aim; ?>
                 </p>
                 <div class="single-post-comments faqs-body">
@@ -85,14 +85,14 @@ $query = User::find_by_sql("SELECT * FROM joined_members WHERE discussion_id='$d
 <?php }else{ ?>
                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;display:block">
                   <p>
-                    <a href="#" data-toggle="modal" data-target="#login" style="color:rgb(11, 99, 11)">Login to comment <i class="fa fa-comment"></i></a>
+                    <a href="#" data-toggle="modal" data-target="#login">Login to comment <i class="fa fa-comment"></i></a>
                   </p>
                 </div>
 <?php } ?>
                 <!-- Modal -->
               <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:20%">
                 <div class="modal-dialog">
-                <div class="modal-content" style="background-color:rgb(11, 99, 11)">
+                <div class="modal-content">
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:#fff;">
                 &times;
@@ -103,11 +103,11 @@ $query = User::find_by_sql("SELECT * FROM joined_members WHERE discussion_id='$d
                 <div class="modal-body">
                   <div class="col-md-12 col-sm-12 col-xs-12">
                   <label>Username:</label>
-                    <input name="uname" type="text" class="form-control" placeholder="username" style="border-color:transparent">
+                    <input name="uname" type="text" class="form-control" placeholder="username">
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12">
                   <label style="padding-top:5px">Password:</label>
-                    <input name="pword" type="password" class="form-control" placeholder="password" style="border-color:transparent">
+                    <input name="pword" type="password" class="form-control" placeholder="password">
                   </div>
                   
                 </div>

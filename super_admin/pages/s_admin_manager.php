@@ -57,9 +57,7 @@ if(mysqli_num_rows($result_set)>0){
                             </tr>
                         </thead>
                         <tbody class="panel-body">
-<?php
-}
-?>
+
 <?php
  $counter=1;
        	while ( $row = mysqli_fetch_array($result_set) ) {
@@ -92,10 +90,16 @@ if(mysqli_num_rows($result_set)>0){
 
                 <?php
                 $counter++;
-        }
+           }
+        
         ?>
           </tbody>
                                 </table>
+         <?php
+            }else{
+            //echo "NO LOGS";
+        }
+        ?>
                                 </div>
                             </div>
                         

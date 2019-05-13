@@ -191,12 +191,16 @@ if(mysqli_num_rows($query)>0){
 
 while($col=mysqli_fetch_assoc($query)):
     $member_uname = $col['uname'];
+    $member_rnumber = $col['rnumber'];
     $date = $col['date'];
         $member_message_date = date('jS F, Y', strtotime($date));
         $member_message_time = date('h:i:s a', strtotime($date));
     $member_message = $col['message'];
     $member_display_image  = $col['display_picture'];
-        $member_imagepath = "../../photos/".$member_display_image;
+    $img_query = User::find_by_sql("SELECT picture FROM all_students WHERE rnumber='{$member_rnumber}'");
+    while($ro=mysqli_fetch_assoc($img_query)){
+        $member_imagepath = "../../photos/".$ro['picture'];
+    }
     $last_message_id = $col['id'];
 ?>
                       <li class="threaded-comments">

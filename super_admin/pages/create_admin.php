@@ -27,7 +27,7 @@ if($user_type == 'admin' || $user_type == 'super_admin' && isset($_POST['submit'
                         <h1 class="page-header">Admin Center</h1>
 
 <?php
-$query = User::find_by_sql("SELECT rnumber FROM nacoss.all_students WHERE verified = '1' AND status = '1' AND user_type = 'user' ");
+$query = User::find_by_sql("SELECT rnumber FROM all_students WHERE verified = '1' AND status = '1' AND user_type = 'user' ");
 while($r=mysqli_fetch_assoc($query)){
     $rnumber_array[] = $r['rnumber'];
 }

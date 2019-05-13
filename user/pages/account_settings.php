@@ -1,6 +1,13 @@
         <!-- Header -->
         <?php include('includes/header.php'); ?>
 <?php
+if(isset($_POST['update_my_email'])){
+    $email = $database->escape_value(htmlentities($_POST['email']));
+    $update = User::find_by_sql("UPDATE all_students SET verification_email = '$email' WHERE id = '$session->user_id' ");
+    if($update){
+        echo "<script> alert('Verification Email Update Successful!'); window.location='account_settings.php'; </script>";
+    }
+}
 if(isset($_POST['update_my_picture'])){
     
     $fileName = $_FILES['file']['name'];
@@ -78,15 +85,7 @@ if(isset($_POST['update_my_password'])){
                                 <img src="<?php echo $imagepath; ?>" class="img-circle" alt="user image" height="100" class="...col-lg-offset-5 img-rounded ">
                             </div>
                             
-                        <!-- <div class="col-sm-4">
-                            <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class='fa fa-file-picture-o fa-fw' style=""></i>Profile Picture</span>
-                                        <input name="file" type="file" value="" class="form-control" required="required"/>
-                                    <span class="input-group-addon"><button type="submit" name="update_my_picture"><img src="../../images/select.png"></button></span>
-                                </div>
-                            </form>
-                        </div> -->
+                        
                         <div class="row">
                         <div class="col-sm-6">
                             <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
@@ -115,6 +114,15 @@ if(isset($_POST['update_my_password'])){
                                     <label for="password">New Password</label>
                                         <input name="password" type="password" value="" class="form-control" placeholder="Enter new password" required>
                                     <button type="submit" class="nacoss-btn" name="update_my_password">update&nbsp;<i class="fa fa-key"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-12">
+                            <form class="nacoss-profile" action="<?php $_SERVER['PHP_SELF']?>" method="POST" role="form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="email">Verification mail:(This mail is used to contact you!)</label>
+                                        <input name="email" type="email" value="" class="form-control" placeholder="Enter new verification mail" required>
+                                    <button type="submit" class="nacoss-btn" name="update_my_email">update&nbsp;<i class="fa fa-envelope-o"></i></button>
                                 </div>
                             </form>
                         </div>

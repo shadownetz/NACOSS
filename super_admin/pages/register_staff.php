@@ -1,26 +1,20 @@
 <!-- Header -->
 <?php include('includes/header.php'); ?>
 <?php
-$fullname = "";
-$phone = "";
-$email = "";
-$office = "";
-$cert = "";
-$courses = "";
-$staff_imagepath = "";
-?>
-<?php
 $errors = array();
 if (isset($_POST['submit'])){
     $file = $_FILES['file']['name'];
-    $fullname = htmlentities($_POST['fullname']);
-    $phone = htmlentities($_POST['phone']);
-    $email = htmlentities($_POST['email']);
-    $office = htmlentities($_POST['office']);
-    $cert = htmlentities($_POST['cert']);
-    $courses = htmlentities($_POST['courses']);
+    $fullname = $database->escape_value(htmlentities($_POST['fullname']));
+    $phone = $database->escape_value(htmlentities($_POST['phone']));
+    $email = $database->escape_value(htmlentities($_POST['email']));
+    $office = $database->escape_value(htmlentities($_POST['office']));
+    $cert = $database->escape_value(htmlentities($_POST['cert']));
+    $courses = $database->escape_value(htmlentities($_POST['courses']));
     
     $fileName = $_FILES['file']['name'];
+    if(empty($fileName)){
+        echo "<script> alert('No file chosen in Image Slot'); </script>";
+    }else{
                 $fileType = $_FILES['file']['type'];
                             $fileExt = explode('.',$fileName);
                                 $fileActualExt = strtolower(end($fileExt));
@@ -66,6 +60,8 @@ if (isset($_POST['submit'])){
 	   }else{
             echo "<script> alert('Another file type used in Image Slot'); </script>";
         }
+    }
+        
     
 }
 if (isset($_POST['update'])){
@@ -126,6 +122,16 @@ if (isset($_POST['update'])){
         }
     
 }
+?>
+<?php
+$fullname = "";
+$phone = "";
+$email = "";
+$office = "";
+$cert = "";
+$courses = "";
+$staff_imagepath = "";
+
 if(isset($_GET['update'])){
     $staff_id = $_GET['update'];
     $query_db = User::find_by_sql("SELECT * FROM staff WHERE id='$staff_id'");
@@ -156,56 +162,53 @@ if(isset($_GET['update'])){
                          <div class="nacoss-all-discuss nacoss-my-discuss news">
                             <div class="panel document-panel">
                                     <div class="panel-heading"></div>
-                                    <div class="panel-body" style="overflow:hidden">
+                                    <div class="panel-body">
                                         <form class="nacoss-profile" method="POST" enctype="multipart/form-data" action="<?php $_SERVER['PHP_SELF'] ?>">
                                         <div class="row form-content">
                             <?php if(isset($_GET['update'])){ $path=$staff_imagepath; }else{ $path="../../staffphotos/default_news.png"; } ?>
-                                            <div class="container" style="text-align:center; margin-bottom:20px">
-  <div class="col-md-3 col-sm-3 col-xs-3 col-sm-offset-4  col-xs-offset-4 col-md-offset-4 img-block" style='background-image:url("<?php echo $path; ?>"); height:100px;width:100px;border-radius:50px;background-size:cover' onmouseover="displayImageOverlay(this)" onmouseout="hideImageOverlay(this)">
-		<div class="img-overlay animated fadeIn" style="width:100px;width:100px;border-radius:50px;padding-top:20px;left:0">
-            <label class="inner-n-vsble">
-                Change Image<br><i class="fa fa-camera"></i>
-                 <input class="profile-img form-control " name="file" type="file" value="<?php echo $news_image; ?>">
-                     </label>
-                        </div>
-						</div>
-</div>
-                                            <!-- <div class="row"> -->
+                                            <div class="col-md-12 blk" style='background-image:url("<?php echo $path; ?>")' onmouseover="displayImageOverlay(this)" onmouseout="hideImageOverlay(this)">
+                                            <div class="img-overlay animated fadeIn" >
+                                                        <label class="inner-n-vsble">
+                                                        Change Image<br><i class="fa fa-camera"></i>
+                                                            <input class="profile-img form-control " name="file" type="file" value="<?php echo $staff_imagepath; ?>">
+                                                        </label>
+                                                    </div>
+                                            
+                                            </div>
                                             <div class="col-md-12 txt">
                                                 <label>Full Name:</label>
-                                                <input type="text" class="form-control" name="fullname" placeholder="enter fullname here" value="<?php echo $fullname; ?>">
+                                                <input type="text" class="form-control" name="fullname" placeholder="Enter Fullname here" value="<?php echo $fullname; ?>">
                                             </div>
                                             <div class="col-md-12 txt">
                                                 <label>Phone Number:</label>
-                                                <input type="text" class="form-control" name="phone" placeholder="enter phone number" value="<?php echo $phone; ?>">
+                                                <input type="text" class="form-control" name="phone" placeholder="Enter Phone Number here" value="<?php echo $phone; ?>">
                                             </div>
                                             <div class="col-md-12 txt">
                                                 <label>Email Address:</label>
-                                                <input type="text" class="form-control" name="email" placeholder="example@mail.com" value="<?php echo $email; ?>">
+                                                <input type="text" class="form-control" name="email" placeholder="Enter Email here: example@mail.com" value="<?php echo $email; ?>">
                                             </div>
                                             <div class="col-md-12 txt">
                                                 <label>Office Number:</label>
-                                                <input type="text" class="form-control" name="office" placeholder="enter office number" value="<?php echo $office; ?>">
+                                                <input type="text" class="form-control" name="office" placeholder="Enter Office here" value="<?php echo $office; ?>">
                                             </div>
                                             <div class="col-md-12 txt">
                                                 <label>Qualification:</label>
-                                                <input type="text" class="form-control" name="cert" placeholder="enter qualification" value="<?php echo $cert; ?>">
+                                                <input type="text" class="form-control" name="cert" placeholder="Enter Qualification here" value="<?php echo $cert; ?>">
                                             </div>
                                             <div class="col-md-12 txt">
                                                 <label>Courses:</label>
-                                                <input type="text" class="form-control" name="courses" placeholder="enter courses in charge of" value="<?php echo $courses; ?>">
+                                                <input type="text" class="form-control" name="courses" placeholder="Enter Courses here eg COS101, COS202..." value="<?php echo $courses; ?>">
                                             </div>
+                                        </div>
                             <?php if(isset($_GET['update'])){ ?>
-                                        <div class="col-md-3 col-md-offset-4" style="margin-top:15px">
+                                        <div class="col-md-3 col-md-offset-4">
                                             <button type="submit" name="update" class="nacoss-btn">Update&nbsp;<i class="fa fa-plus"></i></button>
                                         </div>
                             <?php }else{ ?>
-                                        <div class="col-md-3 col-md-offset-4" style="margin-top:15px">
+                                        <div class="col-md-3 col-md-offset-4">
                                             <button type="submit" name="submit" class="nacoss-btn">Add&nbsp;<i class="fa fa-plus"></i></button>
                                         </div>
                             <?php } ?>
-                            </div>
-                            <!-- </div> -->
                                         </form>
 
                                     </div>

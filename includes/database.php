@@ -63,6 +63,11 @@ class MySQLDatabase{
         }
     }
 
+    public function query_results($query){
+        $result = mysqli_query($this->connection, $query);
+        return $result;
+    }
+
     public function close_connection(){
         if(isset($this->connection)){
             mysqli_close($this->connection);

@@ -95,6 +95,10 @@ $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE d
 }
 
 ?>
+<?php
+    $result_set = User::find_by_sql("SELECT * FROM nacoss.joined_members WHERE rnumber='$rnumber' GROUP BY discussion_id");
+    if(mysqli_num_rows($result_set)>0){
+?>
 <!-- <div class="panel-heading"> -->
     <table class="table table-responsive" id="dataTables-example">
          <thead class="panel-heading">
@@ -113,7 +117,6 @@ $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE d
 <!-- <table class="table table-responsive"> -->
     <tbody class="panel-body">
 <?php
-    $result_set = User::find_by_sql("SELECT * FROM nacoss.joined_members WHERE rnumber='$rnumber' GROUP BY discussion_id");
     $counter = 1;
     while($row=mysqli_fetch_assoc($result_set)){
         $discussion_id = $row['discussion_id'];
@@ -141,10 +144,12 @@ $query_set = User::find_by_sql("SELECT * FROM nacoss.private_discussions WHERE d
         
     $counter++;    
     }
-
 ?>
           </tbody>
     </table>
+<?php }else{
+    echo "<script> alert('NO JOINED GROUP!'); window.location='dashboard.php' </script>";
+} ?>
 </div>
 </div>
 </div>

@@ -9,6 +9,10 @@ require_once ("../../../../includes/initialize.php");
     $update_query = User::update_candidate_query($user_rnumber, $user_full_name, $post, $registrar);
 
 if($update_query){
+    unset($_SESSION['user_rnumber']);
+    unset($_SESSION['user_full_name']);
+    unset($_SESSION['user_post']);
+    unset($_SESSION['user_rnumber']);
    ?>
        <script type="text/javascript">
     alert("Registration Updated Successful");

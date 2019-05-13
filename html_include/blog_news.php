@@ -34,11 +34,10 @@
           <!-- Start Left Blog -->
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-blog">
-              <div class="single-blog-img">
-                <a href="news-details.php?news_token=<?php echo $end.$id.$start; ?>&tk=<?php echo $start; ?>&key=<?php echo $end; ?>">
-										<img src="newsphotos/<?php echo $picture; ?>" alt="">
-									</a>
+            <a href="news-details.php?news_token=<?php echo $end.$id.$start; ?>&tk=<?php echo $start; ?>&key=<?php echo $end; ?>">
+              <div class="single-blog-img news-index" style='background:url("newsphotos/<?php echo $picture; ?>") no-repeat center center;background-size:cover'>
               </div>
+              </a>
               <div class="blog-meta">
                 <!-- <span class="comments-type">
 										<i class="fa fa-comment-o"></i>
@@ -65,6 +64,10 @@
           <!-- End Left Blog-->
   <?php  
       }
+    }else{
+      echo('
+      <div class="col-md-12" style="text-align:center;color:rgb(50,130,20);font-weight:bold">No News available at this time !</div>
+      ');
     }
   ?>
         </div>

@@ -28,22 +28,23 @@ if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
     $confirm_id = $_GET['confirm'];
     
     $explode = explode('-', $confirm_id);
-    if(count($explode)==10){
-        $user_id = $explode[5].$explode[7].$explode[9];
+    if($explode && count($explode)==10){
+        $user_unique_id = $explode[5].$explode[7].$explode[9];
 
-        $confirm_query = User::find_by_sql("SELECT * FROM all_students WHERE unique_id = '$user_id' LIMIT 1");
+        $confirm_query = User::find_by_sql("SELECT id, rnumber, verification_email FROM all_students WHERE unique_id = '$user_unique_id' LIMIT 1");
         if(mysqli_num_rows($confirm_query)==1){
+          $_SESSION['unique_id'] = $user_unique_id;
             while($r=mysqli_fetch_assoc($confirm_query)){
-                $semail = $r['semail'];
-            }
-            $update = User::find_by_sql("UPDATE all_students SET verified = '1' WHERE unique_id = '$user_id' LIMIT 1");
-            if($update){
-                User::mailer_successful($semail);
+                $_SESSION['identity'] = $r['id'];
+                $_SESSION['user_rnumber'] = $r['rnumber'];
+                $_SESSION['verification_email'] = $r['verification_email'];
+                echo "<script> window.location='recover_fpass.php'; </script>";
             }
         }
+    }else{
+      echo "<script> window.location='index.php'; </script>";
     }
 }
-
 
 ?>
 <?php require_once('includes/initialize.php'); ?>
@@ -73,8 +74,8 @@ if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
 
   <!-- Libraries CSS Files -->
   <link href="lib/nivo-slider/css/nivo-slider.css" rel="stylesheet">
-  <link href="lib/owlcarousel/owl.carousel.css" rel="stylesheet">
-  <link href="lib/owlcarousel/owl.transitions.css" rel="stylesheet">
+  <link href="lib/OwlCarousel/owl.carousel.css" rel="stylesheet">
+  <link href="lib/OwlCarousel/owl.transitions.css" rel="stylesheet">
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/venobox/venobox.css" rel="stylesheet">
@@ -146,13 +147,14 @@ if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
                   <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                   </li>
-                  <li>
-                    <a class="page-scroll" href="account.php">Account</a>
-                  </li>
                 <?php if(isset($_SESSION['id'])){ ?>
                     <li>
                     <a class="page-scroll" href="<?php echo $_SESSION['my_portal_location']; ?>">MyPortal</a>
                   </li>
+                <?php }else{ ?>
+                  <li>
+                  <a class="page-scroll" href="account.php">Account</a>
+                </li>
                 <?php } ?>
                 </ul>
               </div>
@@ -168,6 +170,6 @@ if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
   <!-- header end -->
 <br>
   <div class="row">
-        <div class="col-md-12" id="nacoss"><h1 class="animated fadeInUp">National Association of Computer Sciences</h1>
+        <div class="col-md-12" id="nacoss"><h1 class="animated fadeInUp">Nigeria Association of Computer Science Students</h1>
         <span style="float:right;padding-right:1em" class="animated fadeIn"><code><i>...networking the world</i></code></span></div>
   </div>

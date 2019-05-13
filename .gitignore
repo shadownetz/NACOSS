@@ -1,0 +1,4 @@
+# ignore exco details folder
+/EXCOS DETAILS/
+# ignore database files
+/DB/

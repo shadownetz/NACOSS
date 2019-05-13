@@ -25,6 +25,85 @@ class User{
         $result_set = $database->query($query);
         return $result_set;
     }
+
+    public static function generate_unique_id(){
+        $explode = uniqid('', true);
+        $exp = explode('.', $explode);
+        $unique_id = end($exp);
+        return $unique_id;
+    }
+    public static function generate_unset_unique_and_set_unique(){
+        global $database;
+
+        $id_arrays_fetch = self::find_by_sql("SELECT id FROM all_students WHERE verified='0' AND unique_id=''");
+        if($database->num_rows($id_arrays_fetch)>0){
+            while($rw=$database->fetch_array($id_arrays_fetch)){
+                $id_arrays[] = $rw['id'];
+            }
+    
+            $count = 0;
+            while($count < count($id_arrays)){            
+                $go = false;
+                while($go == false){
+                    $unique_id = self::generate_unique_id();
+                    $check_unique = self::find_by_sql("SELECT * FROM all_students WHERE unique_id='{$unique_id}'");
+                    if(mysqli_num_rows($check_unique)>0){
+                        $unique_id = self::generate_unique_id();
+                    }else{
+                        $go = true;
+                    }
+                }
+                self::find_by_sql("UPDATE all_students SET unique_id='{$unique_id}' WHERE id = '{$id_arrays[$count]}'");
+            $count++;
+            }
+        }
+        
+    }
+
+    public static function generate_hash($unique=0){
+
+        $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
+        $spliter = str_split($unique);
+        $alpha = $spliter[0].$spliter[1].$spliter[2];
+        $delta = $spliter[3].$spliter[4].$spliter[5];
+        $zigma = $spliter[6].$spliter[7];
+        $identify = 'NACOSS-'.$current_day.'-'.$current_month.'-'.$current_year.'-'.$current_hour.'-'.$alpha.'-'.$current_min.'-'.$delta.'-'.$current_sec.'-'.$zigma;
+        return $identify;
+    }
+    
+    public static function send_verification_mail_to_unverified(){
+        global $database;
+
+        $query = self::find_by_sql("SELECT verification_email, unique_id FROM all_students WHERE verified='0' ");
+        $subject = "ACCOUNT VERIFICATION";
+        if($database->num_rows($query)>0){
+            while($row=$database->fetch_array($query)){
+                $to = $row['verification_email'];
+                $identify = self::generate_hash($row['unique_id']);
+                $message = '
+                NACOSS UNN | NIGERIA ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER
+                '."<br><br>".'
+
+                Please click this link to confirm your registration:'."<br>".'
+                http://196.222.25.29/nac/?confirm='.$identify.''."<br>".'
+                '."<br>".'
+
+                Do not comfirm if you are not aware of this account.'."<br>".'
+                Visit us anytime and notify us about your problem with this link:'."<br>".'
+                http://196.222.25.29/nac
+                Kindly bear with us.
+                '; // Our message above including the link
+
+                $headers  = 'From: NACOSS UNN <nacossunn19@gmail.com>' ."\r\n"
+                                .'Bcc: ' ."\r\n"
+                                .'MIME-Version: 1.0' ."\r\n"
+                                .'Content-type: text/html; charset=iso-8859-1' ."\r\n"
+                                .'X-Mailer: PHP/' . phpversion();
+            
+                mail($to, $subject, $message, $headers); // Send our email
+            }
+        }
+    }
     
      public static function admin_login($uname="", $pword=""){
          global $database;
@@ -47,15 +126,15 @@ class User{
         $to = $address;
 		$subject = "NACOSS HELP DESK";
 		$message = '
-		NACOSS UNN | NATIONAL ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER
-		'.$msg.'.
+        NACOSS UNN | NIGERIA ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER'."<br><br>"
+        .$msg."<br>".
 
-		Please click this link to visit our site anytime:
-		http://www.nacosunn.com
+		'Please click this link to visit our site anytime:
+		http://196.222.25.29/nac
 
 		'; // Our message above including the link
 
-		$headers  = 'From: Bulk Service <noreply10@2ools.co.za>' ."\r\n"
+		$headers  = 'From: NACOSS UNN <nacossunn19@gmail.com>' ."\r\n"
 						.'Bcc: ' ."\r\n"
 						.'MIME-Version: 1.0' ."\r\n"
 						.'Content-type: text/html; charset=iso-8859-1' ."\r\n"
@@ -65,93 +144,41 @@ class User{
 
     }
     
-    public static function mailer($uname="", $pword="", $semail="", $id=""){
+    public static function activated_account($rnumber="", $unique_id="", $verification_email="", $pword=""){
         global $database;
 
-        $to = $semail;
-		$subject = "ACCOUNT REGISTRATION SUCCESSFUL";
+        $to = $verification_email;
+		$subject = "ACCOUNT AUTHENTICATION SUCCESSFUL";
 		$message = '
-		NACOSS UNN | NATIONAL ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER
-		Thanks for signing up on National Associacion of Computer Science Students UNN CHAPTER Website!
-		Your account has been created, your login credentials  are below, You can login with your credentials after your account has been confirmed and activated by the Administrator.
+		NACOSS UNN | NIGERIA ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER'."<br><br>".
 
+	    'Your account has been updated, your login credentials  are below.
+        '."<br><br>".'
 
+		------------------------'."<br>".'
+		Registration Number: '.$rnumber.''."<br>".'
+		Password: '.$pword.''."<br>".'
+        Unique Id: '.$unique_id.''."<br>".'
 		------------------------
-		UserName: '.$uname.'
-		Password: '.$pword.'
-        Unique Id: '.$id.'
-		------------------------
+        '."<br>".'
 
-		Please click this link to visit our site for help:
-		http://www.nacosunn.com
+		Please click this link to visit our site for help:'."<br>".'
+        http://196.222.25.29/nac
 
 		'; // Our message above including the link
 
-		$headers  = 'From: Bulk Service <noreply10@2ools.co.za>' ."\r\n"
+		$headers  = 'From: NACOSS UNN <nacossunn19@gmail.com>' ."\r\n"
 						.'Bcc: ' ."\r\n"
 						.'MIME-Version: 1.0' ."\r\n"
 						.'Content-type: text/html; charset=iso-8859-1' ."\r\n"
 						.'X-Mailer: PHP/' . phpversion();
 
 		mail($to, $subject, $message, $headers); // Send our email
-        
-        
-        $current_year = date('Y'); $current_month = date('m'); $current_day = date('d'); $current_hour = date('H'); $current_min = date('i'); $current_sec = date('s');
-
-        $spliter = str_split($id);
-
-        $alpha = $spliter[0].$spliter[1].$spliter[2];
-        $delta = $spliter[3].$spliter[4].$spliter[5];
-        $zigma = $spliter[6].$spliter[7];
-
-        $identify = 'NACOSS-'.$current_day.'-'.$current_month.'-'.$current_year.'-'.$current_hour.'-'.$alpha.'-'.$current_min.'-'.$delta.'-'.$current_sec.'-'.$zigma;
-        
-        $to = $semail;
-		$subject = "ACCOUNT VERIFICATION";
-		$message = '
-		NACOSS UNN | NATIONAL ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER
-
-		Please click this link to confirm your registration:
-		http://www.nacosunn.com/?confirm='.$identify.'
-        
-        Do not comfirm if you are not aware of this account, the account will be deactivated after 7 days without confirmation.
-        Kindly bear with us.
-		'; // Our message above including the link
-
-		$headers  = 'From: Bulk Service <noreply10@2ools.co.za>' ."\r\n"
-						.'Bcc: ' ."\r\n"
-						.'MIME-Version: 1.0' ."\r\n"
-						.'Content-type: text/html; charset=iso-8859-1' ."\r\n"
-						.'X-Mailer: PHP/' . phpversion();
-
-		mail($to, $subject, $message, $headers); // Send our email  
-
     }
     
-    public static function mailer_successful($semail){
-
-        $to       = $semail; 
-        $subject  = "ACCOUNT VERIFICATION SUCCESSFUL";
-        $message =  '
-		NACOSS UNN | NATIONAL ASSOCIATION OF COMPUTER SCIENCE STUDENTS UNN CHAPTER
-
-		Your account has been verified successfully, Your account will be fully activated by the administrator.
-        
-        Please click this link to visit our site for help:
-		http://www.nacosunn.com
-		';
-
-        $headers  = 'From: Bulk Service <noreply10@2ools.co.za>' ."\r\n"
-						.'Bcc: ' ."\r\n"
-						.'MIME-Version: 1.0' ."\r\n"
-						.'Content-type: text/html; charset=iso-8859-1' ."\r\n"
-						.'X-Mailer: PHP/' . phpversion();
-        mail($to, $subject, $message, $headers);
-    }
-    
-     public static function student_login($uname="", $pword=""){
+     public static function student_login($rnumber="", $pword=""){
          global $database;
-         return self::find_by_sql("SELECT * FROM all_students WHERE uname='$uname' AND pword='$pword' AND status='1' AND verified='1' LIMIT 1");
+         return self::find_by_sql("SELECT * FROM all_students WHERE rnumber='$rnumber' AND pword='$pword' LIMIT 1");
        
     }
     
@@ -236,15 +263,15 @@ class User{
     
 
     
-    public static function edit_student_profile($fname="", $lname="", $oname="", $oemail="", $level="", $pnumber="", $gender="", $skills="", $aim="", $stud_id=0, $main_picture='default.png'){
+    public static function edit_student_profile($uname="", $semail="", $fname="", $lname="", $oname="", $oemail="", $level="", $pnumber="", $gender="", $skills="", $aim="", $stud_id=0){
         global $database;
         if (empty($pword)){
-        $query = "UPDATE all_students SET fname = '$fname', lname = '$lname', oname = '$oname', oemail = '$oemail', ";
-        $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', skills='$skills', aim = '$aim', picture='$main_picture' WHERE id = '$stud_id'";
+        $query = "UPDATE all_students SET uname='$uname', semail='$semail', fname = '$fname', lname = '$lname', oname = '$oname', oemail = '$oemail', ";
+        $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', skills='$skills', aim = '$aim' WHERE id = '$stud_id'";
 
         }else{
         $epassword = md5($pword);
-        $query = "UPDATE all_students SET fname = '$fname', lname = '$lname', oname = '$oname', oemail = '$oemail', ";
+        $query = "UPDATE all_students SET uname='$uname', semail='$semail', fname = '$fname', lname = '$lname', oname = '$oname', oemail = '$oemail', ";
         $query .="level = '$level', pnumber = '$pnumber', gender = '$gender', skills='$skills', pword = '$epassword', aim = '$aim' WHERE id = '$stud_id'";
         }
         return $result_set = self::find_by_sql($query);  

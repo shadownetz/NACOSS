@@ -12,24 +12,7 @@
 <?php 
         
 global $session_student;
-    
 
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
-        
-        
         $explodestudent = explode('/', $session_student);
         $start = $explodestudent[0];
         $end = end($explodestudent);
@@ -37,68 +20,68 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_first_second";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
-            
-            
-                $gsp102 = $row['gsp102'];
-                $cos102 = $row['cos102'];
-                $cos104 = $row['cos104'];
-                $mth122 = $row['mth122'];
-                $phy116 = $row['phy116'];
-                $phy118 = $row['phy118'];
-            
-           
+                        while($row = mysqli_fetch_assoc($check_query)){
+                    
+                    
+                        $gsp102 = $row['gsp102'];
+                        $cos102 = $row['cos102'];
+                        $cos104 = $row['cos104'];
+                        $mth122 = $row['mth122'];
+                        $phy116 = $row['phy116'];
+                        $phy118 = $row['phy118'];
+                    
+                
 
-                
-                $elective1 = $row['elective1'];
-                    if($elective1 == "bio152" ){
-                        $new_elective1 = "BIO 152 (General Biology II)";
-                    }else if($elective1 == "chm122" ){
-                        $new_elective1 = "CHM 112 (Basic Principles of Chemistry II)";
-                    }else if($elective1 == "eng102" ){
-                        $new_elective1 = "ENG 102 (Applied Mechanics)";
-                    }else if($elective1 == "mth132" ){
-                        $new_elective1 = "MTH 132 (Elementary Mathematics IV)";
-                    }else if($elective1 == "sta112" ){
-                        $new_elective1 = "STA 112 (Probability II)";
-                    }else if($elective1 == "sta132" ){
-                        $new_elective1 = "STA 132 (Inference II)";
-                    }else if($elective1 == "sta172" ){
-                        $new_elective1 = "STA 172 (Laboratory for Inference I)";
-                    }else{
-                        $new_elective1 = $elective1;
-                    }    
-                
-                $elective1_ans = $row['elective1_ans'];
                         
+                        $elective1 = $row['elective1'];
+                            if($elective1 == "bio152" ){
+                                $new_elective1 = "BIO 152 (General Biology II)";
+                            }else if($elective1 == "chm122" ){
+                                $new_elective1 = "CHM 112 (Basic Principles of Chemistry II)";
+                            }else if($elective1 == "eng102" ){
+                                $new_elective1 = "ENG 102 (Applied Mechanics)";
+                            }else if($elective1 == "mth132" ){
+                                $new_elective1 = "MTH 132 (Elementary Mathematics IV)";
+                            }else if($elective1 == "sta112" ){
+                                $new_elective1 = "STA 112 (Probability II)";
+                            }else if($elective1 == "sta132" ){
+                                $new_elective1 = "STA 132 (Inference II)";
+                            }else if($elective1 == "sta172" ){
+                                $new_elective1 = "STA 172 (Laboratory for Inference I)";
+                            }else{
+                                $new_elective1 = $elective1;
+                            }    
                         
-                $elective2 = $row['elective2'];
-                    if($elective2 == "bio152" ){
-                        $new_elective2 = "BIO 152 (General Biology II)";
-                    }else if($elective2 == "chm122" ){
-                        $new_elective2 = "CHM 112 (Basic Principles of Chemistry II)";
-                    }else if($elective2 == "eng102" ){
-                        $new_elective2 = "ENG 102 (Applied Mechanics)";
-                    }else if($elective2 == "mth132" ){
-                        $new_elective2 = "MTH 132 (Elementary Mathematics IV)";
-                    }else if($elective2 == "sta112" ){
-                        $new_elective2 = "STA 112 (Probability II)";
-                    }else if($elective2 == "sta132" ){
-                        $new_elective2 = "STA 132 (Inference II)";
-                    }else if($elective2 == "sta172" ){
-                        $new_elective2 = "STA 172 (Laboratory for Inference I)";
-                    }else{
-                        $new_elective2 = $elective2;
-                    }    
-            
-                $elective2_ans = $row['elective2_ans'];
-        
-        
-            }
+                        $elective1_ans = $row['elective1_ans'];
+                                
+                                
+                        $elective2 = $row['elective2'];
+                            if($elective2 == "bio152" ){
+                                $new_elective2 = "BIO 152 (General Biology II)";
+                            }else if($elective2 == "chm122" ){
+                                $new_elective2 = "CHM 112 (Basic Principles of Chemistry II)";
+                            }else if($elective2 == "eng102" ){
+                                $new_elective2 = "ENG 102 (Applied Mechanics)";
+                            }else if($elective2 == "mth132" ){
+                                $new_elective2 = "MTH 132 (Elementary Mathematics IV)";
+                            }else if($elective2 == "sta112" ){
+                                $new_elective2 = "STA 112 (Probability II)";
+                            }else if($elective2 == "sta132" ){
+                                $new_elective2 = "STA 132 (Inference II)";
+                            }else if($elective2 == "sta172" ){
+                                $new_elective2 = "STA 172 (Laboratory for Inference I)";
+                            }else{
+                                $new_elective2 = $elective2;
+                            }    
+                    
+                        $elective2_ans = $row['elective2_ans'];
+                
+                
+                    }
         }else{ 
             ?>
                <script type="text/javascript">
@@ -111,6 +94,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='first_second.php'; </script>";
+    }
 
 
 

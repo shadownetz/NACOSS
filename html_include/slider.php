@@ -19,7 +19,7 @@
     <div class="item">
         <img src="<?php echo $active_imagepath; ?>" alt="'">
         <div class="slider-txt-block wow slideInUp">
-        <p><?php echo $active_message; ?></p>
+        <p class="text-center"><?php echo $active_message; ?></p>
             </div>
         
    </div>

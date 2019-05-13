@@ -1,3 +1,6 @@
+<?php
+    //echo "<script> alert('VOTING FORUM IS NOT YET OPEN!'); window.location='dashboard.php' </script>";
+?>
 <!-- Header -->
 <?php include('includes/header.php'); ?>
 

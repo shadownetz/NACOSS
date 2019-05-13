@@ -1,4 +1,20 @@
 <?php include('includes/php/process_upload_result.php'); ?>
+<?php
+//$submit = array();
+$old_course_codes_fs = array("cos102","cos104","mth122","mth132","phy116","phy118","phy122","sta112","sta132","sta172","gsp102","chm111","bio152","engr102");
+$old_course_tiltles_fs = array("COS 102 ( Introduction to Computer System )", "COS 104 ( Computing Practice )", "MTH 122 ( Elementary Mathematics III )", "MTH 132 (Elementary Mathematics IV)","PHY 116 ( General Physics II )","PHY 118 ( General Physics III )", "PHY 122 ( Fundamentals Of Physics II )", "STA 112 ( Probability II )", "STA 132 ( Inference II )","STA 172 ( Statistical Computing I )", "GSP 102 ( Use of English II )", "CHM 111 (Basic Priciples of Chemistry)", "BIO 152 (General Biology II)", "ENG 102 (Applied Mechanics)");
+
+$new_course_titles_fs = array("COS 102 (Computing Practice)", "COS 104 (Introduction to Database Systems)","MTH 122 ( Elementary Mathematics III )", "MTH 132 (Elementary Mathematics IV)","PHY 116 ( General Physics II )","PHY 118 ( General Physics III )","PHY 122 ( Fundamentals Of Physics II )","PHY 124 (Fundamental of Physics III)","PHY 196 (Practical Physics III)","CHM 112 (Basic Principle of Physical Chemistry)","STA 112 ( Probability II )","STA 132 (Inference II)","STA 172 (Statistical Computing I)","GSP 102 (The use of English II)");
+$new_course_codes_fs = array("cos102","cos104","mth122","mth132","phy116","phy118","phy122","phy124","phy196","chm112","sta112","sta132","sta172","gsp102");
+
+$result_type = explode_my_year();
+if($result_type <= 2017){
+    $type = "old";
+}else{
+    $type = "new";
+}
+$_SESSION['type'] = $type.'_first_yr_second_semester_results';
+?>
 <!-- Header -->
 <?php include('includes/header.php'); ?>
 
@@ -21,178 +37,54 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-1">
                                     <div class="result-panel panel panel-default">
+                                        <div class="column">
                                         <div class="panel-heading">
-                                        <h3 class="panel-title">Upload First Year Result <span><b>(2<sup>nd</sup>&nbsp;Semester)</b></span></h3>
+                                            <h3 class="panel-title">Select All Your <span><b>(2<sup>nd</sup>&nbsp;Semester)</b></span> Courses</h3>
                                         </div>
-                                        <div class="panel-body">
-                                            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form" enctype="multipart/form-data">
-                                                <fieldset>
-                                                    
-                                                    
-                                                    <div class="column">
-                                                        <div class="col-sm-6" >
-                                                            <label>LIST OF COURSES</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <label>GRADE</label>
-                                                        </div>
-                                                    </div>
-                                                    <br><hr>
-                                                    
-                                                    
-                                                    
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <label style="float:left;">GSP 102 ( Use of English II )</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="gsp102" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <label style="float:left;">COS 102 ( Introduction to Computer System )</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="cos102" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <label style="float:left;">COS 104 ( Computing Practice )</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="cos104" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <label style="float:left;">MTH 122 ( Elementary Mathematics III )</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="mth122" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <label style="float:left;">PHY 116 ( General Physics II )</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="phy116" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <label style="float:left;">PHY 118 ( General Physics III )</label>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="phy118" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                   
-                                                    
-                                                    
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <select name="elective1" class="form-control" required>
-                                                                <option value="">Select Elective Course</option>
-                                                                <option value="bio152">BIO 152 (General Biology II)</option>
-                                                                <option value="chm112">CHM 112 (Basic Principles of Chemistry II)</option>
-                                                                <option value="eng102">ENG 102 (Applied Mechanics)</option>
-                                                                <option value="mth132">MTH 132 (Elementary Mathematics IV)</option>
-                                                                <option value="sta112">STA 112 (Probability II)</option>
-                                                                <option value="sta132">STA 132 (Inference II)</option>
-                                                                <option value="sta172">STA 172 (Laboratory for Inference I)</option>
-                                                                
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="elective1_ans" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column">
-                                                        <div class="col-sm-6">
-                                                            <select name="elective2" class="form-control" >
-                                                                <option value="">Select Elective Course</option>
-                                                                <option value="bio152">BIO 152 (General Biology II)</option>
-                                                                <option value="chm112">CHM 112 (Basic Principles of Chemistry II)</option>
-                                                                <option value="eng102">ENG 102 (Applied Mechanics)</option>
-                                                                <option value="mth132">MTH 132 (Elementary Mathematics IV)</option>
-                                                                <option value="sta112">STA 112 (Probability II)</option>
-                                                                <option value="sta132">STA 132 (Inference II)</option>
-                                                                <option value="sta172">STA 172 (Laboratory for Inference I)</option>
-                                                                
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <select name="elective2_ans" class="form-control" >
-                                                                  <option value="">Select Grade</option>
-                                                                  <option value="A">A</option>
-                                                                  <option value="B">B</option>
-                                                                  <option value="C">C</option>
-                                                                  <option value="D">D</option>
-                                                                  <option value="F">F</option>
-                                                              </select>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-                                                    <div class="col-md-6 col-md-offset-3">
-                                                    <button class="nacoss-btn" name="upload_result_fs">Upload/Update Result</button>
-                                                    </div>
-                                                </fieldset>
+                                        <form action="add_grades_<?php echo $type; ?>.php" method="POST" role="form" enctype="multipart/form-data">
+                                            <fieldset>
+
+<?php
+                                    if($result_type <= 2017){   //OLD REG NOs
+                                        $count = 0;
+                                        while($count < count($old_course_codes_fs)){
+?>
+                                            <div class="col-sm-6">
+                                                <label style="float:left;"><?php echo $old_course_tiltles_fs[$count]; ?></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="<?php echo $old_course_codes_fs[$count]; ?>" type="checkbox" value="<?php echo $old_course_codes_fs[$count]; ?>">
+                                            </div>
+
+                                                
+<?php
+                                        $count++;
+                                        }
+                                    }else{  //NEW REG NOs
+                                        $count = 0;
+                                        while($count < count($new_course_codes_fs)){
+?>
+                                            <div class="col-sm-6">
+                                                <label style="float:left;"><?php echo $new_course_titles_fs[$count]; ?></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="<?php echo $new_course_codes_fs[$count]; ?>" type="checkbox" value="<?php echo $new_course_codes_fs[$count]; ?>">
+                                            </div>
+
+                                                
+<?php
+                                        $count++;
+                                        }                           
+                                    }
+    ?>
+                                                <div>
+                                                    <button class="nacoss-btn" name="proceed_fs">Proceed</button>
+                                                </div>
+                                            </fieldset>
                                             </form>
                                         </div>
+
+                                        
                                     </div>
                                 </div>
                             </div>

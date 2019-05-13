@@ -37,22 +37,7 @@ $logged_date = $logged_day."-".$logged_month."-".$logged_year;
 ?>
 <?php
 
-
 $pass_id = array();
-function calculateNewDiscussions($rnumber = "", $pass_id = "", $count = ""){
-    $new_id = array();
-    $count_all = array();
-    $sum_all_unread_messages = 0;
-    $sum_all_messages = 0;
-    for($x=0; $x<$count; $x++){
-        $new_id[$x] = $pass_id[$x];
-       $result_set = User::find_by_sql("SELECT * FROM `discussion_logs` WHERE rnumber = '$rnumber' AND discussion_id='$new_id[$x]' "); 
-        $count_all[$x] = mysqli_num_rows($result_set);
-        $sum_all_messages += $count_all[$x];
-    }
-    
-       return $sum_all_messages;
-}
 
     $result_set = User::find_by_sql("SELECT * FROM `read_messages` WHERE rnumber = '$rnumber' ");
     $total_unread_messages = 0;
@@ -295,18 +280,7 @@ if(mysqli_num_rows($result_set)>0){
                 </li>
                 <!-- /.dropdown -->
 <?php
-    function checkValue($value=""){
-        if($value >= 70){
-            $status = "success";
-        }else if($value >= 50 && $value < 70){
-            $status = "info";
-        }else if($value >= 30 && $value < 50){
-            $status = "warning";
-        }else{
-            $status = "danger";
-        }
-        return $status;
-    }
+
 
                 
 ?>
@@ -332,58 +306,14 @@ if(mysqli_num_rows($result_set)>0){
                         </li>
                         <li class="divider"></li>
 <?php
-    function connect(){
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
 
 
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
-        return $dbconnect;
-    }
-    function checkUploaded($count_uploaded="", $supposed=""){
-        if($supposed == 1 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 2 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 3 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 4 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 5 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 6 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 7 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else
-        if($supposed == 8 && $count_uploaded != 0){
-            $percent = ($count_uploaded/$supposed) * 100;
-        }else{
-            $percent = 0;
-        }
-        return $percent;
-    }
 ?>
                         <?php
                         $explode = explode('/', $rnumber);
                         $student_entry_year = $explode[0];
                         $current_year = date('Y');
-                        $current_month = date('m');
+                        $current_month = date('n');
                         $year_range = $current_year - $student_entry_year;
                         if($year_range == 1 && $current_month >= 5 &&  $current_month <= 7){ //from May - July
                             $range = 1; //First Semester result must av been ready
@@ -414,23 +344,34 @@ if(mysqli_num_rows($result_set)>0){
                         }else if($year_range == 4  && $current_month >= 10){ 
                             $range = 8;
                         }
-                        
-                        
-                        $db = connect();
+
                         $collect_results = array();
                         $q = array();
-                        $q[1] = "SELECT * FROM ".$student_entry_year."_first_first WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[2] = "SELECT * FROM ".$student_entry_year."_first_second WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[3] = "SELECT * FROM ".$student_entry_year."_second_first WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[4] = "SELECT * FROM ".$student_entry_year."_second_second WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[5 ]= "SELECT * FROM ".$student_entry_year."_third_first WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[6] = "SELECT * FROM ".$student_entry_year."_third_second WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[7] = "SELECT * FROM ".$student_entry_year."_final_first WHERE regno = '$rnumber' LIMIT 1 ";
-                        $q[8] = "SELECT * FROM ".$student_entry_year."_final_second WHERE regno = '$rnumber' LIMIT 1 ";
+
+                        $result_type = explode_my_year();
+                        if($result_type <= 2017){
+                            $type = "old";
+                        }else{
+                            $type = "new";
+                        }
+
+                        $q[1] = "SELECT * FROM $type"."_first_yr_first_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[2] = "SELECT * FROM $type"."_first_yr_second_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[3] = "SELECT * FROM $type"."_second_yr_first_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[4] = "SELECT * FROM $type"."_second_yr_second_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[5] = "SELECT * FROM $type"."_third_yr_first_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[6] = "SELECT * FROM $type"."_third_yr_second_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[7] = "SELECT * FROM $type"."_final_yr_first_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        $q[8] = "SELECT * FROM $type"."_final_yr_second_semester_results WHERE rnumber = '$rnumber' LIMIT 1 ";
+                        
                         if($range != 0){
                         for($x=1; $x <= $range; $x++){
-                            $query = mysqli_query($db, $q[$x]);
-                            array_push($collect_results, $q[$x]);
+                            $query = User::find_by_sql($q[$x]);
+                            if($query){
+                                if(mysqli_num_rows($query)>0){
+                                    array_push($collect_results, $q[$x]);
+                                }
+                            }
                         }
                         $count_uploaded = count($collect_results);
                         $percent = checkUploaded($count_uploaded, $range);
@@ -455,7 +396,7 @@ if(mysqli_num_rows($result_set)>0){
                         </li>
                         <li class="divider"></li>
                         <?php
-                        $result_set = User::find_by_sql("SELECT * FROM nacoss.students_documents WHERE rnumber='$rnumber' ");
+                        $result_set = User::find_by_sql("SELECT * FROM students_documents WHERE rnumber='$rnumber' ");
                         $num=mysqli_num_rows($result_set);
                         $default = 20;
                         if($num != 0){
@@ -487,7 +428,7 @@ if(mysqli_num_rows($result_set)>0){
                         </li>
                         <li class="divider"></li>
                         <?php
-                        $result_set = User::find_by_sql("SELECT * FROM nacoss.joined_members WHERE rnumber='$rnumber' GROUP BY discussion_id");
+                        $result_set = User::find_by_sql("SELECT * FROM joined_members WHERE rnumber='$rnumber' GROUP BY discussion_id");
                         $num=mysqli_num_rows($result_set);
                         if($num != 0){
                             $per = $num/10 * 100;
@@ -538,7 +479,7 @@ if(mysqli_num_rows($result_set)>0){
                         </li><li class="divider"></li>
 <?php
 $count_users = 0;
-$result_set = User::find_by_sql("SELECT * FROM nacoss.all_students WHERE status = '0' ");
+$result_set = User::find_by_sql("SELECT * FROM all_students WHERE status = '0' ");
 $count_users = mysqli_num_rows($result_set);                              
 ?>
                         <li>
@@ -580,7 +521,7 @@ $count_users = mysqli_num_rows($result_set);
                         </li><li class="divider"></li>
 <?php
 $count_users = 0;
-$result_set = User::find_by_sql("SELECT * FROM nacoss.all_students WHERE status = '5' ");
+$result_set = User::find_by_sql("SELECT * FROM all_students WHERE status = '5' ");
 $count_users = mysqli_num_rows($result_set);                              
 ?>
                         <!--<li>
@@ -611,7 +552,7 @@ $count_users = mysqli_num_rows($result_set);
                 </li>
 
                 <?php
-                $query_status = User::find_by_sql("SELECT my_status FROM nacoss.all_students WHERE id='$session->user_id' LIMIT 1");
+                $query_status = User::find_by_sql("SELECT my_status FROM all_students WHERE id='$session->user_id' LIMIT 1");
                 while($status=mysqli_fetch_assoc($query_status)){
                     $my_status = $status['my_status'];
                 }

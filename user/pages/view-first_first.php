@@ -12,22 +12,6 @@
 <?php 
         
 global $session_student;
-    
-
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
         
         
         $explodestudent = explode('/', $session_student);
@@ -37,66 +21,65 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_first_first";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
-            
-            
-                $gsp101 = $row['gsp101'];
-                $gsp111 = $row['gsp111'];
-                $cos101 = $row['cos101'];
-                $mth111 = $row['mth111'];
-                $mth121 = $row['mth121'];
-            
-           
+                while($row = mysqli_fetch_assoc($check_query)){
+                    
+                    
+                        $gsp101 = $row['gsp101'];
+                        $gsp111 = $row['gsp111'];
+                        $cos101 = $row['cos101'];
+                        $mth111 = $row['mth111'];
+                        $mth121 = $row['mth121'];
+                    
+                
 
-                $ansc1 = $row['ansc1'];
-                    if($ansc1 == "phy115" ){
-                        $new_ansc1 = "PHY 115 (General Physics I)";
-                    }else if($ansc1 == "phy191" ){
-                        $new_ansc1 = "PHY 191 (Practical Physics)";
-                    }else if($ansc1 == "bio151" ){
-                        $new_ansc1 = "BIO 151 (General Biology I)";
-                    }else if($ansc1 == "chm101" ){
-                        $new_ansc1 = "CHM 101 (Basic Chemistry I)";
-                    }else{
-                        $new_ansc1 = $ansc1;
-                    }
-            
-                $ansc1_ans = $row['ansc1_ans'];
+                        $ansc1 = $row['ansc1'];
+                            if($ansc1 == "phy115" ){
+                                $new_ansc1 = "PHY 115 (General Physics I)";
+                            }else if($ansc1 == "phy191" ){
+                                $new_ansc1 = "PHY 191 (Practical Physics)";
+                            }else if($ansc1 == "bio151" ){
+                                $new_ansc1 = "BIO 151 (General Biology I)";
+                            }else if($ansc1 == "chm101" ){
+                                $new_ansc1 = "CHM 101 (Basic Chemistry I)";
+                            }else{
+                                $new_ansc1 = $ansc1;
+                            }
+                    
+                        $ansc1_ans = $row['ansc1_ans'];
 
-                $ansc2 = $row['ansc2'];
-                    if($ansc2 == "phy115" ){
-                        $new_ansc2 = "PHY 115 (General Physics I)";
-                    }else if($ansc2 == "phy191" ){
-                        $new_ansc2 = "PHY 191 (Practical Physics)";
-                    }else if($ansc2 == "bio151" ){
-                        $new_ansc2 = "BIO 151 (General Biology I)";
-                    }else if($ansc2 == "chm101" ){
-                        $new_ansc2 = "CHM 101 (Basic Chemistry I)";
-                    }else{
-                        $new_ansc2 = $ansc2;
+                        $ansc2 = $row['ansc2'];
+                            if($ansc2 == "phy115" ){
+                                $new_ansc2 = "PHY 115 (General Physics I)";
+                            }else if($ansc2 == "phy191" ){
+                                $new_ansc2 = "PHY 191 (Practical Physics)";
+                            }else if($ansc2 == "bio151" ){
+                                $new_ansc2 = "BIO 151 (General Biology I)";
+                            }else if($ansc2 == "chm101" ){
+                                $new_ansc2 = "CHM 101 (Basic Chemistry I)";
+                            }else{
+                                $new_ansc2 = $ansc2;
+                            }
+                    
+                        $ansc2_ans = $row['ansc2_ans'];
+                    
+                        $elective = $row['elective'];
+                            if($elective == "eng101" ){
+                                $new_elective = "ENG 101 (Introduction to Engr I)";
+                            }else if($elective == "sta111" ){
+                                $new_elective = "STA 111 (Probability 1)";
+                            }else if($elective == "sta131" ){
+                                $new_elective = "STA 131 (Inference)";
+                            }else{
+                                $new_elective = $elective;
+                            }    
+                    
+                        $elective_ans = $row['elective_ans'];
+                
                     }
-            
-                $ansc2_ans = $row['ansc2_ans'];
-            
-                $elective = $row['elective'];
-                    if($elective == "eng101" ){
-                        $new_elective = "ENG 101 (Introduction to Engr I)";
-                    }else if($elective == "sta111" ){
-                        $new_elective = "STA 111 (Probability 1)";
-                    }else if($elective == "sta131" ){
-                        $new_elective = "STA 131 (Inference)";
-                    }else{
-                        $new_elective = $elective;
-                    }    
-            
-                $elective_ans = $row['elective_ans'];
-        
-        //header("Location: view-first_first.php");
-            }
         }else{ 
             ?>
                <script type="text/javascript">
@@ -109,6 +92,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='first_first.php'; </script>";
+    }
 
 
 

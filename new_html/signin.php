@@ -16,23 +16,22 @@
           </div>
         </div>
         <!-- Start  contact -->
-        <div class="col-md-6 col-sm-6 col-xs-12" style="background-color:rgba(255,255,255,0.6);margin-top:1.5%;margin-bottom:1%;box-shadow:-1px -1px 1px #000,-1px -1px 1px #fff,-1px -1px 1px #000">
+        <div class="col-md-6 col-sm-6 col-xs-12" style="background-color:rgba(255,255,255,0.6);margin-top:1.5%;margin-bottom:1%;box-shadow:-1px -1px 2px #fff">
             <div class="form contact-form contact">
             <h3 style="text-align: center; ">Student Login</h3>
               <div id="errormessage"></div>
               <form role="form" method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" >
 
                 <div class="col-md-12 form-content ">
-                    <label for="uname">UserName:</label>
-                    <input type="text" class="form-control" placeholder="username" name="uname" value="" autofocus>
+                    <label for="uname">Registration Number:</label>
+                    <input type="text" class="form-control" placeholder="registration number" name="rnumber" autofocus>
                 </div>
 
                 <div class="col-md-12 form-content">
                     <label for="pass">Password:</label>
                     <input type="password" class="form-control" placeholder="password" name="pword">
                 </div>
-                <div class="column">
-                  <div class="col-md-6 re col-sm-6"> <label><strong><a href="sign-up.php" style="color:rgb(11,99,11)">Not yet registered ? </a><strong></label></div>
+                <div class="col-md-12">
                   <div class="col-md-6 re"> <label><strong><a href="fpass.php" style="color:rgb(11,99,11)">Forgotten password ? </a><strong></label></div>
               </div>
                 

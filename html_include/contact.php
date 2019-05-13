@@ -39,7 +39,7 @@
               <div class="single-icon">
                 <i class="fa fa-map-marker"></i>
                 <p>
-                  <span><figcaption>Prof.Ezeilo Building (Abuja Building)<br>University of Nigeria, Nsukka.</figcaption></span>
+                  <span><figcaption>Prof J. O. C. Ezeilo Building (Abuja Building)<br>University of Nigeria, Nsukka.</figcaption></span>
                 </p>
               </div>
             </div>

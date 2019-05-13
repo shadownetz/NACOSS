@@ -1,5 +1,53 @@
 
 <?php require_once('includes/initialize.php'); ?>
+<?php
+if(isset($_POST['re_fpass'])){
+  $type = $database->escape_value(htmlentities($_POST ['fpass']));
+  $query_type = User::find_by_sql("SELECT id, rnumber, verification_email FROM all_students WHERE unique_id='{$type}' OR verification_email='{$type}' LIMIT 1");
+  if($database->num_rows($query_type)>0){
+    while($r=$database->fetch_array($query_type)){
+      $_SESSION['identity'] = $r['id'];
+      $_SESSION['user_rnumber'] = $r['rnumber'];
+      $_SESSION['verification_email'] = $r['verification_email'];
+      echo "<script> window.location='recover_fpass.php'; </script>";
+    }
+  }else{
+    echo "<script> alert('Wrong Verification Email or Id'); window.location='fpass.php'; </script>";
+  }
+}
+if(isset($_POST['update_pass'])){
+  if(isset($_SESSION['unique_id']) && isset($_SESSION['identity'])){
+    $pass = $database->escape_value(htmlentities($_POST ['pass']));
+    $re_pass = $database->escape_value(htmlentities($_POST ['re_pass']));
+    if(strlen($pass)<6){
+      echo "<script> alert('Password too short, must be more than 6!'); window.location='recover_fpass.php'; </script>";
+      die();
+    }
+    if($pass != $re_pass){
+      echo "<script> alert('The two passwords mismatch!'); window.location='recover_fpass.php'; </script>";
+      die();
+    }
+    $epassword = md5($pass);
+    $user_unique_id = $_SESSION['unique_id'];
+    $user_id = $_SESSION['identity'];
+    $user_rnumber = $_SESSION['user_rnumber'];
+    $verification_email = $_SESSION['verification_email'];
+    $update = User::find_by_sql("UPDATE all_students SET verified = '1', pword='{$epassword}' WHERE unique_id = '$user_unique_id' AND id='{$user_id}' LIMIT 1");
+        if($update){
+            User::activated_account($user_rnumber, $user_unique_id, $verification_email, $pass);
+            unset($_SESSION['unique_id']);
+            unset($_SESSION['identify']);
+            unset($_SESSION['user_rnumber']);
+            unset($_SESSION['verification_email']);
+            echo "<script> alert('Account Verified Successful, experience the best from our portal!'); window.location='account.php'; </script>";
+          }
+  }else{
+    echo "<script> alert('Session timeout!'); window.location='index.php'; </script>";
+  }
+}
+
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,9 +57,14 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="images/nacoss-ico/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/nacoss-ico/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/nacoss-ico/favicon-16x16.png">
+<link rel="manifest" href="images/nacoss-ico/site.webmanifest">
+<link rel="mask-icon" href="images/nacoss-ico/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">

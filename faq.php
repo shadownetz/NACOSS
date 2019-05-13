@@ -16,20 +16,20 @@
           <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 faq-groups">
           <?php 
 $_SESSION['id_array'] = array(0);
-            function cal($value=""){
-                $split = str_split($value);
-                $count = count($split);
-                $val = $split[0];
-                if($count==3){ $num = $val.'h'; }
-                elseif($count==4){ $num = $val.'k'; }
-                elseif($count==5){ $val2 = $split[1]; $num = $val.$val2.'k'; }
-                elseif($count==6){ $val2 = $split[1]; $val3 = $split[2]; $num = $val.$val2.$val3.'k'; }else{$num = $value;}
-                return $num;
-            }
-            function star($num=""){
-                if($num < 100){ $progress = 1;}elseif($num >= 100 && $num < 200){$progress = 2;}elseif($num >= 200 && $num < 300){$progress = 3;}elseif($num >= 300 && $num < 400){$progress = 4;}elseif($num >= 400){ $progress = 5;}else{$progress = 0;}
-                return $progress;
-            }
+            // function cal($value=""){
+            //     $split = str_split($value);
+            //     $count = count($split);
+            //     $val = $split[0];
+            //     if($count==3){ $num = $val.'h'; }
+            //     elseif($count==4){ $num = $val.'k'; }
+            //     elseif($count==5){ $val2 = $split[1]; $num = $val.$val2.'k'; }
+            //     elseif($count==6){ $val2 = $split[1]; $val3 = $split[2]; $num = $val.$val2.$val3.'k'; }else{$num = $value;}
+            //     return $num;
+            // }
+            // function star($num=""){
+            //     if($num < 100){ $progress = 1;}elseif($num >= 100 && $num < 200){$progress = 2;}elseif($num >= 200 && $num < 300){$progress = 3;}elseif($num >= 300 && $num < 400){$progress = 4;}elseif($num >= 400){ $progress = 5;}else{$progress = 0;}
+            //     return $progress;
+            // }
             if(isset($_SESSION['id']) /*&& $_SESSION['user_location'] == "super_admin"*/){
                 //initialize variables here
                 require_once('admin/pages/includes/php/assign_variables.php');
@@ -41,7 +41,8 @@ $_SESSION['id_array'] = array(0);
                     $_SESSION['id_array'] = $my_discussion_id;
             }//SET OTHER LOCATIONS  
      $result_set = User::find_by_sql("SELECT * FROM discussions");
-        while ( $row = mysqli_fetch_array($result_set) ) {
+     if(mysqli_num_rows($result_set)>0){
+      while ( $row = mysqli_fetch_array($result_set) ) {
 
             $discussion_id =$row['id'];
             $discussion_topic =$row['topic'];
@@ -122,6 +123,7 @@ $_SESSION['id_array'] = array(0);
             </div>
           </div><hr />
               <?php } ?>
+              <?php }else{ echo "<script>alert('No discussions created!'); window.location='index.php'; </script>"; } ?>
           <!-- End of Discussion group-->
 
           

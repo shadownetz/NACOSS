@@ -13,21 +13,6 @@
         
 global $session_student;
     
-
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
         
         
         $explodestudent = explode('/', $session_student);
@@ -37,11 +22,11 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_second_second";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
+                while($row = mysqli_fetch_assoc($check_query)){
             
             
                 $gsp202 = $row['gsp202'];
@@ -82,6 +67,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='second_second.php'; </script>";
+    }
 
 
 

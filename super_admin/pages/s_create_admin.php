@@ -50,9 +50,7 @@ if(mysqli_num_rows($result_set)>0){
                             </tr>
                             </thead>
                             <tbody class="panel-body">
-<?php 
-}
-?>
+
 <?php
 // $query = "SELECT * FROM nacoss.all_students WHERE user_type = 'user_admin' ";
 //  $result_set = User::find_by_sql($query);
@@ -86,6 +84,9 @@ if(mysqli_num_rows($result_set)>0){
                 <?php
                 $counter++;
         }
+    }else{
+        echo "NO LOGS";
+    }
         ?>
           </tbody>
                                 </table>

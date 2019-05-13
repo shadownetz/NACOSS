@@ -12,22 +12,6 @@
 <?php 
         
 global $session_student;
-    
-
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "nacoss_results";
-
-    $dbconnect = mysqli_connect($host, $user, $pass, $database);
-
-
-    if(mysqli_connect_errno()){
-        die("Database connection failed: ".
-        mysqli_connect_error().
-                "(".mysqli_connect_errno().")"
-            );
-     }
         
         
         $explodestudent = explode('/', $session_student);
@@ -37,52 +21,52 @@ global $session_student;
         $new_student = $start."_".$end;
         $session_result = $start."_second_first";
         
-        $check_query = mysqli_query($dbconnect, "SELECT * FROM `$session_result` WHERE regno='$session_student' ");
-        $result = mysqli_num_rows($check_query);
-        if(!empty($result)){
+        $check_query = $database->query_results("SELECT * FROM `$session_result` WHERE regno='$session_student' ");
+        if($check_query){
+            if(mysqli_num_rows($check_query)>0){
             
-        while($row = mysqli_fetch_assoc($check_query)){
+                while($row = mysqli_fetch_assoc($check_query)){
             
             
-                $gsp201 = $row['gsp201'];
-                $gsp207 = $row['gsp207'];
-                $cos201 = $row['cos201'];
-                $cos251 = $row['cos251'];
-                $mth215 = $row['mth215'];
-                $sta205 = $row['sta205'];
-            
-           
-
+                    $gsp201 = $row['gsp201'];
+                    $gsp207 = $row['gsp207'];
+                    $cos201 = $row['cos201'];
+                    $cos251 = $row['cos251'];
+                    $mth215 = $row['mth215'];
+                    $sta205 = $row['sta205'];
                 
-                $elective1 = $row['elective1'];
-                    if($elective1 == "ee211" ){
-                        $new_elective1 = "EE 211 (Basic Electrical Engineering)";
-                    }else if($elective1 == "mth211" ){
-                        $new_elective1 = "MTH 211 (Set Logic And Algebra)";
-                    }else if($elective1 == "mth221" ){
-                        $new_elective1 = "MTH 221 (Real Analysis I)";
-                    }else{
-                        $new_elective1 = $elective1;
-                    }    
             
-                $elective2_ans = $row['elective2_ans'];
-                        
-                        
-                $elective2 = $row['elective2'];
-                    if($elective2 == "ee211" ){
-                        $new_elective2 = "EE 211 (Basic Electrical Engineering)";
-                    }else if($elective2 == "mth211" ){
-                        $new_elective2 = "MTH 211 (Set Logic And Algebra)";
-                    }else if($elective2 == "mth221" ){
-                        $new_elective2 = "MTH 221 (Real Analysis I)";
-                    }else{
-                        $new_elective2 = $elective2;
-                    }    
+
+                    
+                    $elective1 = $row['elective1'];
+                        if($elective1 == "ee211" ){
+                            $new_elective1 = "EE 211 (Basic Electrical Engineering)";
+                        }else if($elective1 == "mth211" ){
+                            $new_elective1 = "MTH 211 (Set Logic And Algebra)";
+                        }else if($elective1 == "mth221" ){
+                            $new_elective1 = "MTH 221 (Real Analysis I)";
+                        }else{
+                            $new_elective1 = $elective1;
+                        }    
+                
+                    $elective2_ans = $row['elective2_ans'];
+                            
+                            
+                    $elective2 = $row['elective2'];
+                        if($elective2 == "ee211" ){
+                            $new_elective2 = "EE 211 (Basic Electrical Engineering)";
+                        }else if($elective2 == "mth211" ){
+                            $new_elective2 = "MTH 211 (Set Logic And Algebra)";
+                        }else if($elective2 == "mth221" ){
+                            $new_elective2 = "MTH 221 (Real Analysis I)";
+                        }else{
+                            $new_elective2 = $elective2;
+                        }    
+                
+                    $elective1_ans = $row['elective1_ans'];
             
-                $elective1_ans = $row['elective1_ans'];
-        
-        
-            }
+            
+                }
         }else{ 
             ?>
                <script type="text/javascript">
@@ -95,6 +79,9 @@ global $session_student;
             die();
 
         }
+    }else{
+        echo "<script> alert('No result Uploaded, Kindly Upload result!'); window.location='second_first.php'; </script>";
+    }
 
 
 

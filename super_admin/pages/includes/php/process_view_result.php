@@ -13,28 +13,44 @@ if(isset($_POST['view'])){
     $semester = $_POST['semester'];
     
     if ($level == "first" && $semester == "first"){
-       header("Location: view-first_first.php");  
+        $_SESSION['result_loc'] = 'first_first.php';
+        $_SESSION['dataDb'] = 'first_yr_first_semester_results';
+       header("Location: user_results.php");  
     }else
     if($level == "first" && $semester == "second"){
-        header("Location: view-first_second.php");
+        $_SESSION['result_loc'] = 'first_second.php';
+        $_SESSION['dataDb'] = 'first_yr_second_semester_results';
+        header("Location: user_results.php");
     }else
     if($level == "second" && $semester == "first"){
-        header("Location: view-second_first.php");
+        $_SESSION['result_loc'] = 'second_first.php';
+        $_SESSION['dataDb'] = 'second_yr_first_semester_results';
+        header("Location: user_results.php");
     }else
     if($level == "second" && $semester == "second"){
-        header("Location: view-second_second.php");
+        $_SESSION['result_loc'] = 'second_second.php';
+        $_SESSION['dataDb'] = 'second_yr_second_semester_results';
+        header("Location: user_results.php");
     }else
     if($level == "third" && $semester == "first"){
-        header("Location: view-third_first.php");
+        $_SESSION['result_loc'] = 'third_first.php';
+        $_SESSION['dataDb'] = 'third_yr_first_semester_results';
+        header("Location: user_results.php"); 
     }else
     if($level == "third" && $semester == "second"){
-        header("Location: view-third_second.php");
+        $_SESSION['result_loc'] = 'third_second.php';
+        $_SESSION['dataDb'] = 'third_yr_second_semester_results';
+        header("Location: user_results.php");
     }else
     if($level == "final" && $semester == "first"){
-        header("Location: view-final_first.php");
+        $_SESSION['result_loc'] = 'final_first.php';
+        $_SESSION['dataDb'] = 'final_yr_first_semester_results';
+        header("Location: user_results.php");
     }else
     if($level == "final" && $semester == "second"){
-        header("Location: view-final_second.php");
+        $_SESSION['result_loc'] = 'final_second.php';
+        $_SESSION['dataDb'] = 'final_yr_second_semester_results';
+        header("Location: user_results.php");
     }else{
         echo "Invalid Input";
     }    

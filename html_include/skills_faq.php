@@ -10,7 +10,7 @@
             <div class="col-xs-12 col-sm-3 col-md-3 text-center">
               <div class="single-skill">
                 <div class="progress-circular">
-                  <input type="text" class="knob" value="0" data-rel="95" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
+                  <input type="text" class="knob" value="0" data-rel="80" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
                   <h3 class="progress-h4">Web Design</h3>
                 </div>
               </div>
@@ -20,7 +20,7 @@
             <div class="col-xs-12 col-sm-3 col-md-3 text-center">
               <div class="single-skill">
                 <div class="progress-circular">
-                  <input type="text" class="knob" value="0" data-rel="95" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
+                  <input type="text" class="knob" value="0" data-rel="90" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
                   <h3 class="progress-h4">Artificial Intelligence</h3>
                 </div>
               </div>
@@ -30,7 +30,7 @@
             <div class="col-xs-12 col-sm-3 col-md-3 text-center">
               <div class="single-skill">
                 <div class="progress-circular">
-                  <input type="text" class="knob" value="0" data-rel="95" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
+                  <input type="text" class="knob" value="0" data-rel="55" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
                   <h3 class="progress-h4">Android</h3>
                 </div>
               </div>
@@ -40,7 +40,7 @@
             <div class="col-xs-12 col-sm-3 col-md-3 text-center">
               <div class="single-skill">
                 <div class="progress-circular">
-                  <input type="text" class="knob" value="0" data-rel="95" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
+                  <input type="text" class="knob" value="0" data-rel="75" data-linecap="round" data-width="175" data-bgcolor="#fff" data-fgcolor="rgb(20, 172, 20)" data-thickness=".20" data-readonly="true" disabled>
                   <h3 class="progress-h4">Virtual Reality</h3>
                 </div>
               </div>

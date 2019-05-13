@@ -2,18 +2,20 @@
 require_once ("includes/initialize.php");
 if(isset($_POST['signup'])){
 
-    $uname = htmlentities($_POST ['uname']);
-    $fname = htmlentities($_POST ['fname']);
-    $lname = htmlentities($_POST ['lname']);
-    $semail = htmlentities($_POST ['semail']);
-    $level = htmlentities($_POST ['level']);
-    $pnumber = htmlentities($_POST ['pnumber']);
-    $rnumber = htmlentities($_POST ['rnumber']);
-    $gender = htmlentities($_POST ['gender']);
-    $pword = htmlentities($_POST ['pword']);
-    $repass = htmlentities($_POST ['repass']);
-    $skills = htmlentities($_POST ['skills']);
-    $aim = htmlentities($_POST ['aim']);
+    $uname = $database->escape_value(htmlentities($_POST ['uname']));
+    $fname = $database->escape_value(htmlentities($_POST ['fname']));
+    $lname = $database->escape_value(htmlentities($_POST ['lname']));
+    $semail = $database->escape_value(htmlentities($_POST ['semail']));
+    $level = $database->escape_value(htmlentities($_POST ['level']));
+    $pnumber = $database->escape_value(htmlentities($_POST ['pnumber']));
+    $rnumber = $database->escape_value(htmlentities($_POST ['rnumber']));
+    $gender = $database->escape_value(htmlentities($_POST ['gender']));
+    $pword = $database->escape_value(htmlentities($_POST ['pword']));
+    $repass = $database->escape_value(htmlentities($_POST ['repass']));
+    $skills = $database->escape_value(htmlentities($_POST ['skills']));
+    $aim = $database->escape_value(htmlentities($_POST ['aim']));
+    
+    
     
     function generate_unique_id(){
         $explode = uniqid('', true);
@@ -70,7 +72,47 @@ window.location="account.php";
 		
         redirect_to('account.php');
 die();
-			}                     
+			}     
+    	$query = "SELECT * ";
+$query .= "FROM all_students ";
+$query .= "WHERE uname = '$uname' ";         
+          //$index = 0;
+ $mresult = $database->query($query);
+
+ if(mysqli_num_rows($mresult)> 0)
+   {
+
+	?>
+	<script type="text/javascript">
+alert("Username has already been used.");
+window.location="account.php";
+</script>
+<?php
+		
+        redirect_to('account.php');
+die();
+			}
+    
+    	$query = "SELECT * ";
+$query .= "FROM all_students ";
+$query .= "WHERE rnumber = '$rnumber' AND verified = '1' ";
+ $mresult = $database->query($query);
+
+ if(mysqli_num_rows($mresult)> 0)
+   {
+
+	?>
+	<script type="text/javascript">
+alert("Reg Number has already been used.");
+window.location="account.php";
+</script>
+<?php
+		
+        redirect_to('account.php');
+die();
+			}
+    
+    
 $result_set = User::create_student($uname, $fname, $lname, $semail, $level, $pnumber, $rnumber, $gender, $pword, $unique_id, $skills, $aim);
    
        		if ($result_set){
@@ -78,7 +120,7 @@ $result_set = User::create_student($uname, $fname, $lname, $semail, $level, $pnu
 			?>
 	<script type="text/javascript">
 alert("Registration Successful, A verification message is sent to your school email address for you to verify before you can login!");
-//window.location="account.php";
+window.location="account.php";
 </script>
 
 <?php
